@@ -269,6 +269,84 @@ body::before{
   .brand-tab{padding:7px 16px;font-size:0.8rem}
 }
 
+
+/* WeChat Me Button */
+.wechat-fab{
+  position:fixed;bottom:24px;right:24px;z-index:950;
+  background:linear-gradient(135deg,#10b981,#059669);
+  color:#fff;border:none;border-radius:50px;
+  padding:14px 24px;font-size:0.95rem;font-weight:700;
+  cursor:pointer;box-shadow:0 4px 20px rgba(16,185,129,0.45);
+  transition:transform .2s,box-shadow .2s;
+  display:flex;align-items:center;gap:8px;
+  letter-spacing:0.3px;
+}
+.wechat-fab:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(16,185,129,0.55)}
+.wechat-fab .fab-icon{font-size:1.3rem}
+
+.wechat-overlay{
+  display:none;position:fixed;inset:0;background:rgba(15,23,42,.7);
+  z-index:1100;align-items:center;justify-content:center;
+}
+.wechat-overlay.active{display:flex}
+.wechat-modal{
+  background:#fff;border-radius:16px;width:90vw;max-width:380px;
+  padding:32px 28px 24px;box-shadow:0 20px 60px rgba(0,0,0,.3);
+  animation:slideUp .25s ease;text-align:center;
+}
+.wechat-modal .wechat-close{
+  position:absolute;top:12px;right:16px;
+  background:none;border:none;font-size:1.5rem;color:#94a3b8;
+  cursor:pointer;line-height:1;width:32px;height:32px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:8px;transition:background .15s;
+}
+.wechat-modal .wechat-close:hover{background:#f1f5f9;color:#0f172a}
+.wechat-modal .qr-img{
+  width:180px;height:180px;border-radius:12px;
+  border:1px solid #e2e8f0;margin:0 auto 16px;
+  object-fit:contain;display:block;
+}
+.wechat-modal .wechat-title{
+  font-size:1rem;font-weight:700;color:#0f172a;margin-bottom:6px;
+}
+.wechat-modal .wechat-id-row{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  margin:12px 0 20px;
+}
+.wechat-modal .wechat-id{
+  font-size:0.9rem;color:#475569;font-family:monospace;
+  background:#f1f5f9;padding:8px 14px;border-radius:8px;
+}
+.wechat-modal .copy-btn{
+  background:#10b981;color:#fff;border:none;border-radius:8px;
+  padding:8px 16px;font-size:0.82rem;font-weight:600;cursor:pointer;
+  transition:background .15s;white-space:nowrap;
+}
+.wechat-modal .copy-btn:hover{background:#059669}
+.wechat-modal .copy-btn.copied{background:#6366f1}
+.wechat-modal .wechat-hint{
+  font-size:0.78rem;color:#94a3b8;margin-top:4px;
+}
+
+/* View Photos modal - reuse existing modal styles, extend */
+.photo-modal-overlay{
+  display:none;position:fixed;inset:0;background:rgba(15,23,42,.7);
+  z-index:1050;align-items:center;justify-content:center;
+}
+.photo-modal-overlay.active{display:flex}
+.photo-modal{
+  background:#fff;border-radius:14px;width:94vw;max-width:800px;
+  max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.3);
+  animation:slideUp .25s ease;
+}
+.photo-modal-header{
+  padding:16px 20px;border-bottom:1px solid #e2e8f0;
+  display:flex;justify-content:space-between;align-items:center;
+  position:sticky;top:0;background:#fff;z-index:10;
+}
+.photo-modal-header h2{font-size:1.05rem;color:#0f172a}
+.photo-modal-body{padding:20px}
 </style>
 
 <script type="application/ld+json">
@@ -339,7 +417,7 @@ body::before{
 <div class="card-grid">
 <div class="card" data-json='{"model": "iPhone 17  Pro Max", "storage": "256G", "label": "iPhone 17  Pro Max 256G", "ap": 8600, "a": 8500, "b": 8300, "c": 7500, "wifi": 6375}' data-search="iphone 17  pro max 256g iphone 17 series">
   <div class="card-body">
-    <div class="card-model">iPhone 17  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 17  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥8,600</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥8,500</span></div>
@@ -350,7 +428,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 17  Pro Max", "storage": "512G", "label": "iPhone 17  Pro Max 512G", "ap": 9600, "a": 9500, "b": 9300, "c": 8200, "wifi": 6970}' data-search="iphone 17  pro max 512g iphone 17 series">
   <div class="card-body">
-    <div class="card-model">iPhone 17  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 17  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥9,600</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥9,500</span></div>
@@ -361,7 +439,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 17  Pro Max", "storage": "1TB", "label": "iPhone 17  Pro Max 1TB", "ap": 10600, "a": 10500, "b": 10300, "c": 9200, "wifi": 7820}' data-search="iphone 17  pro max 1tb iphone 17 series">
   <div class="card-body">
-    <div class="card-model">iPhone 17  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 17  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">1TB</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥10,600</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥10,500</span></div>
@@ -372,7 +450,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 17  Pro Max", "storage": "2TB", "label": "iPhone 17  Pro Max 2TB", "ap": 11300, "a": 11200, "b": 11000, "c": 10600, "wifi": 9010}' data-search="iphone 17  pro max 2tb iphone 17 series">
   <div class="card-body">
-    <div class="card-model">iPhone 17  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 17  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">2TB</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥11,300</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥11,200</span></div>
@@ -383,7 +461,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 17 Pro", "storage": "256G", "label": "iPhone 17 Pro 256G", "ap": 7600, "a": 7500, "b": 7300, "c": 6800, "wifi": 5780}' data-search="iphone 17 pro 256g iphone 17 series">
   <div class="card-body">
-    <div class="card-model">iPhone 17 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 17 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥7,600</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥7,500</span></div>
@@ -394,7 +472,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 17 Pro", "storage": "512G", "label": "iPhone 17 Pro 512G", "ap": 8600, "a": 8500, "b": 8300, "c": 7800, "wifi": 6630}' data-search="iphone 17 pro 512g iphone 17 series">
   <div class="card-body">
-    <div class="card-model">iPhone 17 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 17 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥8,600</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥8,500</span></div>
@@ -405,7 +483,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 17 Pro", "storage": "1TB", "label": "iPhone 17 Pro 1TB", "ap": 9100, "a": 9000, "b": 8800, "c": 8800, "wifi": 7480}' data-search="iphone 17 pro 1tb iphone 17 series">
   <div class="card-body">
-    <div class="card-model">iPhone 17 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 17 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">1TB</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥9,100</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥9,000</span></div>
@@ -416,7 +494,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone  Air", "storage": "256G", "label": "iPhone  Air 256G", "ap": 5900, "a": 5800, "b": 5600, "c": 4000, "wifi": 3400}' data-search="iphone  air 256g iphone 17 series">
   <div class="card-body">
-    <div class="card-model">iPhone  Air</div>
+    <div class="card-model"><span class="model-name">iPhone  Air</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥5,900</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥5,800</span></div>
@@ -427,7 +505,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone  Air", "storage": "512G", "label": "iPhone  Air 512G", "ap": 6900, "a": 6800, "b": 6600, "c": 5800, "wifi": 4930}' data-search="iphone  air 512g iphone 17 series">
   <div class="card-body">
-    <div class="card-model">iPhone  Air</div>
+    <div class="card-model"><span class="model-name">iPhone  Air</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥6,900</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥6,800</span></div>
@@ -438,7 +516,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone  Air", "storage": "1TB", "label": "iPhone  Air 1TB", "ap": 8100, "a": 8000, "b": 7800, "c": 5800, "wifi": 4930}' data-search="iphone  air 1tb iphone 17 series">
   <div class="card-body">
-    <div class="card-model">iPhone  Air</div>
+    <div class="card-model"><span class="model-name">iPhone  Air</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">1TB</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥8,100</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥8,000</span></div>
@@ -449,7 +527,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 17", "storage": "256G", "label": "iPhone 17 256G", "ap": 5100, "a": 5000, "b": 4800, "c": 4500, "wifi": 3825}' data-search="iphone 17 256g iphone 17 series">
   <div class="card-body">
-    <div class="card-model">iPhone 17</div>
+    <div class="card-model"><span class="model-name">iPhone 17</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥5,100</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥5,000</span></div>
@@ -460,7 +538,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 17", "storage": "512G", "label": "iPhone 17 512G", "ap": 6900, "a": 6800, "b": 6600, "c": 6200, "wifi": 5270}' data-search="iphone 17 512g iphone 17 series">
   <div class="card-body">
-    <div class="card-model">iPhone 17</div>
+    <div class="card-model"><span class="model-name">iPhone 17</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥6,900</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥6,800</span></div>
@@ -471,7 +549,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 17E", "storage": "256G", "label": "iPhone 17E 256G", "ap": 5000, "a": 4600, "b": 4400, "c": 3650, "wifi": 3102}' data-search="iphone 17e 256g iphone 17 series">
   <div class="card-body">
-    <div class="card-model">iPhone 17E</div>
+    <div class="card-model"><span class="model-name">iPhone 17E</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥5,000</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥4,600</span></div>
@@ -487,7 +565,7 @@ body::before{
 <div class="card-grid">
 <div class="card" data-json='{"model": "iPhone 16  Pro Max", "storage": "256G", "label": "iPhone 16  Pro Max 256G", "ap": 6100, "a": 6000, "b": 5800, "c": 5000, "wifi": 4250}' data-search="iphone 16  pro max 256g iphone 16 series">
   <div class="card-body">
-    <div class="card-model">iPhone 16  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 16  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥6,100</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥6,000</span></div>
@@ -498,7 +576,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 16  Pro Max", "storage": "512G", "label": "iPhone 16  Pro Max 512G", "ap": 6500, "a": 6400, "b": 6200, "c": 5200, "wifi": 4420}' data-search="iphone 16  pro max 512g iphone 16 series">
   <div class="card-body">
-    <div class="card-model">iPhone 16  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 16  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥6,500</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥6,400</span></div>
@@ -509,7 +587,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 16  Pro Max", "storage": "1TB", "label": "iPhone 16  Pro Max 1TB", "ap": 6800, "a": 6700, "b": 6600, "c": 5900, "wifi": 5015}' data-search="iphone 16  pro max 1tb iphone 16 series">
   <div class="card-body">
-    <div class="card-model">iPhone 16  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 16  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">1TB</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥6,800</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥6,700</span></div>
@@ -520,7 +598,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 16 Pro", "storage": "128G", "label": "iPhone 16 Pro 128G", "ap": 4650, "a": 4550, "b": 4350, "c": 3800, "wifi": 3230}' data-search="iphone 16 pro 128g iphone 16 series">
   <div class="card-body">
-    <div class="card-model">iPhone 16 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 16 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥4,650</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥4,550</span></div>
@@ -531,7 +609,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 16 Pro", "storage": "256G", "label": "iPhone 16 Pro 256G", "ap": 4950, "a": 4850, "b": 4650, "c": 4100, "wifi": 3485}' data-search="iphone 16 pro 256g iphone 16 series">
   <div class="card-body">
-    <div class="card-model">iPhone 16 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 16 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥4,950</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥4,850</span></div>
@@ -542,7 +620,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 16 Pro", "storage": "512G", "label": "iPhone 16 Pro 512G", "ap": 5450, "a": 5350, "b": 5150, "c": 4650, "wifi": 3952}' data-search="iphone 16 pro 512g iphone 16 series">
   <div class="card-body">
-    <div class="card-model">iPhone 16 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 16 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥5,450</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥5,350</span></div>
@@ -553,7 +631,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 16 Pro", "storage": "1TB", "label": "iPhone 16 Pro 1TB", "ap": 6000, "a": 5900, "b": 5700, "c": 5200, "wifi": 4420}' data-search="iphone 16 pro 1tb iphone 16 series">
   <div class="card-body">
-    <div class="card-model">iPhone 16 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 16 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">1TB</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥6,000</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥5,900</span></div>
@@ -564,7 +642,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 16 Plus", "storage": "128G", "label": "iPhone 16 Plus 128G", "ap": 4050, "a": 3950, "b": 3700, "c": 3400, "wifi": 2890}' data-search="iphone 16 plus 128g iphone 16 series">
   <div class="card-body">
-    <div class="card-model">iPhone 16 Plus</div>
+    <div class="card-model"><span class="model-name">iPhone 16 Plus</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥4,050</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥3,950</span></div>
@@ -575,7 +653,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 16 Plus", "storage": "256G", "label": "iPhone 16 Plus 256G", "ap": 4600, "a": 4500, "b": 4300, "c": 4000, "wifi": 3400}' data-search="iphone 16 plus 256g iphone 16 series">
   <div class="card-body">
-    <div class="card-model">iPhone 16 Plus</div>
+    <div class="card-model"><span class="model-name">iPhone 16 Plus</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥4,600</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥4,500</span></div>
@@ -586,7 +664,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 16 Plus", "storage": "512G", "label": "iPhone 16 Plus 512G", "ap": 5050, "a": 4950, "b": 4700, "c": 4400, "wifi": 3740}' data-search="iphone 16 plus 512g iphone 16 series">
   <div class="card-body">
-    <div class="card-model">iPhone 16 Plus</div>
+    <div class="card-model"><span class="model-name">iPhone 16 Plus</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥5,050</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥4,950</span></div>
@@ -597,7 +675,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 16", "storage": "128G", "label": "iPhone 16 128G", "ap": 3800, "a": 3700, "b": 3450, "c": 3000, "wifi": 2550}' data-search="iphone 16 128g iphone 16 series">
   <div class="card-body">
-    <div class="card-model">iPhone 16</div>
+    <div class="card-model"><span class="model-name">iPhone 16</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥3,800</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥3,700</span></div>
@@ -608,7 +686,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 16", "storage": "256G", "label": "iPhone 16 256G", "ap": 4100, "a": 4000, "b": 3750, "c": 3400, "wifi": 2890}' data-search="iphone 16 256g iphone 16 series">
   <div class="card-body">
-    <div class="card-model">iPhone 16</div>
+    <div class="card-model"><span class="model-name">iPhone 16</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥4,100</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥4,000</span></div>
@@ -619,7 +697,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 16", "storage": "512G", "label": "iPhone 16 512G", "ap": 4850, "a": 4750, "b": 4450, "c": 4100, "wifi": 3485}' data-search="iphone 16 512g iphone 16 series">
   <div class="card-body">
-    <div class="card-model">iPhone 16</div>
+    <div class="card-model"><span class="model-name">iPhone 16</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥4,850</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥4,750</span></div>
@@ -630,7 +708,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 16e", "storage": "128G", "label": "iPhone 16e 128G", "ap": 2600, "a": 2500, "b": 2300, "c": 1800, "wifi": 1530}' data-search="iphone 16e 128g iphone 16 series">
   <div class="card-body">
-    <div class="card-model">iPhone 16e</div>
+    <div class="card-model"><span class="model-name">iPhone 16e</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,600</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥2,500</span></div>
@@ -641,7 +719,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 16e", "storage": "256G", "label": "iPhone 16e 256G", "ap": 3100, "a": 3000, "b": 2700, "c": 2200, "wifi": 1870}' data-search="iphone 16e 256g iphone 16 series">
   <div class="card-body">
-    <div class="card-model">iPhone 16e</div>
+    <div class="card-model"><span class="model-name">iPhone 16e</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥3,100</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥3,000</span></div>
@@ -652,7 +730,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 16e", "storage": "512G", "label": "iPhone 16e 512G", "ap": 3750, "a": 3650, "b": 3300, "c": 2800, "wifi": 2380}' data-search="iphone 16e 512g iphone 16 series">
   <div class="card-body">
-    <div class="card-model">iPhone 16e</div>
+    <div class="card-model"><span class="model-name">iPhone 16e</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥3,750</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥3,650</span></div>
@@ -668,7 +746,7 @@ body::before{
 <div class="card-grid">
 <div class="card" data-json='{"model": "iPhone 15  Pro Max", "storage": "256G", "label": "iPhone 15  Pro Max 256G", "ap": 4300, "a": 4200, "b": 4000, "c": 3500, "wifi": 2975}' data-search="iphone 15  pro max 256g iphone 15 series">
   <div class="card-body">
-    <div class="card-model">iPhone 15  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 15  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥4,300</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥4,200</span></div>
@@ -679,7 +757,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 15  Pro Max", "storage": "512G", "label": "iPhone 15  Pro Max 512G", "ap": 4600, "a": 4500, "b": 4300, "c": 3800, "wifi": 3230}' data-search="iphone 15  pro max 512g iphone 15 series">
   <div class="card-body">
-    <div class="card-model">iPhone 15  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 15  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥4,600</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥4,500</span></div>
@@ -690,7 +768,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 15  Pro Max", "storage": "1TB", "label": "iPhone 15  Pro Max 1TB", "ap": 5000, "a": 4900, "b": 4700, "c": 4100, "wifi": 3485}' data-search="iphone 15  pro max 1tb iphone 15 series">
   <div class="card-body">
-    <div class="card-model">iPhone 15  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 15  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">1TB</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥5,000</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥4,900</span></div>
@@ -701,7 +779,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 15 Pro", "storage": "128G", "label": "iPhone 15 Pro 128G", "ap": 4100, "a": 4000, "b": 3800, "c": 3500, "wifi": 2975}' data-search="iphone 15 pro 128g iphone 15 series">
   <div class="card-body">
-    <div class="card-model">iPhone 15 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 15 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥4,100</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥4,000</span></div>
@@ -712,7 +790,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 15 Pro", "storage": "256G", "label": "iPhone 15 Pro 256G", "ap": 4400, "a": 4300, "b": 4100, "c": 3800, "wifi": 3230}' data-search="iphone 15 pro 256g iphone 15 series">
   <div class="card-body">
-    <div class="card-model">iPhone 15 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 15 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥4,400</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥4,300</span></div>
@@ -723,7 +801,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 15 Pro", "storage": "512G", "label": "iPhone 15 Pro 512G", "ap": 4600, "a": 4500, "b": 4300, "c": 4000, "wifi": 3400}' data-search="iphone 15 pro 512g iphone 15 series">
   <div class="card-body">
-    <div class="card-model">iPhone 15 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 15 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥4,600</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥4,500</span></div>
@@ -734,7 +812,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 15 Pro", "storage": "1TB", "label": "iPhone 15 Pro 1TB", "ap": 4900, "a": 4800, "b": 4600, "c": 4300, "wifi": 3655}' data-search="iphone 15 pro 1tb iphone 15 series">
   <div class="card-body">
-    <div class="card-model">iPhone 15 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 15 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">1TB</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥4,900</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥4,800</span></div>
@@ -745,7 +823,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 15 Plus", "storage": "128G", "label": "iPhone 15 Plus 128G", "ap": 3100, "a": 3000, "b": 2800, "c": 2400, "wifi": 2040}' data-search="iphone 15 plus 128g iphone 15 series">
   <div class="card-body">
-    <div class="card-model">iPhone 15 Plus</div>
+    <div class="card-model"><span class="model-name">iPhone 15 Plus</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥3,100</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥3,000</span></div>
@@ -756,7 +834,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 15 Plus", "storage": "256G", "label": "iPhone 15 Plus 256G", "ap": 3600, "a": 3500, "b": 3300, "c": 2900, "wifi": 2465}' data-search="iphone 15 plus 256g iphone 15 series">
   <div class="card-body">
-    <div class="card-model">iPhone 15 Plus</div>
+    <div class="card-model"><span class="model-name">iPhone 15 Plus</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥3,600</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥3,500</span></div>
@@ -767,7 +845,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 15 Plus", "storage": "512G", "label": "iPhone 15 Plus 512G", "ap": 4100, "a": 4000, "b": 3800, "c": 3200, "wifi": 2720}' data-search="iphone 15 plus 512g iphone 15 series">
   <div class="card-body">
-    <div class="card-model">iPhone 15 Plus</div>
+    <div class="card-model"><span class="model-name">iPhone 15 Plus</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥4,100</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥4,000</span></div>
@@ -778,7 +856,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 15", "storage": "128G", "label": "iPhone 15 128G", "ap": 2750, "a": 2650, "b": 2450, "c": 2100, "wifi": 1785}' data-search="iphone 15 128g iphone 15 series">
   <div class="card-body">
-    <div class="card-model">iPhone 15</div>
+    <div class="card-model"><span class="model-name">iPhone 15</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,750</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥2,650</span></div>
@@ -789,7 +867,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 15", "storage": "256G", "label": "iPhone 15 256G", "ap": 3100, "a": 3000, "b": 2850, "c": 2550, "wifi": 2168}' data-search="iphone 15 256g iphone 15 series">
   <div class="card-body">
-    <div class="card-model">iPhone 15</div>
+    <div class="card-model"><span class="model-name">iPhone 15</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥3,100</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥3,000</span></div>
@@ -800,7 +878,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 15", "storage": "512G", "label": "iPhone 15 512G", "ap": 3700, "a": 3600, "b": 3400, "c": 3100, "wifi": 2635}' data-search="iphone 15 512g iphone 15 series">
   <div class="card-body">
-    <div class="card-model">iPhone 15</div>
+    <div class="card-model"><span class="model-name">iPhone 15</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥3,700</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥3,600</span></div>
@@ -816,7 +894,7 @@ body::before{
 <div class="card-grid">
 <div class="card" data-json='{"model": "iPhone 14  Pro Max", "storage": "128G", "label": "iPhone 14  Pro Max 128G", "ap": 3450, "a": 3350, "b": 3150, "c": 2850, "wifi": 2422}' data-search="iphone 14  pro max 128g iphone 14 series">
   <div class="card-body">
-    <div class="card-model">iPhone 14  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 14  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥3,450</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥3,350</span></div>
@@ -838,7 +916,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 14  Pro Max", "storage": "512G", "label": "iPhone 14  Pro Max 512G", "ap": 4050, "a": 3950, "b": 3750, "c": 3450, "wifi": 2932}' data-search="iphone 14  pro max 512g iphone 14 series">
   <div class="card-body">
-    <div class="card-model">iPhone 14  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 14  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥4,050</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥3,950</span></div>
@@ -849,7 +927,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 14  Pro Max", "storage": "1TB", "label": "iPhone 14  Pro Max 1TB", "ap": 4100, "a": 4000, "b": 3800, "c": 3500, "wifi": 2975}' data-search="iphone 14  pro max 1tb iphone 14 series">
   <div class="card-body">
-    <div class="card-model">iPhone 14  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 14  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">1TB</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥4,100</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥4,000</span></div>
@@ -860,7 +938,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 14 Pro", "storage": "128G", "label": "iPhone 14 Pro 128G", "ap": 2850, "a": 2750, "b": 2600, "c": 2300, "wifi": 1955}' data-search="iphone 14 pro 128g iphone 14 series">
   <div class="card-body">
-    <div class="card-model">iPhone 14 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 14 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,850</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥2,750</span></div>
@@ -871,7 +949,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 14 Pro", "storage": "256G", "label": "iPhone 14 Pro 256G", "ap": 3150, "a": 3050, "b": 2950, "c": 2650, "wifi": 2252}' data-search="iphone 14 pro 256g iphone 14 series">
   <div class="card-body">
-    <div class="card-model">iPhone 14 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 14 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥3,150</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥3,050</span></div>
@@ -882,7 +960,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 14 Pro", "storage": "512G", "label": "iPhone 14 Pro 512G", "ap": 3400, "a": 3300, "b": 3200, "c": 2900, "wifi": 2465}' data-search="iphone 14 pro 512g iphone 14 series">
   <div class="card-body">
-    <div class="card-model">iPhone 14 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 14 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥3,400</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥3,300</span></div>
@@ -893,7 +971,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 14 Pro", "storage": "1TB", "label": "iPhone 14 Pro 1TB", "ap": 3700, "a": 3600, "b": 3500, "c": 3200, "wifi": 2720}' data-search="iphone 14 pro 1tb iphone 14 series">
   <div class="card-body">
-    <div class="card-model">iPhone 14 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 14 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">1TB</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥3,700</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥3,600</span></div>
@@ -904,7 +982,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 14Plus", "storage": "128G", "label": "iPhone 14Plus 128G", "ap": 2150, "a": 2050, "b": 1950, "c": 1900, "wifi": 1615}' data-search="iphone 14plus 128g iphone 14 series">
   <div class="card-body">
-    <div class="card-model">iPhone 14Plus</div>
+    <div class="card-model"><span class="model-name">iPhone 14Plus</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,150</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥2,050</span></div>
@@ -915,7 +993,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 14Plus", "storage": "256G", "label": "iPhone 14Plus 256G", "ap": 2450, "a": 2350, "b": 2200, "c": 2000, "wifi": 1700}' data-search="iphone 14plus 256g iphone 14 series">
   <div class="card-body">
-    <div class="card-model">iPhone 14Plus</div>
+    <div class="card-model"><span class="model-name">iPhone 14Plus</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,450</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥2,350</span></div>
@@ -926,7 +1004,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 14Plus", "storage": "512G", "label": "iPhone 14Plus 512G", "ap": 2750, "a": 2650, "b": 2500, "c": 2300, "wifi": 1955}' data-search="iphone 14plus 512g iphone 14 series">
   <div class="card-body">
-    <div class="card-model">iPhone 14Plus</div>
+    <div class="card-model"><span class="model-name">iPhone 14Plus</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,750</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥2,650</span></div>
@@ -937,7 +1015,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 14", "storage": "128G", "label": "iPhone 14 128G", "ap": 2000, "a": 1900, "b": 1750, "c": 1450, "wifi": 1232}' data-search="iphone 14 128g iphone 14 series">
   <div class="card-body">
-    <div class="card-model">iPhone 14</div>
+    <div class="card-model"><span class="model-name">iPhone 14</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,000</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,900</span></div>
@@ -948,7 +1026,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 14", "storage": "256G", "label": "iPhone 14 256G", "ap": 2200, "a": 2100, "b": 2000, "c": 1700, "wifi": 1445}' data-search="iphone 14 256g iphone 14 series">
   <div class="card-body">
-    <div class="card-model">iPhone 14</div>
+    <div class="card-model"><span class="model-name">iPhone 14</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,200</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥2,100</span></div>
@@ -959,7 +1037,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 14", "storage": "512G", "label": "iPhone 14 512G", "ap": 2600, "a": 2500, "b": 2300, "c": 2000, "wifi": 1700}' data-search="iphone 14 512g iphone 14 series">
   <div class="card-body">
-    <div class="card-model">iPhone 14</div>
+    <div class="card-model"><span class="model-name">iPhone 14</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,600</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥2,500</span></div>
@@ -975,7 +1053,7 @@ body::before{
 <div class="card-grid">
 <div class="card" data-json='{"model": "iPhone 13  Pro Max", "storage": "128G", "label": "iPhone 13  Pro Max 128G", "ap": 2600, "a": 2500, "b": 2350, "c": 2150, "wifi": 1828}' data-search="iphone 13  pro max 128g iphone 13 series">
   <div class="card-body">
-    <div class="card-model">iPhone 13  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 13  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,600</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥2,500</span></div>
@@ -986,7 +1064,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 13  Pro Max", "storage": "256G", "label": "iPhone 13  Pro Max 256G", "ap": 2900, "a": 2800, "b": 2650, "c": 2450, "wifi": 2082}' data-search="iphone 13  pro max 256g iphone 13 series">
   <div class="card-body">
-    <div class="card-model">iPhone 13  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 13  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,900</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥2,800</span></div>
@@ -997,7 +1075,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 13  Pro Max", "storage": "512G", "label": "iPhone 13  Pro Max 512G", "ap": 3200, "a": 3100, "b": 2950, "c": 2750, "wifi": 2338}' data-search="iphone 13  pro max 512g iphone 13 series">
   <div class="card-body">
-    <div class="card-model">iPhone 13  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 13  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥3,200</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥3,100</span></div>
@@ -1008,7 +1086,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 13  Pro Max", "storage": "1TB", "label": "iPhone 13  Pro Max 1TB", "ap": 3300, "a": 3200, "b": 3000, "c": 2800, "wifi": 2380}' data-search="iphone 13  pro max 1tb iphone 13 series">
   <div class="card-body">
-    <div class="card-model">iPhone 13  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 13  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">1TB</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥3,300</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥3,200</span></div>
@@ -1019,7 +1097,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 13 Pro", "storage": "128G", "label": "iPhone 13 Pro 128G", "ap": 2250, "a": 2150, "b": 2000, "c": 1800, "wifi": 1530}' data-search="iphone 13 pro 128g iphone 13 series">
   <div class="card-body">
-    <div class="card-model">iPhone 13 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 13 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,250</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥2,150</span></div>
@@ -1030,7 +1108,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 13 Pro", "storage": "256G", "label": "iPhone 13 Pro 256G", "ap": 2400, "a": 2300, "b": 2200, "c": 2000, "wifi": 1700}' data-search="iphone 13 pro 256g iphone 13 series">
   <div class="card-body">
-    <div class="card-model">iPhone 13 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 13 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,400</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥2,300</span></div>
@@ -1041,7 +1119,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 13 Pro", "storage": "512G", "label": "iPhone 13 Pro 512G", "ap": 2600, "a": 2500, "b": 2350, "c": 2150, "wifi": 1828}' data-search="iphone 13 pro 512g iphone 13 series">
   <div class="card-body">
-    <div class="card-model">iPhone 13 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 13 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,600</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥2,500</span></div>
@@ -1052,7 +1130,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 13 Pro", "storage": "1TB", "label": "iPhone 13 Pro 1TB", "ap": 2700, "a": 2600, "b": 2650, "c": 2450, "wifi": 2082}' data-search="iphone 13 pro 1tb iphone 13 series">
   <div class="card-body">
-    <div class="card-model">iPhone 13 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 13 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">1TB</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,700</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥2,600</span></div>
@@ -1063,7 +1141,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 13", "storage": "128G", "label": "iPhone 13 128G", "ap": 1800, "a": 1700, "b": 1600, "c": 1400, "wifi": 1190}' data-search="iphone 13 128g iphone 13 series">
   <div class="card-body">
-    <div class="card-model">iPhone 13</div>
+    <div class="card-model"><span class="model-name">iPhone 13</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,800</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,700</span></div>
@@ -1074,7 +1152,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 13", "storage": "256G", "label": "iPhone 13 256G", "ap": 1900, "a": 1800, "b": 1700, "c": 1500, "wifi": 1275}' data-search="iphone 13 256g iphone 13 series">
   <div class="card-body">
-    <div class="card-model">iPhone 13</div>
+    <div class="card-model"><span class="model-name">iPhone 13</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,900</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,800</span></div>
@@ -1085,7 +1163,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 13", "storage": "512G", "label": "iPhone 13 512G", "ap": 2200, "a": 2100, "b": 1950, "c": 1750, "wifi": 1488}' data-search="iphone 13 512g iphone 13 series">
   <div class="card-body">
-    <div class="card-model">iPhone 13</div>
+    <div class="card-model"><span class="model-name">iPhone 13</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,200</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥2,100</span></div>
@@ -1096,7 +1174,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 13  Mini", "storage": "128G", "label": "iPhone 13  Mini 128G", "ap": 1500, "a": 1400, "b": 1300, "c": 1150, "wifi": 978}' data-search="iphone 13  mini 128g iphone 13 series">
   <div class="card-body">
-    <div class="card-model">iPhone 13  Mini</div>
+    <div class="card-model"><span class="model-name">iPhone 13  Mini</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,500</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,400</span></div>
@@ -1107,7 +1185,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 13  Mini", "storage": "256G", "label": "iPhone 13  Mini 256G", "ap": 1700, "a": 1600, "b": 1500, "c": 1350, "wifi": 1148}' data-search="iphone 13  mini 256g iphone 13 series">
   <div class="card-body">
-    <div class="card-model">iPhone 13  Mini</div>
+    <div class="card-model"><span class="model-name">iPhone 13  Mini</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,700</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,600</span></div>
@@ -1118,7 +1196,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 13  Mini", "storage": "512G", "label": "iPhone 13  Mini 512G", "ap": 2000, "a": 1900, "b": 1800, "c": 1650, "wifi": 1402}' data-search="iphone 13  mini 512g iphone 13 series">
   <div class="card-body">
-    <div class="card-model">iPhone 13  Mini</div>
+    <div class="card-model"><span class="model-name">iPhone 13  Mini</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,000</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,900</span></div>
@@ -1134,7 +1212,7 @@ body::before{
 <div class="card-grid">
 <div class="card" data-json='{"model": "iPhone 12  Pro Max", "storage": "128G", "label": "iPhone 12  Pro Max 128G", "ap": 1900, "a": 1800, "b": 1700, "c": 1500, "wifi": 1275}' data-search="iphone 12  pro max 128g iphone 12 series">
   <div class="card-body">
-    <div class="card-model">iPhone 12  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 12  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,900</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,800</span></div>
@@ -1145,7 +1223,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 12  Pro Max", "storage": "256G", "label": "iPhone 12  Pro Max 256G", "ap": 2100, "a": 2000, "b": 1850, "c": 1650, "wifi": 1402}' data-search="iphone 12  pro max 256g iphone 12 series">
   <div class="card-body">
-    <div class="card-model">iPhone 12  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 12  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,100</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥2,000</span></div>
@@ -1156,7 +1234,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 12  Pro Max", "storage": "512G", "label": "iPhone 12  Pro Max 512G", "ap": 2200, "a": 2100, "b": 1950, "c": 1750, "wifi": 1488}' data-search="iphone 12  pro max 512g iphone 12 series">
   <div class="card-body">
-    <div class="card-model">iPhone 12  Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 12  Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥2,200</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥2,100</span></div>
@@ -1167,7 +1245,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 12 Pro", "storage": "128G", "label": "iPhone 12 Pro 128G", "ap": 1600, "a": 1500, "b": 1400, "c": 1300, "wifi": 1105}' data-search="iphone 12 pro 128g iphone 12 series">
   <div class="card-body">
-    <div class="card-model">iPhone 12 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 12 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,600</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,500</span></div>
@@ -1178,7 +1256,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 12 Pro", "storage": "256G", "label": "iPhone 12 Pro 256G", "ap": 1650, "a": 1550, "b": 1450, "c": 1350, "wifi": 1148}' data-search="iphone 12 pro 256g iphone 12 series">
   <div class="card-body">
-    <div class="card-model">iPhone 12 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 12 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,650</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,550</span></div>
@@ -1189,7 +1267,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 12 Pro", "storage": "512G", "label": "iPhone 12 Pro 512G", "ap": 1750, "a": 1650, "b": 1550, "c": 1450, "wifi": 1232}' data-search="iphone 12 pro 512g iphone 12 series">
   <div class="card-body">
-    <div class="card-model">iPhone 12 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 12 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,750</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,650</span></div>
@@ -1200,7 +1278,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 12", "storage": "64G", "label": "iPhone 12 64G", "ap": 1200, "a": 1100, "b": 1000, "c": 900, "wifi": 765}' data-search="iphone 12 64g iphone 12 series">
   <div class="card-body">
-    <div class="card-model">iPhone 12</div>
+    <div class="card-model"><span class="model-name">iPhone 12</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">64G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,200</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,100</span></div>
@@ -1211,7 +1289,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 12", "storage": "128G", "label": "iPhone 12 128G", "ap": 1350, "a": 1250, "b": 1150, "c": 1050, "wifi": 892}' data-search="iphone 12 128g iphone 12 series">
   <div class="card-body">
-    <div class="card-model">iPhone 12</div>
+    <div class="card-model"><span class="model-name">iPhone 12</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,350</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,250</span></div>
@@ -1222,7 +1300,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 12", "storage": "256G", "label": "iPhone 12 256G", "ap": 1500, "a": 1400, "b": 1250, "c": 1150, "wifi": 978}' data-search="iphone 12 256g iphone 12 series">
   <div class="card-body">
-    <div class="card-model">iPhone 12</div>
+    <div class="card-model"><span class="model-name">iPhone 12</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,500</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,400</span></div>
@@ -1233,7 +1311,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 12 Mini", "storage": "64G", "label": "iPhone 12 Mini 64G", "ap": 1000, "a": 900, "b": 800, "c": 700, "wifi": 595}' data-search="iphone 12 mini 64g iphone 12 series">
   <div class="card-body">
-    <div class="card-model">iPhone 12 Mini</div>
+    <div class="card-model"><span class="model-name">iPhone 12 Mini</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">64G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,000</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥900</span></div>
@@ -1244,7 +1322,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 12 Mini", "storage": "128G", "label": "iPhone 12 Mini 128G", "ap": 1100, "a": 1000, "b": 900, "c": 800, "wifi": 680}' data-search="iphone 12 mini 128g iphone 12 series">
   <div class="card-body">
-    <div class="card-model">iPhone 12 Mini</div>
+    <div class="card-model"><span class="model-name">iPhone 12 Mini</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,100</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,000</span></div>
@@ -1255,7 +1333,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 12 Mini", "storage": "256G", "label": "iPhone 12 Mini 256G", "ap": 1200, "a": 1100, "b": 1000, "c": 900, "wifi": 765}' data-search="iphone 12 mini 256g iphone 12 series">
   <div class="card-body">
-    <div class="card-model">iPhone 12 Mini</div>
+    <div class="card-model"><span class="model-name">iPhone 12 Mini</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,200</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,100</span></div>
@@ -1271,7 +1349,7 @@ body::before{
 <div class="card-grid">
 <div class="card" data-json='{"model": "iPhone 11 Pro Max", "storage": "64G", "label": "iPhone 11 Pro Max 64G", "ap": 1350, "a": 1250, "b": 1100, "c": 1000, "wifi": 850}' data-search="iphone 11 pro max 64g iphone 11 series">
   <div class="card-body">
-    <div class="card-model">iPhone 11 Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 11 Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">64G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,350</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,250</span></div>
@@ -1282,7 +1360,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 11 Pro Max", "storage": "256G", "label": "iPhone 11 Pro Max 256G", "ap": 1500, "a": 1400, "b": 1250, "c": 1150, "wifi": 978}' data-search="iphone 11 pro max 256g iphone 11 series">
   <div class="card-body">
-    <div class="card-model">iPhone 11 Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 11 Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,500</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,400</span></div>
@@ -1293,7 +1371,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 11 Pro Max", "storage": "512G", "label": "iPhone 11 Pro Max 512G", "ap": 1600, "a": 1500, "b": 1400, "c": 1300, "wifi": 1105}' data-search="iphone 11 pro max 512g iphone 11 series">
   <div class="card-body">
-    <div class="card-model">iPhone 11 Pro Max</div>
+    <div class="card-model"><span class="model-name">iPhone 11 Pro Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,600</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,500</span></div>
@@ -1304,7 +1382,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 11 Pro", "storage": "64G", "label": "iPhone 11 Pro 64G", "ap": 1200, "a": 1100, "b": 1000, "c": 900, "wifi": 765}' data-search="iphone 11 pro 64g iphone 11 series">
   <div class="card-body">
-    <div class="card-model">iPhone 11 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 11 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">64G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,200</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,100</span></div>
@@ -1315,7 +1393,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 11 Pro", "storage": "256G", "label": "iPhone 11 Pro 256G", "ap": 1350, "a": 1250, "b": 1100, "c": 1000, "wifi": 850}' data-search="iphone 11 pro 256g iphone 11 series">
   <div class="card-body">
-    <div class="card-model">iPhone 11 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 11 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,350</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,250</span></div>
@@ -1326,7 +1404,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 11 Pro", "storage": "512G", "label": "iPhone 11 Pro 512G", "ap": 1400, "a": 1300, "b": 1200, "c": 1100, "wifi": 935}' data-search="iphone 11 pro 512g iphone 11 series">
   <div class="card-body">
-    <div class="card-model">iPhone 11 Pro</div>
+    <div class="card-model"><span class="model-name">iPhone 11 Pro</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,400</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,300</span></div>
@@ -1337,7 +1415,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 11", "storage": "64G", "label": "iPhone 11 64G", "ap": 1100, "a": 1000, "b": 900, "c": 800, "wifi": 680}' data-search="iphone 11 64g iphone 11 series">
   <div class="card-body">
-    <div class="card-model">iPhone 11</div>
+    <div class="card-model"><span class="model-name">iPhone 11</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">64G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,100</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,000</span></div>
@@ -1348,7 +1426,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 11", "storage": "128G", "label": "iPhone 11 128G", "ap": 1200, "a": 1100, "b": 1000, "c": 900, "wifi": 765}' data-search="iphone 11 128g iphone 11 series">
   <div class="card-body">
-    <div class="card-model">iPhone 11</div>
+    <div class="card-model"><span class="model-name">iPhone 11</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,200</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,100</span></div>
@@ -1359,7 +1437,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 11", "storage": "256G", "label": "iPhone 11 256G", "ap": 1300, "a": 1200, "b": 1100, "c": 1000, "wifi": 850}' data-search="iphone 11 256g iphone 11 series">
   <div class="card-body">
-    <div class="card-model">iPhone 11</div>
+    <div class="card-model"><span class="model-name">iPhone 11</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,300</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,200</span></div>
@@ -1375,7 +1453,7 @@ body::before{
 <div class="card-grid">
 <div class="card" data-json='{"model": "iPhone XR", "storage": "64G", "label": "iPhone XR 64G", "ap": 900, "a": 800, "b": 750, "c": 700, "wifi": 595}' data-search="iphone xr 64g iphone x series">
   <div class="card-body">
-    <div class="card-model">iPhone XR</div>
+    <div class="card-model"><span class="model-name">iPhone XR</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">64G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥900</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥800</span></div>
@@ -1386,7 +1464,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone XR", "storage": "128G", "label": "iPhone XR 128G", "ap": 950, "a": 850, "b": 800, "c": 750, "wifi": 638}' data-search="iphone xr 128g iphone x series">
   <div class="card-body">
-    <div class="card-model">iPhone XR</div>
+    <div class="card-model"><span class="model-name">iPhone XR</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥950</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥850</span></div>
@@ -1397,7 +1475,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone XR", "storage": "256G", "label": "iPhone XR 256G", "ap": 1050, "a": 950, "b": 900, "c": 850, "wifi": 722}' data-search="iphone xr 256g iphone x series">
   <div class="card-body">
-    <div class="card-model">iPhone XR</div>
+    <div class="card-model"><span class="model-name">iPhone XR</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,050</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥950</span></div>
@@ -1408,7 +1486,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone  XS Max", "storage": "64G", "label": "iPhone  XS Max 64G", "ap": 1200, "a": 1100, "b": 1000, "c": 900, "wifi": 765}' data-search="iphone  xs max 64g iphone x series">
   <div class="card-body">
-    <div class="card-model">iPhone  XS Max</div>
+    <div class="card-model"><span class="model-name">iPhone  XS Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">64G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,200</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,100</span></div>
@@ -1419,7 +1497,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone  XS Max", "storage": "256G", "label": "iPhone  XS Max 256G", "ap": 1400, "a": 1300, "b": 1200, "c": 1000, "wifi": 850}' data-search="iphone  xs max 256g iphone x series">
   <div class="card-body">
-    <div class="card-model">iPhone  XS Max</div>
+    <div class="card-model"><span class="model-name">iPhone  XS Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,400</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,300</span></div>
@@ -1430,7 +1508,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone  XS Max", "storage": "512G", "label": "iPhone  XS Max 512G", "ap": 1500, "a": 1400, "b": 1300, "c": 1100, "wifi": 935}' data-search="iphone  xs max 512g iphone x series">
   <div class="card-body">
-    <div class="card-model">iPhone  XS Max</div>
+    <div class="card-model"><span class="model-name">iPhone  XS Max</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">512G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,500</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥1,400</span></div>
@@ -1441,7 +1519,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone XS", "storage": "64G", "label": "iPhone XS 64G", "ap": 900, "a": 800, "b": 750, "c": 700, "wifi": 595}' data-search="iphone xs 64g iphone x series">
   <div class="card-body">
-    <div class="card-model">iPhone XS</div>
+    <div class="card-model"><span class="model-name">iPhone XS</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">64G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥900</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥800</span></div>
@@ -1452,7 +1530,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone XS", "storage": "256G", "label": "iPhone XS 256G", "ap": 1000, "a": 900, "b": 850, "c": 800, "wifi": 680}' data-search="iphone xs 256g iphone x series">
   <div class="card-body">
-    <div class="card-model">iPhone XS</div>
+    <div class="card-model"><span class="model-name">iPhone XS</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥1,000</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥900</span></div>
@@ -1463,7 +1541,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone X", "storage": "64G", "label": "iPhone X 64G", "ap": 810, "a": 710, "b": 660, "c": 610, "wifi": 518}' data-search="iphone x 64g iphone x series">
   <div class="card-body">
-    <div class="card-model">iPhone X</div>
+    <div class="card-model"><span class="model-name">iPhone X</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">64G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥810</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥710</span></div>
@@ -1474,7 +1552,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone X", "storage": "256G", "label": "iPhone X 256G", "ap": 850, "a": 750, "b": 700, "c": 650, "wifi": 552}' data-search="iphone x 256g iphone x series">
   <div class="card-body">
-    <div class="card-model">iPhone X</div>
+    <div class="card-model"><span class="model-name">iPhone X</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥850</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥750</span></div>
@@ -1490,7 +1568,7 @@ body::before{
 <div class="card-grid">
 <div class="card" data-json='{"model": "iPhone 8 Plus", "storage": "64G", "label": "iPhone 8 Plus 64G", "ap": 680, "a": 580, "b": 530, "c": 480, "wifi": 408}' data-search="iphone 8 plus 64g iphone 8 series">
   <div class="card-body">
-    <div class="card-model">iPhone 8 Plus</div>
+    <div class="card-model"><span class="model-name">iPhone 8 Plus</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">64G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥680</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥580</span></div>
@@ -1501,7 +1579,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 8 Plus", "storage": "256G", "label": "iPhone 8 Plus 256G", "ap": 750, "a": 650, "b": 600, "c": 550, "wifi": 468}' data-search="iphone 8 plus 256g iphone 8 series">
   <div class="card-body">
-    <div class="card-model">iPhone 8 Plus</div>
+    <div class="card-model"><span class="model-name">iPhone 8 Plus</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥750</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥650</span></div>
@@ -1512,7 +1590,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 8", "storage": "64G", "label": "iPhone 8 64G", "ap": 780, "a": 680, "b": 630, "c": 580, "wifi": 493}' data-search="iphone 8 64g iphone 8 series">
   <div class="card-body">
-    <div class="card-model">iPhone 8</div>
+    <div class="card-model"><span class="model-name">iPhone 8</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">64G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥780</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥680</span></div>
@@ -1523,7 +1601,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 8", "storage": "256G", "label": "iPhone 8 256G", "ap": 880, "a": 780, "b": 730, "c": 680, "wifi": 578}' data-search="iphone 8 256g iphone 8 series">
   <div class="card-body">
-    <div class="card-model">iPhone 8</div>
+    <div class="card-model"><span class="model-name">iPhone 8</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">256G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥880</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥780</span></div>
@@ -1539,7 +1617,7 @@ body::before{
 <div class="card-grid">
 <div class="card" data-json='{"model": "iPhone 7 Plus", "storage": "32G", "label": "iPhone 7 Plus 32G", "ap": 500, "a": 400, "b": 350, "c": 300, "wifi": 255}' data-search="iphone 7 plus 32g iphone 7 series">
   <div class="card-body">
-    <div class="card-model">iPhone 7 Plus</div>
+    <div class="card-model"><span class="model-name">iPhone 7 Plus</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">32G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥500</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥400</span></div>
@@ -1550,7 +1628,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 7 Plus", "storage": "128G", "label": "iPhone 7 Plus 128G", "ap": 550, "a": 450, "b": 400, "c": 350, "wifi": 298}' data-search="iphone 7 plus 128g iphone 7 series">
   <div class="card-body">
-    <div class="card-model">iPhone 7 Plus</div>
+    <div class="card-model"><span class="model-name">iPhone 7 Plus</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥550</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥450</span></div>
@@ -1561,7 +1639,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 7", "storage": "32G", "label": "iPhone 7 32G", "ap": 460, "a": 360, "b": 310, "c": 260, "wifi": 221}' data-search="iphone 7 32g iphone 7 series">
   <div class="card-body">
-    <div class="card-model">iPhone 7</div>
+    <div class="card-model"><span class="model-name">iPhone 7</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">32G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥460</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥360</span></div>
@@ -1572,7 +1650,7 @@ body::before{
 </div>
 <div class="card" data-json='{"model": "iPhone 7", "storage": "128G", "label": "iPhone 7 128G", "ap": 510, "a": 410, "b": 360, "c": 310, "wifi": 264}' data-search="iphone 7 128g iphone 7 series">
   <div class="card-body">
-    <div class="card-model">iPhone 7</div>
+    <div class="card-model"><span class="model-name">iPhone 7</span><button class="photo-btn model-photo-btn">View Photos</button></div>
     <div class="card-storage">128G</div>
     <div class="price-row"><span class="price-grade">A+</span><span class="price-value ap">¥510</span></div>
     <div class="price-row"><span class="price-grade">A Grade</span><span class="price-value a">¥410</span></div>
@@ -1605,6 +1683,35 @@ body::before{
       <button class="modal-close" onclick="closeDetail()">&times;</button>
     </div>
     <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+
+<div class="wechat-fab" id="wechatFab" onclick="openWechatModal()">
+  <span class="fab-icon">&#128172;</span> WeChat Me
+</div>
+
+<div class="wechat-overlay" id="wechatOverlay" onclick="closeWechatModal(event)">
+  <div class="wechat-modal" onclick="event.stopPropagation()" style="position:relative;">
+    <button class="wechat-close" onclick="closeWechatModal()">&times;</button>
+    <img class="qr-img" src="images/wechat-qr.png" alt="WeChat QR Code">
+    <div class="wechat-title">Scan QR Code to Add</div>
+    <div class="wechat-id-row">
+      <span class="wechat-id" id="wechatId">ElaineSupplyChain</span>
+      <button class="copy-btn" id="copyWechatBtn" onclick="copyWechat()">Copy</button>
+    </div>
+    <div class="wechat-hint">WeChat ID: ElaineSupplyChain</div>
+  </div>
+</div>
+
+<!-- View Photos Modal -->
+<div class="photo-modal-overlay" id="photoOverlay" onclick="closePhotoModal(event)">
+  <div class="photo-modal" id="photoModal" onclick="event.stopPropagation()">
+    <div class="photo-modal-header">
+      <h2 id="photoModalTitle"></h2>
+      <button class="modal-close" onclick="closePhotoModal()">&times;</button>
+    </div>
+    <div class="photo-modal-body" id="photoModalBody"></div>
   </div>
 </div>
 
@@ -1725,11 +1832,113 @@ function filterCards() {
 }
 
 
-/* Event delegation: click on any .card inside #cardContainer */
+/* Event delegation: card click vs View Photos button click */
 document.getElementById('cardContainer').addEventListener('click', function(e) {
+  const btn = e.target.closest('.model-photo-btn');
+  if (btn) {
+    const cardEl = btn.closest('.card');
+    if (cardEl && cardEl.dataset.json) {
+      openPhotoModal(JSON.parse(cardEl.dataset.json));
+    }
+    return;
+  }
   const cardEl = e.target.closest('.card');
   if (cardEl && cardEl.dataset.json) {
     openDetail(cardEl.dataset.json);
+  }
+});
+
+function openPhotoModal(card) {
+  document.getElementById('photoModalTitle').textContent = card.model + ' ' + card.storage + ' - Photos';
+  let html = '';
+  if (card.label === 'iPhone 14  Pro Max 256G') {
+    const images = [
+      {src:'images/iphone14pm-back.jpg', label:'背面全貌'},
+      {src:'images/iphone14pm-front.jpg', label:'正面亮屏'},
+      {src:'images/iphone14pm-side.jpg', label:'侧面展示'},
+      {src:'images/iphone14pm-about.jpg', label:'关于本机'},
+      {src:'images/iphone14pm-battery.jpg', label:'电池健康'},
+      {src:'images/iphone14pm-screenoff.jpg', label:'正面熄屏'}
+    ];
+    html += '<div class="media-grid">';
+    images.forEach(function(img) {
+      html += '<div style="aspect-ratio:1;overflow:hidden;border-radius:10px;background:#f1f5f9;position:relative;">';
+      html += '<img src="'+img.src+'" alt="'+img.label+'" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display=\'none\';this.parentElement.innerHTML=\'<div class=media-placeholder style=aspect-ratio:1><div class=icon>&#128247;</div><div class=label>'+img.label+'</div></div>\'">';
+      html += '</div>';
+    });
+    html += '</div>';
+  } else {
+    html += '<div class="media-grid">';
+    for(let i=1;i<=4;i++){
+      html += '<div class="media-placeholder"><div class="icon">📷</div><div class="label">样品照片 '+i+'</div></div>';
+    }
+    html += '</div>';
+    html += '<p style="text-align:center;color:#94a3b8;margin-top:16px;font-size:0.85rem;">Photos coming soon. Contact us for real product images.</p>';
+  }
+  document.getElementById('photoModalBody').innerHTML = html;
+  document.getElementById('photoOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePhotoModal(e) {
+  if(e && e.target !== document.getElementById('photoOverlay')) return;
+  document.getElementById('photoOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+/* === WeChat Me === */
+function openWechatModal() {
+  document.getElementById('wechatOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeWechatModal(e) {
+  if(e && e.target !== document.getElementById('wechatOverlay')) return;
+  document.getElementById('wechatOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function copyWechat() {
+  const id = 'ElaineSupplyChain';
+  navigator.clipboard.writeText(id).then(function() {
+    const btn = document.getElementById('copyWechatBtn');
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(function() {
+    // Fallback for older browsers
+    const ta = document.createElement('textarea');
+    ta.value = id;
+    ta.style.position = 'fixed';ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const btn = document.getElementById('copyWechatBtn');
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+// Close WeChat modal on Escape
+document.addEventListener('keydown', function(e) {
+  if(e.key === 'Escape') {
+    var wo = document.getElementById('wechatOverlay');
+    var po = document.getElementById('photoOverlay');
+    if(po.classList.contains('active')) {
+      po.classList.remove('active');
+      document.body.style.overflow = '';
+    } else if(wo.classList.contains('active')) {
+      wo.classList.remove('active');
+      document.body.style.overflow = '';
+    }
   }
 });
 
