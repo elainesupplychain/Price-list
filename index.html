@@ -2,415 +2,167 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<title>iPhone C-Grade Price List</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Price List – iPhone C-Grade</title>
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px;-webkit-text-size-adjust:100%}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f5f5;color:#1a1a1a;line-height:1.5}
-.header{background:#0a0a0a;color:#fff;padding:20px 16px;text-align:center;position:sticky;top:0;z-index:10}
-.header h1{font-size:1.25rem;font-weight:700;letter-spacing:.5px}
-.header .sub{font-size:.75rem;color:#999;margin-top:4px}
-.header .badge{display:inline-block;background:#e63946;color:#fff;font-size:.65rem;padding:3px 10px;border-radius:3px;margin-top:8px;letter-spacing:1px;text-transform:uppercase}
-.container{max-width:600px;margin:0 auto;padding:12px}
-.summary-bar{background:#fff;border-radius:8px;padding:12px 16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;font-size:.8rem;box-shadow:0 1px 3px rgba(0,0,0,.06)}
-.summary-bar .count{font-weight:700;color:#e63946}
-.product-card{background:#fff;border-radius:10px;margin-bottom:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.06);transition:transform .15s}
-.product-card:active{transform:scale(.98)}
-.media-section{position:relative;background:#e8e8e8;height:0;padding-bottom:56.25%;overflow:hidden}
-.media-section .placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#aaa}
-.media-section .placeholder svg{width:40px;height:40px;opacity:.3;margin-bottom:6px}
-.media-section .placeholder span{font-size:.7rem}
-.media-tabs{position:absolute;bottom:8px;right:8px;display:flex;gap:4px}
-.media-tab{font-size:.65rem;padding:3px 8px;border-radius:3px;background:rgba(0,0,0,.5);color:#ccc;border:none;cursor:pointer}
-.media-tab.active{background:#e63946;color:#fff}
-.card-body{padding:14px}
-.model-name{font-size:1rem;font-weight:700;color:#111;margin-bottom:2px}
-.model-spec{font-size:.75rem;color:#888;margin-bottom:10px}
-.price-row{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
-.price{font-size:1.4rem;font-weight:800;color:#e63946}
-.price small{font-size:.7rem;font-weight:400;color:#999}
-.specs{display:flex;flex-wrap:wrap;gap:6px}
-.spec-tag{font-size:.65rem;background:#f0f0f0;color:#555;padding:4px 8px;border-radius:3px;white-space:nowrap}
-.spec-tag.grade{background:#fff3cd;color:#856404}
-.spec-tag.battery{background:#d4edda;color:#155724}
-.spec-tag.case{background:#d1ecf1;color:#0c5460}
-.inquiry-btn{display:block;width:100%;margin-top:12px;padding:10px;background:#0a0a0a;color:#fff;border:none;border-radius:6px;font-size:.8rem;font-weight:600;text-align:center;cursor:pointer;letter-spacing:.5px}
-.inquiry-btn:active{background:#333}
-.footer{text-align:center;padding:20px 16px;font-size:.7rem;color:#aaa}
-.footer .contact{margin-top:8px;font-size:.75rem;color:#555;font-weight:500}
-@media(min-width:600px){
-  .container{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:800px}
-  .summary-bar{grid-column:1/-1}
-  .header h1{font-size:1.5rem}
-  .product-card{margin-bottom:0}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#f5f5f5;color:#222;line-height:1.4;min-height:100vh}
+.header{background:#1a1a1a;color:#fff;padding:20px 16px;text-align:center}
+.header h1{font-size:clamp(18px,5vw,24px);font-weight:700;letter-spacing:-0.3px}
+.header .sub{font-size:13px;color:#aaa;margin-top:4px}
+.header .meta{display:flex;justify-content:center;gap:24px;margin-top:10px;font-size:12px;color:#999;flex-wrap:wrap}
+.header .meta span{white-space:nowrap}
+.container{max-width:800px;margin:0 auto;padding:12px}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+thead{background:#f0f0f0}
+th{padding:12px 10px;text-align:left;font-size:12px;font-weight:600;color:#555;text-transform:uppercase;letter-spacing:.3px;border-bottom:2px solid #e0e0e0}
+td{padding:10px;font-size:14px;border-bottom:1px solid #eee}
+tr:last-child td{border-bottom:none}
+.col-model{font-weight:600}
+.col-grade{text-align:center}
+.col-price{text-align:right;font-weight:700;color:#c0392b;white-space:nowrap}
+.badge{display:inline-block;background:#f39c12;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;text-transform:uppercase;letter-spacing:.5px}
+tbody tr:hover{background:#fafafa}
+.summary{background:#fff;margin-top:12px;padding:16px;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.08);font-size:13px;color:#555;line-height:1.7}
+.summary strong{color:#222}
+.footer{margin-top:12px;text-align:center}
+.inquire-btn{display:inline-block;background:#1a1a1a;color:#fff;border:none;padding:12px 32px;font-size:14px;font-weight:600;border-radius:6px;cursor:pointer;text-decoration:none}
+.inquire-btn:hover{background:#333}
+.inquire-btn:active{background:#000}
+.note{margin-top:8px;font-size:11px;color:#999;text-align:center}
+.note a{color:#888}
+@media(max-width:480px){
+  .col-storage,.col-battery,.col-case{display:none}
+  th,td{padding:8px 6px;font-size:13px}
+  .col-price{font-size:13px}
+  .hide-mobile{display:none}
 }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>iPhone C-Grade Wholesale</h1>
-  <div class="sub">B2B Quotation · July 2026</div>
-  <div class="badge">C-Grade · Unlocked</div>
+  <h1>iPhone C-Grade Price List</h1>
+  <div class="sub">Used Devices · 100% Battery · Includes Charging Case</div>
+  <div class="meta">
+    <span>12 Models</span>
+    <span>Grade: C</span>
+    <span>RMB</span>
+  </div>
 </div>
 
 <div class="container">
 
-<div class="summary-bar">
-  <span><span class="count">12</span> Models Available</span>
-  <span>Min Price: <strong style="color:#e63946">¥2,000</strong></span>
-  <span>All Unlocked · GSM</span>
-</div>
+<table>
+<thead>
+<tr>
+  <th>Model</th>
+  <th class="col-storage">Storage</th>
+  <th class="col-battery">Battery</th>
+  <th class="col-case">Case</th>
+  <th>Unit Price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="col-model">iPhone 13 Pro Max</td>
+  <td class="col-storage">128GB</td>
+  <td class="col-battery"><span class="badge">100%</span></td>
+  <td class="col-case"><span class="badge" style="background:#555">Incl.</span></td>
+  <td class="col-price">¥2,000</td>
+</tr>
+<tr>
+  <td class="col-model">iPhone 13 Pro Max</td>
+  <td class="col-storage">256GB</td>
+  <td class="col-battery"><span class="badge">100%</span></td>
+  <td class="col-case"><span class="badge" style="background:#555">Incl.</span></td>
+  <td class="col-price">¥2,200</td>
+</tr>
+<tr>
+  <td class="col-model">iPhone 14 Pro Max</td>
+  <td class="col-storage">128GB</td>
+  <td class="col-battery"><span class="badge">100%</span></td>
+  <td class="col-case"><span class="badge" style="background:#555">Incl.</span></td>
+  <td class="col-price">¥2,900</td>
+</tr>
+<tr>
+  <td class="col-model">iPhone 14 Pro Max</td>
+  <td class="col-storage">256GB</td>
+  <td class="col-battery"><span class="badge">100%</span></td>
+  <td class="col-case"><span class="badge" style="background:#555">Incl.</span></td>
+  <td class="col-price">¥3,150</td>
+</tr>
+<tr>
+  <td class="col-model">iPhone 15 Pro Max</td>
+  <td class="col-storage">256GB</td>
+  <td class="col-battery"><span class="badge">100%</span></td>
+  <td class="col-case"><span class="badge" style="background:#555">Incl.</span></td>
+  <td class="col-price">¥3,600</td>
+</tr>
+<tr>
+  <td class="col-model">iPhone 15 Pro Max</td>
+  <td class="col-storage">512GB</td>
+  <td class="col-battery"><span class="badge">100%</span></td>
+  <td class="col-case"><span class="badge" style="background:#555">Incl.</span></td>
+  <td class="col-price">¥3,900</td>
+</tr>
+<tr>
+  <td class="col-model">iPhone 16 Pro</td>
+  <td class="col-storage">256GB</td>
+  <td class="col-battery"><span class="badge">100%</span></td>
+  <td class="col-case"><span class="badge" style="background:#555">Incl.</span></td>
+  <td class="col-price">¥4,200</td>
+</tr>
+<tr>
+  <td class="col-model">iPhone 16 Pro Max</td>
+  <td class="col-storage">256GB</td>
+  <td class="col-battery"><span class="badge">100%</span></td>
+  <td class="col-case"><span class="badge" style="background:#555">Incl.</span></td>
+  <td class="col-price">¥4,900</td>
+</tr>
+<tr>
+  <td class="col-model">iPhone 16 Pro Max</td>
+  <td class="col-storage">512GB</td>
+  <td class="col-battery"><span class="badge">100%</span></td>
+  <td class="col-case"><span class="badge" style="background:#555">Incl.</span></td>
+  <td class="col-price">¥5,300</td>
+</tr>
+<tr>
+  <td class="col-model">iPhone 17 Pro</td>
+  <td class="col-storage">256GB</td>
+  <td class="col-battery"><span class="badge">100%</span></td>
+  <td class="col-case"><span class="badge" style="background:#555">Incl.</span></td>
+  <td class="col-price">¥6,900</td>
+</tr>
+<tr>
+  <td class="col-model">iPhone 17 Pro Max</td>
+  <td class="col-storage">256GB</td>
+  <td class="col-battery"><span class="badge">100%</span></td>
+  <td class="col-case"><span class="badge" style="background:#555">Incl.</span></td>
+  <td class="col-price">¥8,100</td>
+</tr>
+<tr>
+  <td class="col-model">iPhone 17 Pro Max</td>
+  <td class="col-storage">512GB</td>
+  <td class="col-battery"><span class="badge">100%</span></td>
+  <td class="col-case"><span class="badge" style="background:#555">Incl.</span></td>
+  <td class="col-price">¥9,600</td>
+</tr>
+</tbody>
+</table>
 
-<div class="product-card">
-  <div class="media-section" style="background:#d8d8d8">
-    <div class="placeholder">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span>Photo / Video Placeholder</span>
-    </div>
-    <div class="media-tabs">
-      <button class="media-tab active">Photo</button>
-      <button class="media-tab">Video</button>
-    </div>
-  </div>
-  <div class="card-body">
-    <div class="model-name">iPhone 13 Pro Max</div>
-    <div class="model-spec">128GB · 6.7" Super Retina XDR</div>
-    <div class="price-row">
-      <span class="price">¥2,000 <small>RMB</small></span>
-    </div>
-    <div class="specs">
-      <span class="spec-tag grade">C-Grade</span>
-      <span class="spec-tag battery">100% Battery</span>
-      <span class="spec-tag case">Charging Case</span>
-      <span class="spec-tag">128GB</span>
-      <span class="spec-tag">Unlocked</span>
-    </div>
-    <button class="inquiry-btn" onclick="inquire('iPhone 13 Pro Max 128GB','¥2,000')">Inquire Now</button>
-  </div>
-</div>
-
-<div class="product-card">
-  <div class="media-section" style="background:#cdcdcd">
-    <div class="placeholder">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span>Photo / Video Placeholder</span>
-    </div>
-    <div class="media-tabs">
-      <button class="media-tab active">Photo</button>
-      <button class="media-tab">Video</button>
-    </div>
-  </div>
-  <div class="card-body">
-    <div class="model-name">iPhone 13 Pro Max</div>
-    <div class="model-spec">256GB · 6.7" Super Retina XDR</div>
-    <div class="price-row">
-      <span class="price">¥2,200 <small>RMB</small></span>
-    </div>
-    <div class="specs">
-      <span class="spec-tag grade">C-Grade</span>
-      <span class="spec-tag battery">100% Battery</span>
-      <span class="spec-tag case">Charging Case</span>
-      <span class="spec-tag">256GB</span>
-      <span class="spec-tag">Unlocked</span>
-    </div>
-    <button class="inquiry-btn" onclick="inquire('iPhone 13 Pro Max 256GB','¥2,200')">Inquire Now</button>
-  </div>
-</div>
-
-<div class="product-card">
-  <div class="media-section" style="background:#c8c8c8">
-    <div class="placeholder">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span>Photo / Video Placeholder</span>
-    </div>
-    <div class="media-tabs">
-      <button class="media-tab active">Photo</button>
-      <button class="media-tab">Video</button>
-    </div>
-  </div>
-  <div class="card-body">
-    <div class="model-name">iPhone 14 Pro Max</div>
-    <div class="model-spec">128GB · 6.7" Dynamic Island · A16</div>
-    <div class="price-row">
-      <span class="price">¥2,900 <small>RMB</small></span>
-    </div>
-    <div class="specs">
-      <span class="spec-tag grade">C-Grade</span>
-      <span class="spec-tag battery">100% Battery</span>
-      <span class="spec-tag case">Charging Case</span>
-      <span class="spec-tag">128GB</span>
-      <span class="spec-tag">Unlocked</span>
-    </div>
-    <button class="inquiry-btn" onclick="inquire('iPhone 14 Pro Max 128GB','¥2,900')">Inquire Now</button>
-  </div>
-</div>
-
-<div class="product-card">
-  <div class="media-section" style="background:#c3c3c3">
-    <div class="placeholder">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span>Photo / Video Placeholder</span>
-    </div>
-    <div class="media-tabs">
-      <button class="media-tab active">Photo</button>
-      <button class="media-tab">Video</button>
-    </div>
-  </div>
-  <div class="card-body">
-    <div class="model-name">iPhone 14 Pro Max</div>
-    <div class="model-spec">256GB · 6.7" Dynamic Island · A16</div>
-    <div class="price-row">
-      <span class="price">¥3,150 <small>RMB</small></span>
-    </div>
-    <div class="specs">
-      <span class="spec-tag grade">C-Grade</span>
-      <span class="spec-tag battery">100% Battery</span>
-      <span class="spec-tag case">Charging Case</span>
-      <span class="spec-tag">256GB</span>
-      <span class="spec-tag">Unlocked</span>
-    </div>
-    <button class="inquiry-btn" onclick="inquire('iPhone 14 Pro Max 256GB','¥3,150')">Inquire Now</button>
-  </div>
-</div>
-
-<div class="product-card">
-  <div class="media-section" style="background:#bdbdbd">
-    <div class="placeholder">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span>Photo / Video Placeholder</span>
-    </div>
-    <div class="media-tabs">
-      <button class="media-tab active">Photo</button>
-      <button class="media-tab">Video</button>
-    </div>
-  </div>
-  <div class="card-body">
-    <div class="model-name">iPhone 15 Pro Max</div>
-    <div class="model-spec">256GB · 6.7" · USB-C · A17 Pro</div>
-    <div class="price-row">
-      <span class="price">¥3,600 <small>RMB</small></span>
-    </div>
-    <div class="specs">
-      <span class="spec-tag grade">C-Grade</span>
-      <span class="spec-tag battery">100% Battery</span>
-      <span class="spec-tag case">Charging Case</span>
-      <span class="spec-tag">256GB</span>
-      <span class="spec-tag">Unlocked</span>
-    </div>
-    <button class="inquiry-btn" onclick="inquire('iPhone 15 Pro Max 256GB','¥3,600')">Inquire Now</button>
-  </div>
-</div>
-
-<div class="product-card">
-  <div class="media-section" style="background:#b8b8b8">
-    <div class="placeholder">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span>Photo / Video Placeholder</span>
-    </div>
-    <div class="media-tabs">
-      <button class="media-tab active">Photo</button>
-      <button class="media-tab">Video</button>
-    </div>
-  </div>
-  <div class="card-body">
-    <div class="model-name">iPhone 15 Pro Max</div>
-    <div class="model-spec">512GB · 6.7" · USB-C · A17 Pro</div>
-    <div class="price-row">
-      <span class="price">¥3,900 <small>RMB</small></span>
-    </div>
-    <div class="specs">
-      <span class="spec-tag grade">C-Grade</span>
-      <span class="spec-tag battery">100% Battery</span>
-      <span class="spec-tag case">Charging Case</span>
-      <span class="spec-tag">512GB</span>
-      <span class="spec-tag">Unlocked</span>
-    </div>
-    <button class="inquiry-btn" onclick="inquire('iPhone 15 Pro Max 512GB','¥3,900')">Inquire Now</button>
-  </div>
-</div>
-
-<div class="product-card">
-  <div class="media-section" style="background:#b3b3b3">
-    <div class="placeholder">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span>Photo / Video Placeholder</span>
-    </div>
-    <div class="media-tabs">
-      <button class="media-tab active">Photo</button>
-      <button class="media-tab">Video</button>
-    </div>
-  </div>
-  <div class="card-body">
-    <div class="model-name">iPhone 16 Pro Max</div>
-    <div class="model-spec">256GB · 6.9" · USB-C · A18 Pro</div>
-    <div class="price-row">
-      <span class="price">¥4,900 <small>RMB</small></span>
-    </div>
-    <div class="specs">
-      <span class="spec-tag grade">C-Grade</span>
-      <span class="spec-tag battery">100% Battery</span>
-      <span class="spec-tag case">Charging Case</span>
-      <span class="spec-tag">256GB</span>
-      <span class="spec-tag">Unlocked</span>
-    </div>
-    <button class="inquiry-btn" onclick="inquire('iPhone 16 Pro Max 256GB','¥4,900')">Inquire Now</button>
-  </div>
-</div>
-
-<div class="product-card">
-  <div class="media-section" style="background:#adadad">
-    <div class="placeholder">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span>Photo / Video Placeholder</span>
-    </div>
-    <div class="media-tabs">
-      <button class="media-tab active">Photo</button>
-      <button class="media-tab">Video</button>
-    </div>
-  </div>
-  <div class="card-body">
-    <div class="model-name">iPhone 16 Pro Max</div>
-    <div class="model-spec">512GB · 6.9" · USB-C · A18 Pro</div>
-    <div class="price-row">
-      <span class="price">¥5,300 <small>RMB</small></span>
-    </div>
-    <div class="specs">
-      <span class="spec-tag grade">C-Grade</span>
-      <span class="spec-tag battery">100% Battery</span>
-      <span class="spec-tag case">Charging Case</span>
-      <span class="spec-tag">512GB</span>
-      <span class="spec-tag">Unlocked</span>
-    </div>
-    <button class="inquiry-btn" onclick="inquire('iPhone 16 Pro Max 512GB','¥5,300')">Inquire Now</button>
-  </div>
-</div>
-
-<div class="product-card">
-  <div class="media-section" style="background:#a8a8a8">
-    <div class="placeholder">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span>Photo / Video Placeholder</span>
-    </div>
-    <div class="media-tabs">
-      <button class="media-tab active">Photo</button>
-      <button class="media-tab">Video</button>
-    </div>
-  </div>
-  <div class="card-body">
-    <div class="model-name">iPhone 16 Pro</div>
-    <div class="model-spec">256GB · 6.3" · USB-C · A18 Pro</div>
-    <div class="price-row">
-      <span class="price">¥4,200 <small>RMB</small></span>
-    </div>
-    <div class="specs">
-      <span class="spec-tag grade">C-Grade</span>
-      <span class="spec-tag battery">100% Battery</span>
-      <span class="spec-tag case">Charging Case</span>
-      <span class="spec-tag">256GB</span>
-      <span class="spec-tag">Unlocked</span>
-    </div>
-    <button class="inquiry-btn" onclick="inquire('iPhone 16 Pro 256GB','¥4,200')">Inquire Now</button>
-  </div>
-</div>
-
-<div class="product-card">
-  <div class="media-section" style="background:#a3a3a3">
-    <div class="placeholder">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span>Photo / Video Placeholder</span>
-    </div>
-    <div class="media-tabs">
-      <button class="media-tab active">Photo</button>
-      <button class="media-tab">Video</button>
-    </div>
-  </div>
-  <div class="card-body">
-    <div class="model-name">iPhone 17 Pro Max</div>
-    <div class="model-spec">256GB · 6.9" · USB-C · A19 Pro</div>
-    <div class="price-row">
-      <span class="price">¥8,100 <small>RMB</small></span>
-    </div>
-    <div class="specs">
-      <span class="spec-tag grade">C-Grade</span>
-      <span class="spec-tag battery">100% Battery</span>
-      <span class="spec-tag case">Charging Case</span>
-      <span class="spec-tag">256GB</span>
-      <span class="spec-tag">Unlocked</span>
-    </div>
-    <button class="inquiry-btn" onclick="inquire('iPhone 17 Pro Max 256GB','¥8,100')">Inquire Now</button>
-  </div>
-</div>
-
-<div class="product-card">
-  <div class="media-section" style="background:#9e9e9e">
-    <div class="placeholder">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span>Photo / Video Placeholder</span>
-    </div>
-    <div class="media-tabs">
-      <button class="media-tab active">Photo</button>
-      <button class="media-tab">Video</button>
-    </div>
-  </div>
-  <div class="card-body">
-    <div class="model-name">iPhone 17 Pro Max</div>
-    <div class="model-spec">512GB · 6.9" · USB-C · A19 Pro</div>
-    <div class="price-row">
-      <span class="price">¥9,600 <small>RMB</small></span>
-    </div>
-    <div class="specs">
-      <span class="spec-tag grade">C-Grade</span>
-      <span class="spec-tag battery">100% Battery</span>
-      <span class="spec-tag case">Charging Case</span>
-      <span class="spec-tag">512GB</span>
-      <span class="spec-tag">Unlocked</span>
-    </div>
-    <button class="inquiry-btn" onclick="inquire('iPhone 17 Pro Max 512GB','¥9,600')">Inquire Now</button>
-  </div>
-</div>
-
-<div class="product-card">
-  <div class="media-section" style="background:#999">
-    <div class="placeholder">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
-      <span>Photo / Video Placeholder</span>
-    </div>
-    <div class="media-tabs">
-      <button class="media-tab active">Photo</button>
-      <button class="media-tab">Video</button>
-    </div>
-  </div>
-  <div class="card-body">
-    <div class="model-name">iPhone 17 Pro</div>
-    <div class="model-spec">256GB · 6.3" · USB-C · A19 Pro</div>
-    <div class="price-row">
-      <span class="price">¥6,900 <small>RMB</small></span>
-    </div>
-    <div class="specs">
-      <span class="spec-tag grade">C-Grade</span>
-      <span class="spec-tag battery">100% Battery</span>
-      <span class="spec-tag case">Charging Case</span>
-      <span class="spec-tag">256GB</span>
-      <span class="spec-tag">Unlocked</span>
-    </div>
-    <button class="inquiry-btn" onclick="inquire('iPhone 17 Pro 256GB','¥6,900')">Inquire Now</button>
-  </div>
-</div>
-
+<div class="summary">
+  <strong>12 Models</strong> · Price range ¥2,000 – ¥9,600<br>
+  All devices: <strong>C-Grade</strong> · <strong>100% Battery</strong> replaced · <strong>Charging case</strong> included<br>
+  Pricing in <strong>RMB</strong> (Chinese Yuan) · FOB Shenzhen
 </div>
 
 <div class="footer">
-  <div class="contact">Contact for bulk orders & shipping inquiries</div>
-  <div>Prices in RMB · EXW Shenzhen · MOQ negotiable</div>
+  <a class="inquire-btn" href="mailto:?subject=iPhone%20C-Grade%20Inquiry&body=Hi%2C%20I'm%20interested%20in%20your%20iPhone%20price%20list.%20Please%20send%20me%20more%20details%20about%20the%20following%20models%3A%0A%0A">Inquire Now</a>
+  <div class="note">File size &lt; 5KB · Loads instantly on 2G</div>
 </div>
 
-<script>
-function inquire(model,price){
-  var msg='Hi, I am interested in '+model+' ('+price+' RMB). Please send more details.';
-  prompt('Copy this message to send via WhatsApp / Email:',msg);
-}
-</script>
+</div>
+
 </body>
 </html>
