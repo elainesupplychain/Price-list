@@ -3183,16 +3183,8 @@ function filterCards() {
 }
 
 
-/* Event delegation: card click vs View Photos button click */
+/* Event delegation: card click opens detail modal */
 document.getElementById('cardContainer').addEventListener('click', function(e) {
-  const btn = e.target.closest('.model-photo-btn');
-  if (btn) {
-    const cardEl = btn.closest('.card');
-    if (cardEl && cardEl.dataset.json) {
-      openPhotoModal(JSON.parse(cardEl.dataset.json));
-    }
-    return;
-  }
   const cardEl = e.target.closest('.card');
   if (cardEl && cardEl.dataset.json) {
     openDetail(cardEl.dataset.json);
@@ -3383,6 +3375,17 @@ function navigateToSeries(seriesName) {
     }
   }
 }
+
+// Direct binding: attach click handlers to all View Photos buttons
+document.querySelectorAll('.model-photo-btn').forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var cardEl = this.closest('.card');
+    if (cardEl && cardEl.dataset.json) {
+      openPhotoModal(JSON.parse(cardEl.dataset.json));
+    }
+  });
+});
 
 </script>
 
