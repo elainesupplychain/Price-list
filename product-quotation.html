@@ -343,10 +343,18 @@ body::before{
   background:#bbdefb;border-top:1px solid rgba(255,255,255,0.6);
   padding:8px 0;
 }
+.brand-nav-scroll{
+  position:relative;max-width:1400px;margin:0 auto;
+}
+.brand-nav-scroll::after{
+  content:'';position:absolute;top:0;right:0;bottom:0;width:36px;
+  background:linear-gradient(to right,transparent,#bbdefb);
+  pointer-events:none;z-index:2;
+}
 .brand-nav{
-  max-width:1400px;margin:0 auto;padding:0 16px;
+  padding:0 16px;
   display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;
-  scrollbar-width:none;justify-content:center;
+  scrollbar-width:none;
 }
 .brand-nav::-webkit-scrollbar{display:none}
 .brand-tab{
@@ -606,6 +614,7 @@ body::before{
 </div>
 
 <div class="brand-nav-wrap">
+<div class="brand-nav-scroll">
 <div class="brand-nav" id="brandNav">
   <div class="brand-tab-wrapper" data-brand="iphone" id="iphoneTabWrapper">
     <button class="brand-tab active">iPhone<span class="dropdown-arrow">&#9662;</span></button>
@@ -707,6 +716,7 @@ body::before{
         <a class="dropdown-item" data-series="VIVO Z Series" onclick="navigateToVivoSeries('VIVO Z Series')">Z Series</a>
     </div>
   </div>
+</div>
 </div>
 
 <div class="mobile-search-wrap">
