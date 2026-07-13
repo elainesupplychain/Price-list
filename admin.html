@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photo Manager - Elaine Supply Chain</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
+.header{background:#1e293b;border-bottom:1px solid #334155;padding:12px 24px;display:flex;align-items:center;justify-content:space-between}
+.header h1{font-size:1.2rem;color:#f1f5f9}
+.header .token-status{font-size:0.78rem;padding:4px 10px;border-radius:4px}
+.token-ok{background:#065f46;color:#6ee7b7}
+.token-missing{background:#7f1d1d;color:#fca5a5}
+.btn{padding:8px 16px;border:none;border-radius:6px;cursor:pointer;font-size:0.85rem;font-weight:500;transition:all .15s}
+.btn-primary{background:#059669;color:#fff}
+.btn-primary:hover{background:#047857}
+.btn-danger{background:#dc2626;color:#fff}
+.btn-danger:hover{background:#b91c1c}
+.btn-outline{background:transparent;border:1px solid #475569;color:#94a3b8}
+.btn-outline:hover{background:#1e293b;color:#e2e8f0}
+.btn-sm{padding:4px 10px;font-size:0.75rem}
+
+/* Login overlay */
+.login-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;z-index:999}
+.login-box{background:#1e293b;border:1px solid #334155;border-radius:12px;padding:32px;width:420px;max-width:90vw}
+.login-box h2{margin-bottom:8px;font-size:1.1rem}
+.login-box p{margin-bottom:20px;color:#94a3b8;font-size:0.85rem;line-height:1.6}
+.login-box label{display:block;margin-bottom:6px;font-size:0.82rem;color:#cbd5e1}
+.login-box input{width:100%;padding:10px 12px;border:1px solid #475569;border-radius:6px;background:#0f172a;color:#e2e8f0;font-size:0.9rem;margin-bottom:16px}
+.login-box input:focus{outline:none;border-color:#059669}
+.login-box .help{font-size:0.75rem;color:#64748b;margin-bottom:20px;line-height:1.5}
+.login-box .help a{color:#34d399}
+
+/* Layout */
+.main{padding:20px 24px;display:flex;gap:20px;height:calc(100vh - 57px)}
+.sidebar{width:240px;flex-shrink:0;background:#1e293b;border-radius:8px;overflow-y:auto;border:1px solid #334155}
+.sidebar-header{padding:14px 16px;border-bottom:1px solid #334155;font-size:0.82rem;color:#94a3b8;font-weight:600}
+.product-item{padding:10px 16px;cursor:pointer;font-size:0.85rem;border-bottom:1px solid #1e293b;transition:background .12s;display:flex;justify-content:space-between;align-items:center}
+.product-item:hover{background:#334155}
+.product-item.active{background:#065f46;color:#6ee7b7}
+.product-item .count{font-size:0.7rem;color:#64748b;background:#0f172a;padding:2px 7px;border-radius:10px}
+.product-item.active .count{background:#047857;color:#6ee7b7}
+
+.content{flex:1;overflow-y:auto;background:#1e293b;border-radius:8px;border:1px solid #334155;display:flex;flex-direction:column}
+.content-header{padding:14px 20px;border-bottom:1px solid #334155;display:flex;justify-content:space-between;align-items:center}
+.content-header h2{font-size:1rem}
+.upload-zone{border:2px dashed #475569;border-radius:8px;padding:30px;text-align:center;cursor:pointer;transition:all .15s;margin:16px 20px}
+.upload-zone:hover,.upload-zone.dragover{border-color:#059669;background:rgba(5,150,105,.05)}
+.upload-zone .icon{font-size:2rem;margin-bottom:8px}
+.upload-zone .text{font-size:0.85rem;color:#94a3b8}
+.upload-zone .hint{font-size:0.72rem;color:#64748b;margin-top:4px}
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;padding:12px 20px 20px}
+.photo-card{background:#0f172a;border-radius:8px;overflow:hidden;border:1px solid #334155;position:relative}
+.photo-card img{width:100%;aspect-ratio:1;object-fit:cover;display:block}
+.photo-card .info{padding:8px 10px;display:flex;justify-content:space-between;align-items:center}
+.photo-card .name{font-size:0.72rem;color:#94a3b8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;margin-right:8px}
+.photo-card .del-btn{flex-shrink:0}
+.photo-card:hover{border-color:#059669}
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;color:#64748b}
+.empty-state .icon{font-size:3rem;margin-bottom:12px}
+.empty-state .text{font-size:0.85rem}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;right:24px;background:#1e293b;border:1px solid #334155;border-radius:8px;padding:12px 20px;font-size:0.82rem;z-index:9999;animation:slideIn .25s ease;max-width:360px}
+.toast.success{border-color:#059669;color:#6ee7b7}
+.toast.error{border-color:#dc2626;color:#fca5a5}
+@keyframes slideIn{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid #475569;border-top-color:#059669;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<!-- Login Overlay -->
+<div class="login-overlay" id="loginOverlay">
+<div class="login-box">
+<h2>Photo Manager 登录</h2>
+<p>需要 GitHub Personal Access Token 来管理照片。Token 仅在浏览器本地存储，不会上传到任何服务器。</p>
+<label>GitHub Token</label>
+<input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+<div class="help">
+  如何获取 Token？<br>
+  1. 打开 <a href="https://github.com/settings/tokens" target="_blank">GitHub Settings → Tokens</a><br>
+  2. 点击 "Generate new token (classic)"<br>
+  3. 勾选 <b>repo</b> 权限，生成后粘贴到这里
+</div>
+<button class="btn btn-primary" onclick="login()" style="width:100%">登录</button>
+</div>
+</div>
+
+<div class="header">
+<h1>Photo Manager</h1>
+<div>
+<span class="token-status token-missing" id="tokenStatus">未登录</span>
+<button class="btn btn-outline btn-sm" onclick="logout()" style="margin-left:10px">退出</button>
+</div>
+</div>
+
+<div class="main">
+<div class="sidebar" id="sidebar">
+<div class="sidebar-header">产品列表</div>
+<div id="productList"></div>
+</div>
+<div class="content" id="content">
+<div class="content-header">
+<h2 id="contentTitle">选择一个产品</h2>
+<span style="font-size:0.78rem;color:#64748b" id="fileCount"></span>
+</div>
+<div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+<div class="icon">📁</div>
+<div class="text">点击或拖拽上传新照片</div>
+<div class="hint">支持 JPG / PNG / WebP，自动按产品命名</div>
+</div>
+<input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" multiple hidden onchange="handleFiles(this.files)">
+<div class="photo-grid" id="photoGrid"></div>
+<div class="empty-state" id="emptyState" style="display:none">
+<div class="icon">📷</div>
+<div class="text">该产品暂无照片，上传第一张吧</div>
+</div>
+</div>
+</div>
+
+<script>
+const OWNER = 'elainesupplychain';
+const REPO = 'Price-list';
+const IMG_DIR = 'images';
+
+let token = sessionStorage.getItem('gh_token');
+let allFiles = [];
+let currentProduct = null;
+let uploading = false;
+
+// ---- Auth ----
+function checkAuth() {
+  if (token) {
+    document.getElementById('loginOverlay').style.display = 'none';
+    document.getElementById('tokenStatus').textContent = '已登录';
+    document.getElementById('tokenStatus').className = 'token-status token-ok';
+    loadFiles();
+  } else {
+    document.getElementById('loginOverlay').style.display = 'flex';
+    document.getElementById('tokenStatus').textContent = '未登录';
+    document.getElementById('tokenStatus').className = 'token-status token-missing';
+  }
+}
+
+function login() {
+  token = document.getElementById('tokenInput').value.trim();
+  if (!token) return toast('请输入 Token', 'error');
+  sessionStorage.setItem('gh_token', token);
+  checkAuth();
+}
+
+function logout() {
+  sessionStorage.removeItem('gh_token');
+  token = null;
+  allFiles = [];
+  currentProduct = null;
+  document.getElementById('photoGrid').innerHTML = '';
+  document.getElementById('productList').innerHTML = '';
+  document.getElementById('contentTitle').textContent = '选择一个产品';
+  document.getElementById('fileCount').textContent = '';
+  checkAuth();
+}
+
+// ---- API ----
+async function ghApi(path, method='GET', body=null) {
+  const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${path}`;
+  const opts = { method, headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' }};
+  if (body) opts.body = JSON.stringify(body);
+  const res = await fetch(url, opts);
+  if (res.status === 401) { logout(); throw new Error('Token 无效，已退出登录'); }
+  if (!res.ok) { const e = await res.json().catch(()=>({})); throw new Error(e.message || `HTTP ${res.status}`); }
+  return res.json();
+}
+
+// ---- Load ----
+async function loadFiles() {
+  if (!token) return;
+  try {
+    const data = await ghApi(IMG_DIR);
+    allFiles = data.filter(f => f.type === 'file' && /\.(jpg|jpeg|png|webp)$/i.test(f.name));
+    buildProductList();
+    if (currentProduct) selectProduct(currentProduct);
+  } catch(e) {
+    toast('加载文件列表失败: ' + e.message, 'error');
+  }
+}
+
+function buildProductList() {
+  const products = {};
+  allFiles.forEach(f => {
+    // Extract product key: iphone16promax-256g-1.jpg → iphone16promax 256g
+    const match = f.name.match(/^(.+?)-(\d+g|\d+tb)-\d+\./i);
+    if (match) {
+      const model = match[1];
+      const storage = match[2].toLowerCase();
+      const key = model + '-' + storage;
+      if (!products[key]) products[key] = { model, storage, count: 0 };
+      products[key].count++;
+    }
+  });
+
+  const list = document.getElementById('productList');
+  const entries = Object.values(products).sort((a,b) => {
+    // Sort by model, then storage
+    if (a.model !== b.model) return a.model.localeCompare(b.model);
+    return a.storage.localeCompare(b.storage);
+  });
+
+  list.innerHTML = entries.map(p => {
+    const displayName = p.model.charAt(0).toUpperCase() + p.model.slice(1).replace(/(\d+)/g, ' $1').replace(/pro/g,' Pro').replace(/max/g,' Max').replace(/mini/g,' Mini').replace(/plus/g,' Plus').replace(/promax/g,' Pro Max');
+    return `<div class="product-item" data-key="${p.model}-${p.storage}" onclick="selectProduct('${p.model}-${p.storage}')">
+      <span>${displayName} ${p.storage.toUpperCase()}</span>
+      <span class="count">${p.count}</span>
+    </div>`;
+  }).join('');
+
+  if (!entries.length) {
+    list.innerHTML = '<div style="padding:20px;color:#64748b;font-size:0.82rem;text-align:center">暂无产品图片</div>';
+  }
+}
+
+function selectProduct(key) {
+  currentProduct = key;
+  document.querySelectorAll('.product-item').forEach(el => el.classList.remove('active'));
+  const active = document.querySelector(`[data-key="${key}"]`);
+  if (active) active.classList.add('active');
+
+  const [model, storage] = key.split('-');
+  const prefix = model + '-' + storage.toLowerCase() + '-';
+
+  const photos = allFiles.filter(f => f.name.startsWith(prefix)).sort((a,b) => a.name.localeCompare(b.name));
+
+  const displayName = model.charAt(0).toUpperCase() + model.slice(1).replace(/(\d+)/g, ' $1').replace(/pro/g,' Pro').replace(/max/g,' Max').replace(/mini/g,' Mini').replace(/plus/g,' Plus').replace(/promax/g,' Pro Max');
+  document.getElementById('contentTitle').textContent = `${displayName} ${storage.toUpperCase()}`;
+  document.getElementById('fileCount').textContent = `${photos.length} 张照片`;
+
+  const grid = document.getElementById('photoGrid');
+  const empty = document.getElementById('emptyState');
+
+  if (photos.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'flex';
+  } else {
+    empty.style.display = 'none';
+    grid.innerHTML = photos.map(f => `
+      <div class="photo-card">
+        <img src="${f.download_url}" alt="${f.name}" loading="lazy">
+        <div class="info">
+          <span class="name" title="${f.name}">${f.name}</span>
+          <button class="btn btn-danger btn-sm del-btn" onclick="deletePhoto('${f.path}','${f.sha}','${f.name}')">删除</button>
+        </div>
+      </div>
+    `).join('');
+  }
+}
+
+// ---- Upload ----
+function handleFiles(fileList) {
+  if (!currentProduct) return toast('请先选择左侧产品', 'error');
+  if (uploading) return;
+  uploadFiles(Array.from(fileList));
+}
+
+async function uploadFiles(files) {
+  uploading = true;
+  let success = 0, fail = 0;
+  const [model, storage] = currentProduct.split('-');
+
+  for (const file of files) {
+    if (!/\.(jpg|jpeg|png|webp)$/i.test(file.name)) continue;
+
+    // Find next available number
+    const prefix = model + '-' + storage.toLowerCase() + '-';
+    const existing = allFiles.filter(f => f.name.startsWith(prefix));
+    const maxNum = existing.reduce((max, f) => {
+      const m = f.name.match(/-(\d+)\./);
+      return m ? Math.max(max, parseInt(m[1])) : max;
+    }, 0);
+    const nextNum = maxNum + 1;
+    const newName = prefix + nextNum + '.jpg';
+
+    try {
+      const base64 = await fileToBase64(file);
+      const content = base64.split(',')[1];
+      const body = { message: `upload ${newName}`, content };
+      await ghApi(`${IMG_DIR}/${newName}`, 'PUT', body);
+      success++;
+    } catch(e) {
+      fail++;
+      console.error('Upload failed:', file.name, e);
+    }
+  }
+
+  uploading = false;
+  if (success > 0) toast(`成功上传 ${success} 张照片${fail > 0 ? `，${fail} 张失败` : ''}`, success > 0 ? 'success' : 'error');
+  await loadFiles();
+  if (currentProduct) selectProduct(currentProduct);
+}
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+// ---- Delete ----
+async function deletePhoto(path, sha, name) {
+  if (!confirm(`确定删除 ${name}？`)) return;
+  try {
+    await ghApi(path, 'DELETE', { message: `delete ${name}`, sha });
+    toast(`已删除 ${name}`, 'success');
+    await loadFiles();
+    if (currentProduct) selectProduct(currentProduct);
+  } catch(e) {
+    toast('删除失败: ' + e.message, 'error');
+  }
+}
+
+// ---- Drag & Drop ----
+const uploadZone = document.getElementById('uploadZone');
+['dragenter','dragover'].forEach(ev => {
+  uploadZone.addEventListener(ev, e => { e.preventDefault(); uploadZone.classList.add('dragover'); });
+});
+['dragleave','drop'].forEach(ev => {
+  uploadZone.addEventListener(ev, e => { e.preventDefault(); uploadZone.classList.remove('dragover'); });
+});
+uploadZone.addEventListener('drop', e => {
+  if (e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+});
+
+// ---- Toast ----
+function toast(msg, type) {
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.textContent = msg;
+  document.body.appendChild(el);
+  setTimeout(() => { el.style.opacity = '0'; setTimeout(() => el.remove(), 300); }, 3000);
+}
+
+// ---- Init ----
+checkAuth();
+</script>
+</body>
+</html>
