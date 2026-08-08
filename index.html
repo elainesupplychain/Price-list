@@ -164,6 +164,14 @@ body::before{
   color:#fff;
 }
 .info-card.sourcing .btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(59,130,246,0.4)}
+/* Grade Comparison Card */
+.info-card.grade-compare{
+  background:#fff;border-left:4px solid #10b981;
+  padding:12px 14px;
+}
+.info-card.grade-compare h3{color:#059669}
+.info-card.grade-compare img{transition:transform .2s}
+.info-card.grade-compare img:hover{transform:scale(1.02)}
 
 @media(max-width:768px){
   .info-banner-row{flex-direction:column;gap:10px;padding:10px 12px}
@@ -1994,6 +2002,10 @@ body::before{
       <li>Packaging &amp; Consolidation (by appointment)</li>
     </ul>
     <a class="btn" href="#contact" onclick="document.querySelector('.wechat-fab').click();return false;">Book a Service</a>
+  </div>
+  <div class="info-card grade-compare">
+    <h3>Grade Comparison</h3>
+    <img src="grade-comparison.png" alt="iPhone Grade Comparison: A+ A B C" style="width:100%;border-radius:6px;cursor:pointer" onclick="window.open(this.src)">
   </div>
 </div>
 
