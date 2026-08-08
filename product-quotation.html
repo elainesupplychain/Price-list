@@ -170,8 +170,16 @@ body::before{
   padding:12px 14px;
 }
 .info-card.grade-compare h3{color:#059669}
-.info-card.grade-compare img{transition:transform .2s}
-.info-card.grade-compare img:hover{transform:scale(1.02)}
+.grade-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.grade-table{width:100%;border-collapse:collapse;font-size:0.7rem}
+.grade-table th,.grade-table td{padding:5px 6px;text-align:center;border-bottom:1px solid #e2e8f0}
+.grade-table th{background:#f8fafc;color:#64748b;font-weight:600;font-size:0.65rem}
+.grade-table td{color:#334155}
+.grade-table .g-aplus{font-weight:700;color:#059669}
+.grade-table .g-a{font-weight:700;color:#2563eb}
+.grade-table .g-b{font-weight:700;color:#ea580c}
+.grade-table .g-c{font-weight:700;color:#dc2626}
+.grade-note{font-size:0.65rem;color:#94a3b8;text-align:center;margin:6px 0 0}
 
 @media(max-width:768px){
   .info-banner-row{flex-direction:column;gap:10px;padding:10px 12px}
@@ -2005,7 +2013,27 @@ body::before{
   </div>
   <div class="info-card grade-compare">
     <h3>Grade Comparison</h3>
-    <img src="grade-comparison.png" alt="iPhone Grade Comparison: A+ A B C" style="width:100%;border-radius:6px;cursor:pointer" onclick="window.open(this.src)">
+    <div class="grade-table-wrap">
+    <table class="grade-table">
+      <thead><tr><th></th><th>Screen</th><th>Condition</th><th>Battery</th><th>Face ID</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="g-aplus">A+</td>
+          <td>Original</td><td>99% New</td><td>85-100% or New</td><td>✓</td>
+        </tr><tr>
+          <td class="g-a">A</td>
+          <td>Original</td><td>95% New</td><td>70-80%+</td><td>✓</td>
+        </tr><tr>
+          <td class="g-b">B</td>
+          <td>Original</td><td>85% New, Clear Scratch</td><td>70-80%+</td><td>✓</td>
+        </tr><tr>
+          <td class="g-c">C</td>
+          <td>Unoriginal</td><td>Min Scratch</td><td>70%+</td><td>Depends</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="grade-note">All US Model · SIM/eSIM Unlocked</p>
   </div>
 </div>
 
