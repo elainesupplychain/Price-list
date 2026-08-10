@@ -2200,7 +2200,7 @@ body::before{
   </div>
 </div>
   <div class="brand-tab-wrapper" data-brand="padlock" id="padlockTabWrapper">
-    <button class="brand-tab" data-brand="padlock">PadLock</button>
+    <a class="brand-tab" href="https://elainesupplychain.com/padlock-shop.html" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none">PadLock</a>
   </div>
 </div>
 </div>
@@ -9547,19 +9547,6 @@ function navigateToHuaweiSeries(seriesName) {
     dropdown.classList.remove('show');
     if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
   });
-})();
-
-/* === PadLock Tab Handler === */
-(function() {
-  var tab = document.querySelector('.brand-tab[data-brand="padlock"]');
-  if (tab) {
-    tab.addEventListener('click', function(e) {
-      e.stopPropagation();
-      if (currentBrand !== 'padlock') {
-        switchBrand('padlock');
-      }
-    });
-  }
 })();
 
 </script>
