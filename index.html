@@ -1978,11 +1978,11 @@ body::before{
       "@type": "Product",
       "@id": "https://elainesupplychain.com/#product",
       "name": "Wholesale Used & Refurbished Smartphones",
-      "description": "Wholesale iPhone, Samsung, Google Pixel, Xiaomi, OPPO, VIVO, iPad, Huawei smartphones. Grades A+ to C and WiFi Only. Minimum 10pcs per order, 30-day warranty included.",
+      "description": "Wholesale iPhone, Samsung, Google Pixel, Xiaomi, OPPO, VIVO, iPad, Huawei, PadLock products. Grades A+ to C and WiFi Only. Minimum 10pcs per order, 30-day warranty included.",
       "brand": { "@type": "Brand", "name": "Multi-Brand" },
       "offers": {
         "@type": "AggregateOffer",
-        "offerCount": "581",
+        "offerCount": "585",
         "priceCurrency": "CNY",
         "lowPrice": "18",
         "highPrice": "11250",
@@ -2200,6 +2200,10 @@ body::before{
         <a class="dropdown-item" data-series="Nova 8-12 Series" onclick="navigateToHuaweiSeries('Nova 8-12 Series')">Nova 8-12</a>
         <a class="dropdown-item" data-series="Nova 13-16 Series" onclick="navigateToHuaweiSeries('Nova 13-16 Series')">Nova 13-16</a>
     </div>
+  </div>
+</div>
+  <div class="brand-tab-wrapper" data-brand="padlock" id="padlockTabWrapper">
+    <button class="brand-tab" data-brand="padlock">PadLock</button>
   </div>
 </div>
 </div>
@@ -8493,6 +8497,42 @@ body::before{
 </div>
 </div>
 
+<div class="brand-content" data-brand="padlock">
+<div class="series-section" data-series="PadLock Series">
+<h2 class="series-title">PadLock Series</h2>
+<div class="card-grid">
+<div class="card" data-json='{"model": "PadLock 5mm", "storage": "5mm", "label": "PadLock 5mm 5mm", "ap": null, "a": 129, "b": null, "c": null, "wifi": null, "brand": "padlock"}' data-search="padlock 5mm 5mm padlock series">
+  <div class="card-body">
+    <div class="card-model"><span class="model-name">PadLock 5mm</span><button class="photo-btn model-photo-btn">View Photos</button></div>
+    <div class="card-storage">5mm</div>
+    <div class="price-row"><span class="price-grade">PadLock 5mm</span><span class="price-value a">¥129</span></div>
+  </div>
+</div>
+<div class="card" data-json='{"model": "PadLock 6mm", "storage": "6mm", "label": "PadLock 6mm 6mm", "ap": null, "a": 229, "b": null, "c": null, "wifi": null, "brand": "padlock"}' data-search="padlock 6mm 6mm padlock series">
+  <div class="card-body">
+    <div class="card-model"><span class="model-name">PadLock 6mm</span><button class="photo-btn model-photo-btn">View Photos</button></div>
+    <div class="card-storage">6mm</div>
+    <div class="price-row"><span class="price-grade">PadLock 6mm</span><span class="price-value a">¥229</span></div>
+  </div>
+</div>
+<div class="card" data-json='{"model": "PadLock 7mm", "storage": "7mm", "label": "PadLock 7mm 7mm", "ap": null, "a": 269, "b": null, "c": null, "wifi": null, "brand": "padlock"}' data-search="padlock 7mm 7mm padlock series">
+  <div class="card-body">
+    <div class="card-model"><span class="model-name">PadLock 7mm</span><button class="photo-btn model-photo-btn">View Photos</button></div>
+    <div class="card-storage">7mm</div>
+    <div class="price-row"><span class="price-grade">PadLock 7mm</span><span class="price-value a">¥269</span></div>
+  </div>
+</div>
+<div class="card" data-json='{"model": "PadLock 10mm", "storage": "10mm", "label": "PadLock 10mm 10mm", "ap": null, "a": 299, "b": null, "c": null, "wifi": null, "brand": "padlock"}' data-search="padlock 10mm 10mm padlock series">
+  <div class="card-body">
+    <div class="card-model"><span class="model-name">PadLock 10mm</span><button class="photo-btn model-photo-btn">View Photos</button></div>
+    <div class="card-storage">10mm</div>
+    <div class="price-row"><span class="price-grade">PadLock 10mm</span><span class="price-value a">¥299</span></div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
 <script>
 /* === Anti-copy protection === */
 document.addEventListener('contextmenu',function(e){e.preventDefault()});
@@ -9510,6 +9550,19 @@ function navigateToHuaweiSeries(seriesName) {
     dropdown.classList.remove('show');
     if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
   });
+})();
+
+/* === PadLock Tab Handler === */
+(function() {
+  var tab = document.querySelector('.brand-tab[data-brand="padlock"]');
+  if (tab) {
+    tab.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (currentBrand !== 'padlock') {
+        switchBrand('padlock');
+      }
+    });
+  }
 })();
 
 </script>
