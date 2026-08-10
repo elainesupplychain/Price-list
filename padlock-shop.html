@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PadLock Smart Fingerprint Padlock - Your Security Partner</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8f9fa;color:#333;line-height:1.6}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* Hero Carousel */
+.hero{position:relative;width:100%;max-width:900px;margin:0 auto;overflow:hidden;border-radius:16px;background:#fff}
+.carousel{position:relative;aspect-ratio:1/1;max-height:600px}
+.carousel img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .5s ease;background:#fff}
+.carousel img.active{opacity:1}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.5);color:#fff;border:none;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:20px;z-index:10;transition:background .3s}
+.carousel-btn:hover{background:rgba(0,0,0,.8)}
+.carousel-btn.prev{left:12px}
+.carousel-btn.next{right:12px}
+.carousel-dots{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10}
+.carousel-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:background .3s;border:none}
+.carousel-dot.active{background:#00d4aa}
+
+/* Header */
+.header{text-align:center;padding:60px 20px 40px}
+.header h1{font-size:2.8rem;font-weight:700;background:linear-gradient(135deg,#00d4aa,#00a3ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header .tagline{font-size:1.15rem;color:#888;margin-top:12px}
+
+/* Features */
+.section-title{text-align:center;font-size:1.8rem;font-weight:600;margin:60px 0 32px;color:#1a1a2e}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:20px;margin-bottom:60px}
+.feature-card{background:#fff;border-radius:12px;padding:28px 20px;text-align:center;border:1px solid #e0e0e0;transition:transform .3s,border-color .3s}
+.feature-card:hover{transform:translateY(-4px);border-color:#00d4aa}
+.feature-icon{font-size:2.4rem;margin-bottom:12px;display:block}
+.feature-card h3{font-size:1rem;color:#1a1a2e;margin-bottom:6px}
+.feature-card p{font-size:.85rem;color:#666}
+
+/* Models */
+.models{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-bottom:60px}
+.model-card{background:#fff;border-radius:14px;overflow:hidden;border:1px solid #e0e0e0;transition:transform .3s,border-color .3s,box-shadow .3s;display:flex;flex-direction:column}
+.model-card:hover{transform:translateY(-4px);border-color:#00d4aa;box-shadow:0 8px 32px rgba(0,212,170,.1)}
+.model-card.featured{border-color:#00d4aa;box-shadow:0 0 24px rgba(0,212,170,.18)}
+.model-img{width:100%;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:#f0f2f5;padding:20px}
+.model-img img{max-width:100%;max-height:100%;object-fit:contain;display:block;margin:auto}
+.model-info{padding:20px;display:flex;flex-direction:column;flex:1}
+.model-info h3{font-size:1.1rem;color:#1a1a2e;margin-bottom:4px}
+.model-info .size-tag{display:inline-block;background:rgba(0,212,170,.15);color:#00d4aa;font-size:.8rem;padding:3px 10px;border-radius:6px;margin-bottom:10px;width:fit-content}
+.model-info .price{font-size:1.6rem;font-weight:700;color:#00d4aa;margin-bottom:8px}
+.model-info .price span{font-size:.9rem;color:#888;font-weight:400}
+.model-info .specs{font-size:.82rem;color:#555;margin-bottom:16px;line-height:1.5;flex:1}
+
+/* Quantity + Buy Now */
+.model-actions{display:flex;gap:10px;align-items:center;margin-top:auto}
+.qty-selector{display:flex;align-items:center;background:#f0f2f5;border:1px solid #ddd;border-radius:8px;overflow:hidden}
+.qty-btn{background:transparent;color:#333;border:none;width:34px;height:36px;font-size:1.1rem;cursor:pointer;transition:background .2s}
+.qty-btn:hover{background:#e8e8e8}
+.qty-btn:active{background:#00d4aa;color:#fff}
+.qty-input{width:40px;height:36px;text-align:center;background:transparent;border:none;border-left:1px solid #ddd;border-right:1px solid #ddd;color:#333;font-size:.95rem;outline:none;font-family:inherit}
+.buy-now-btn{flex:1;background:linear-gradient(135deg,#ff6b35,#f97316);color:#fff;border:none;border-radius:8px;padding:10px 16px;font-size:.9rem;font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .2s;white-space:nowrap}
+.buy-now-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(249,115,22,.35)}
+.buy-now-btn:active{transform:scale(.97)}
+
+
+
+
+
+
+
+/* Checkout Form Modal */
+.form-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:2998;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;padding:20px}
+.form-overlay.open{opacity:1;visibility:visible}
+.form-modal{background:#fff;border-radius:16px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;padding:32px;border:1px solid #e0e0e0;position:relative}
+.form-modal h2{color:#1a1a2e;font-size:1.3rem;margin-bottom:8px}
+.form-modal .form-subtitle{color:#666;font-size:.85rem;margin-bottom:24px}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;color:#555;font-size:.82rem;margin-bottom:6px;font-weight:500}
+.form-group input,.form-group textarea{width:100%;background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:11px 14px;color:#333;font-size:.9rem;font-family:inherit;outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group textarea:focus{border-color:#00d4aa}
+.form-group textarea{resize:vertical;min-height:80px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-actions{display:flex;gap:12px;margin-top:28px}
+.form-back{flex:1;background:transparent;border:1px solid #ddd;color:#666;border-radius:8px;padding:12px;font-size:.9rem;cursor:pointer;transition:border-color .2s,color .2s}
+.form-back:hover{border-color:#1a1a2e;color:#1a1a2e}
+.form-submit{flex:2;background:linear-gradient(135deg,#ff6b35,#f97316);color:#fff;border:none;border-radius:8px;padding:12px;font-size:.9rem;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.form-submit:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(249,115,22,.35)}
+.form-error{color:#ff4444;font-size:.8rem;margin-top:4px;display:none}
+.form-error.show{display:block}
+
+/* Order Summary in Form */
+.order-summary{background:#f0f2f5;border-radius:10px;padding:16px;margin-bottom:20px}
+.order-summary h4{color:#888;font-size:.8rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.order-summary-items{font-size:.85rem;color:#333}
+.order-summary-item{display:flex;justify-content:space-between;padding:4px 0}
+.order-summary-divider{border-top:1px solid #ddd;margin:8px 0;padding-top:8px}
+.order-summary-total{display:flex;justify-content:space-between;font-weight:700;color:#00d4aa;font-size:1rem}
+
+/* Toast */
+.toast{position:fixed;top:24px;left:50%;transform:translateX(-50%);background:#00d4aa;color:#fff;padding:12px 28px;border-radius:10px;font-weight:600;font-size:.9rem;z-index:4000;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;box-shadow:0 4px 20px rgba(0,212,170,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(4px)}
+
+/* CTA */
+.cta{text-align:center;padding:40px 20px 60px;background:linear-gradient(180deg,transparent,rgba(0,212,170,.08))}
+.cta .wechat{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid #ddd;border-radius:12px;padding:16px 32px;font-size:1.1rem;color:#1a1a2e;transition:border-color .3s;text-decoration:none}
+.cta .wechat:hover{border-color:#00d4aa}
+.cta .wechat-icon{color:#00d4aa;font-size:1.5rem}
+.cta p{color:#666;margin-top:16px;font-size:.9rem}
+
+/* Footer */
+.footer{text-align:center;padding:20px;color:#999;font-size:.8rem;border-top:1px solid #e0e0e0}
+
+/* Hidden PayPal Form */
+#paypalForm{display:none}
+
+/* Responsive */
+@media(max-width:768px){
+  .header h1{font-size:2rem}
+  .carousel{aspect-ratio:4/3;max-height:400px}
+  .features{grid-template-columns:repeat(3,1fr);gap:12px}
+  .feature-card{padding:20px 12px}
+  .feature-icon{font-size:2rem}
+
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .features{grid-template-columns:repeat(2,1fr)}
+  .models{grid-template-columns:1fr}
+  .header h1{font-size:1.6rem}
+  .form-modal{padding:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <h1>PadLock Smart Fingerprint Padlock</h1>
+  <p class="tagline">Fingerprint Unlock · Bluetooth App · Waterproof · Smart Security</p>
+</div>
+
+<!-- Carousel -->
+<div class="hero">
+  <div class="carousel">
+    <img src="./Padlock1.png" class="active" alt="PadLock CE-RED Certification">
+    <img src="./Padlock2.png" alt="PadLock Digital Keypad & RFID">
+    <img src="./Padlock3.png" alt="PadLock Waterproof Bluetooth Specifications">
+    <img src="./Padlock4.png" alt="PadLock Product Info Poster">
+    <img src="./Padlock5.png" alt="PadLock Dynamic Password Sharing">
+    <img src="./Padlock6.png" alt="PadLock Tuya Matte Black Specifications">
+    <img src="./Padlock7.png" alt="PadLock Waterproof Bluetooth V2">
+    <img src="./Padlock8.png" alt="PadLock Large Fingerprint Lock">
+    <img src="./Padlock9.png" alt="PadLock Multiple Unlock Methods">
+    <img src="./Padlock10.png" alt="PadLock 10mm Waterproof Lock">
+  </div>
+  <button class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
+  <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
+  <div class="carousel-dots"></div>
+</div>
+
+<!-- Features -->
+<h2 class="section-title">Key Features</h2>
+<div class="container features">
+  <div class="feature-card">
+    <span class="feature-icon">&#128273;</span>
+    <h3>Fingerprint Unlock</h3>
+    <p>0.5s rapid recognition, 360&deg; multi-angle touch</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">&#128241;</span>
+    <h3>Bluetooth App</h3>
+    <p>Tuya smart app with remote unlock logs and real-time monitoring</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">&#128167;</span>
+    <h3>IP67 Waterproof</h3>
+    <p>All-weather waterproof and dustproof &mdash; built for outdoor use in any condition</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">&#128179;</span>
+    <h3>NFC Card Unlock</h3>
+    <p>Instant tap-to-unlock with NFC smart cards</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">&#127922;</span>
+    <h3>Passcode Unlock</h3>
+    <p>Digital keypad with anti-peep virtual password protection</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">&#128232;</span>
+    <h3>Temp. Passcode Sharing</h3>
+    <p>Generate dynamic one-time codes for remote guest access</p>
+  </div>
+</div>
+
+<!-- Models -->
+<h2 class="section-title">Choose Your Model</h2>
+<div class="container models">
+  <div class="model-card" data-model="PadLock 5mm" data-price="25" data-img="./Padlock2.png">
+    <div class="model-img"><img src="./Padlock2.png" alt="PadLock 5mm"></div>
+    <div class="model-info">
+      <h3>PadLock 5mm</h3>
+      <span class="size-tag">Compact</span>
+      <div class="price">$25 <span>USD</span></div>
+      <p class="specs">Lightweight and portable &mdash; ideal for backpacks and daily carry</p>
+      <div class="model-actions">
+        <div class="qty-selector">
+          <button class="qty-btn" onclick="changeQty(this, -1)">&minus;</button>
+          <input class="qty-input" type="text" value="1" readonly>
+          <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+        </div>
+        <button class="buy-now-btn" onclick="buyNow(this)">Buy Now</button>
+      </div>
+    </div>
+  </div>
+  <div class="model-card" data-model="PadLock 6mm" data-price="32" data-img="./Padlock6.png">
+    <div class="model-img"><img src="./Padlock6.png" alt="PadLock 6mm"></div>
+    <div class="model-info">
+      <h3>PadLock 6mm</h3>
+      <span class="size-tag">Standard</span>
+      <div class="price">$32 <span>USD</span></div>
+      <p class="specs">Classic matte black with Tuya smart app integration</p>
+      <div class="model-actions">
+        <div class="qty-selector">
+          <button class="qty-btn" onclick="changeQty(this, -1)">&minus;</button>
+          <input class="qty-input" type="text" value="1" readonly>
+          <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+        </div>
+        <button class="buy-now-btn" onclick="buyNow(this)">Buy Now</button>
+      </div>
+    </div>
+  </div>
+  <div class="model-card featured" data-model="PadLock 7mm" data-price="38" data-img="./Padlock7.png">
+    <div class="model-img"><img src="./Padlock7.png" alt="PadLock 7mm"></div>
+    <div class="model-info">
+      <h3>PadLock 7mm</h3>
+      <span class="size-tag">Premium</span>
+      <div class="price">$38 <span>USD</span></div>
+      <p class="specs">Full-size lock with card, Bluetooth, NFC, fingerprint &amp; passcode</p>
+      <div class="model-actions">
+        <div class="qty-selector">
+          <button class="qty-btn" onclick="changeQty(this, -1)">&minus;</button>
+          <input class="qty-input" type="text" value="1" readonly>
+          <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+        </div>
+        <button class="buy-now-btn" onclick="buyNow(this)">Buy Now</button>
+      </div>
+    </div>
+  </div>
+  <div class="model-card" data-model="PadLock 10mm" data-price="42" data-img="./Padlock10.png">
+    <div class="model-img"><img src="./Padlock10.png" alt="PadLock 10mm"></div>
+    <div class="model-info">
+      <h3>PadLock 10mm</h3>
+      <span class="size-tag">Max</span>
+      <div class="price">$42 <span>USD</span></div>
+      <p class="specs">Extra-large waterproof flagship &mdash; maximum security protection rating</p>
+      <div class="model-actions">
+        <div class="qty-selector">
+          <button class="qty-btn" onclick="changeQty(this, -1)">&minus;</button>
+          <input class="qty-input" type="text" value="1" readonly>
+          <button class="qty-btn" onclick="changeQty(this, 1)">+</button>
+        </div>
+        <button class="buy-now-btn" onclick="buyNow(this)">Buy Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Contact -->
+<h2 class="section-title">Contact Us</h2>
+<div class="cta">
+  <a class="wechat" href="weixin://">
+    <span class="wechat-icon">&#128172;</span>
+    WeChat: ElaineSupplyChain
+  </a>
+  <p>Scan to add on WeChat for inquiries &middot; In stock &amp; ready to ship &middot; Bulk order discounts available</p>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  &copy; 2025 PadLock Smart Lock. All rights reserved.
+</div>
+
+
+
+
+
+<!-- Checkout Form Overlay -->
+<div class="form-overlay" id="formOverlay">
+  <div class="form-modal">
+    <h2>Checkout</h2>
+    <p class="form-subtitle">Fill in your details to complete your order</p>
+
+    <div class="order-summary" id="orderSummary"></div>
+
+    <div class="form-group">
+      <label>Full Name *</label>
+      <input type="text" id="custName" placeholder="John Doe" required>
+    </div>
+    <div class="form-group">
+      <label>Email *</label>
+      <input type="email" id="custEmail" placeholder="john@example.com" required>
+    </div>
+    <div class="form-group">
+      <label>Phone</label>
+      <input type="tel" id="custPhone" placeholder="+1 234 567 8900">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Country *</label>
+        <input type="text" id="custCountry" placeholder="United States" required>
+      </div>
+      <div class="form-group">
+        <label>City *</label>
+        <input type="text" id="custCity" placeholder="New York" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Shipping Address *</label>
+      <input type="text" id="custAddress" placeholder="123 Main St, Apt 4B" required>
+    </div>
+    <div class="form-group">
+      <label>Notes</label>
+      <textarea id="custNotes" placeholder="Any special requirements or delivery instructions..."></textarea>
+    </div>
+    <p class="form-error" id="formError">Please fill in all required fields.</p>
+    <div class="form-actions">
+      <button class="form-back" onclick="closeCheckout()">Back to Cart</button>
+      <button class="form-submit" onclick="submitOrder()">Pay with PayPal</button>
+    </div>
+  </div>
+</div>
+
+<!-- PayPal Standard Cart Form -->
+<form id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+  <input type="hidden" name="cmd" value="_cart">
+  <input type="hidden" name="upload" value="1">
+  <input type="hidden" name="business" value="meiniang19861215@outlook.com">
+  <input type="hidden" name="currency_code" value="USD">
+  <input type="hidden" name="no_shipping" value="2">
+  <input type="hidden" name="rm" value="2">
+  <input type="hidden" name="return" value="">
+  <input type="hidden" name="cancel_return" value="">
+  <!-- Dynamic items injected by JS -->
+</form>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ============ PRODUCT DATA ============
+var products = {
+  "PadLock 5mm": { price: 25, img: "./Padlock2.png" },
+  "PadLock 6mm": { price: 32, img: "./Padlock6.png" },
+  "PadLock 7mm": { price: 38, img: "./Padlock7.png" },
+  "PadLock 10mm": { price: 42, img: "./Padlock10.png" }
+};
+
+// ============ QUANTITY SELECTOR ============
+function changeQty(btn, delta) {
+  var input = btn.parentElement.querySelector('.qty-input');
+  var val = parseInt(input.value) + delta;
+  if (val < 1) val = 1;
+  if (val > 99) val = 99;
+  input.value = val;
+}
+
+// ============ BUY NOW ============
+var buyItem = null;
+
+function buyNow(btn) {
+  var card = btn.closest('.model-card');
+  var model = card.getAttribute('data-model');
+  var qty = parseInt(card.querySelector('.qty-input').value);
+  buyItem = { model: model, qty: qty, price: products[model].price, img: products[model].img };
+  openCheckout();
+}
+
+// ============ CHECKOUT FORM ============
+function openCheckout() {
+  if (!buyItem) return;
+  var item = buyItem;
+  var total = (item.price * item.qty).toFixed(2);
+  var summaryHTML = '<h4>Order Summary</h4><div class="order-summary-items">' +
+    '<div class="order-summary-item"><span>' + item.model + ' x' + item.qty + '</span><span>$' + total + '</span></div>' +
+    '<div class="order-summary-divider"></div>' +
+    '<div class="order-summary-total"><span>Total</span><span>$' + total + '</span></div>' +
+    '</div>';
+  document.getElementById('orderSummary').innerHTML = summaryHTML;
+  document.getElementById('formOverlay').classList.add('open');
+  document.getElementById('formError').classList.remove('show');
+}
+
+function closeCheckout() {
+  document.getElementById('formOverlay').classList.remove('open');
+}
+
+// ============ SUBMIT ORDER ============
+function submitOrder() {
+  var name = document.getElementById('custName').value.trim();
+  var email = document.getElementById('custEmail').value.trim();
+  var country = document.getElementById('custCountry').value.trim();
+  var city = document.getElementById('custCity').value.trim();
+  var address = document.getElementById('custAddress').value.trim();
+
+  if (!name || !email || !country || !city || !address) {
+    document.getElementById('formError').classList.add('show');
+    return;
+  }
+
+  var phone = document.getElementById('custPhone').value.trim();
+  var notes = document.getElementById('custNotes').value.trim();
+  var shippingAddr = address + ', ' + city + ', ' + country;
+  var orderNotes = 'Name: ' + name + ' | Email: ' + email;
+  if (phone) orderNotes += ' | Phone: ' + phone;
+  orderNotes += ' | Address: ' + shippingAddr;
+  if (notes) orderNotes += ' | Notes: ' + notes;
+
+  var form = document.getElementById('paypalForm');
+  var items = form.querySelectorAll('.paypal-item');
+  items.forEach(function(el) { el.remove(); });
+
+  var input;
+  input = document.createElement('input'); input.type = 'hidden'; input.name = 'item_name_1'; input.value = buyItem.model; input.className = 'paypal-item'; form.appendChild(input);
+  input = document.createElement('input'); input.type = 'hidden'; input.name = 'amount_1'; input.value = buyItem.price.toFixed(2); input.className = 'paypal-item'; form.appendChild(input);
+  input = document.createElement('input'); input.type = 'hidden'; input.name = 'quantity_1'; input.value = buyItem.qty; input.className = 'paypal-item'; form.appendChild(input);
+
+  var notesInput = form.querySelector('input[name="custom"]');
+  if (!notesInput) { notesInput = document.createElement('input'); notesInput.type = 'hidden'; notesInput.name = 'custom'; form.appendChild(notesInput); }
+  notesInput.value = orderNotes;
+
+  var emailInput = form.querySelector('input[name="email"]');
+  if (!emailInput) { emailInput = document.createElement('input'); emailInput.type = 'hidden'; emailInput.name = 'email'; form.appendChild(emailInput); }
+  emailInput.value = email;
+
+  var currentUrl = window.location.href.split('?')[0];
+  form.querySelector('input[name="return"]').value = currentUrl + '?paid=1';
+  form.querySelector('input[name="cancel_return"]').value = currentUrl + '?cancelled=1';
+
+  form.submit();
+}
+
+// ============ TOAST ============
+function showToast(msg) {
+  var toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toast._timeout);
+  toast._timeout = setTimeout(function() { toast.classList.remove('show'); }, 2500);
+}
+
+// ============ CAROUSEL ============
+var currentSlide = 0;
+var slides = document.querySelectorAll('.carousel img');
+var dotsContainer = document.querySelector('.carousel-dots');
+var total = slides.length;
+
+for (var i = 0; i < total; i++) {
+  (function(idx) {
+    var dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (idx === 0 ? ' active' : '');
+    dot.addEventListener('click', function() { goToSlide(idx); });
+    dotsContainer.appendChild(dot);
+  })(i);
+}
+
+function updateSlide() {
+  slides.forEach(function(s, i) { s.classList.toggle('active', i === currentSlide); });
+  var dots = document.querySelectorAll('.carousel-dot');
+  dots.forEach(function(d, i) { d.classList.toggle('active', i === currentSlide); });
+}
+
+function nextSlide() { currentSlide = (currentSlide + 1) % total; updateSlide(); }
+function prevSlide() { currentSlide = (currentSlide - 1 + total) % total; updateSlide(); }
+function goToSlide(n) { currentSlide = n; updateSlide(); }
+
+var autoPlay = setInterval(nextSlide, 4000);
+var carouselEl = document.querySelector('.carousel');
+carouselEl.addEventListener('mouseenter', function() { clearInterval(autoPlay); });
+carouselEl.addEventListener('mouseleave', function() { autoPlay = setInterval(nextSlide, 4000); });
+
+var touchStartX = 0;
+carouselEl.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; });
+carouselEl.addEventListener('touchend', function(e) {
+  var diff = touchStartX - e.changedTouches[0].screenX;
+  if (Math.abs(diff) > 50) { diff > 0 ? nextSlide() : prevSlide(); }
+});
+
+// ============ PAYPAL RETURN ============
+var params = new URLSearchParams(window.location.search);
+if (params.get('paid') === '1') {
+  showToast('Payment successful! Thank you for your order. We will contact you shortly.');
+}
+if (params.get('cancelled') === '1') {
+  showToast('Payment was cancelled. You can try again.');
+}
+</script>
+</body>
+</html>
