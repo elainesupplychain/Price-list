@@ -462,6 +462,27 @@ function submitOrder() {
   form.querySelector('input[name="return"]').value = currentUrl + '?paid=1';
   form.querySelector('input[name="cancel_return"]').value = currentUrl + '?cancelled=1';
 
+  // Save order to backend before PayPal
+  var orderData = {
+    customer_name: name,
+    email: email,
+    phone: phone,
+    country: country,
+    city: city,
+    address: address,
+    notes: notes,
+    product_model: buyItem.model,
+    product_price: buyItem.price,
+    quantity: buyItem.qty,
+    total_amount: parseFloat((buyItem.price * buyItem.qty).toFixed(2))
+  };
+
+  fetch('https://padlock-api-production.up.railway.app/api/orders', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(orderData)
+  }).catch(function() { /* non-blocking */ });
+
   // Track InitiateCheckout event when user submits order
   fbq('track', 'InitiateCheckout', {
     content_name: buyItem.model,
