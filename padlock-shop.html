@@ -129,6 +129,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   .form-modal{padding:24px}
 }
 </style>
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1830066908399596');
+fbq('track', 'PageView');
+</script>
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1830066908399596&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
 </head>
 <body>
 
@@ -372,6 +390,14 @@ function buyNow(btn) {
   var model = card.getAttribute('data-model');
   var qty = parseInt(card.querySelector('.qty-input').value);
   buyItem = { model: model, qty: qty, price: products[model].price, img: products[model].img };
+  // Track ViewContent event when user clicks Buy Now
+  fbq('track', 'ViewContent', {
+    content_name: model,
+    content_category: 'PadLock',
+    value: products[model].price,
+    currency: 'USD',
+    store: 'padlock'
+  });
   openCheckout();
 }
 
@@ -436,6 +462,14 @@ function submitOrder() {
   form.querySelector('input[name="return"]').value = currentUrl + '?paid=1';
   form.querySelector('input[name="cancel_return"]').value = currentUrl + '?cancelled=1';
 
+  // Track InitiateCheckout event when user submits order
+  fbq('track', 'InitiateCheckout', {
+    content_name: buyItem.model,
+    value: (buyItem.price * buyItem.qty).toFixed(2),
+    currency: 'USD',
+    num_items: buyItem.qty,
+    store: 'padlock'
+  });
   form.submit();
 }
 
