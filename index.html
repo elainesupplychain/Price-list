@@ -2034,17 +2034,17 @@ body::before{
   <div class="logo-area">
     <div class="logo-icon">ES</div>
     <div>
-      <h1>Elaine Supply Chain - Wholesale Used iPhone &amp; Android Price List</h1>
-      <div class="sub">Wholesale iPhone Price List &middot; Shenzhen</div>
+      <h1 data-i18n="h1">Elaine Supply Chain - Wholesale Used iPhone &amp; Android Price List</h1>
+      <div class="sub" data-i18n="sub">Wholesale iPhone Price List &middot; Shenzhen</div>
     </div>
   </div>
   <div class="warranty-badge">
-    <span class="check">&#10003;</span> 30-Day Warranty Included（Non-user-caused damage）
+    <span class="check">&#10003;</span> <span data-i18n="warranty1">30-Day Warranty Included（Non-user-caused damage）</span>
   </div>
   <div class="warranty-badge">
-    <span class="check">&#10003;</span> All phones are Fully Tested Preowned
+    <span class="check">&#10003;</span> <span data-i18n="warranty2">All phones are Fully Tested Preowned</span>
   </div>
-  <div class="orange-notice-badge">
+  <div class="orange-notice-badge" data-i18n="notice">
     Random color and Random version! Pick Color or Version Need Additional 50-100rmb!
   </div>
   <div class="contact">
@@ -2052,61 +2052,65 @@ body::before{
     <span>&#9742; WhatsApp: +1 626-539-2631</span>
   </div>
   <div class="currency-switch">
-    <span class="currency-label">Currency:</span>
+    <span class="currency-label" data-i18n="currency_label">Currency:</span>
     <button class="currency-btn active" data-cur="CNY" onclick="setCurrency('CNY')">CNY &#165;</button>
     <button class="currency-btn" data-cur="USD" onclick="setCurrency('USD')">USD $</button>
+    <button class="currency-btn" data-cur="EUR" onclick="setCurrency('EUR')">EUR &#8364;</button>
+    <button class="currency-btn" data-cur="GBP" onclick="setCurrency('GBP')">GBP &#163;</button>
+    <button class="currency-btn" data-cur="AUD" onclick="setCurrency('AUD')">AUD A$</button>
     <button class="currency-btn" data-cur="NGN" onclick="setCurrency('NGN')">NGN &#8358;</button>
-    <button class="currency-btn" data-cur="ZAR" onclick="setCurrency('ZAR')">ZAR R</button>
+    <button class="currency-btn" data-cur="CDF" onclick="setCurrency('CDF')">CDF FC</button>
+    <button class="currency-btn" data-cur="ZMW" onclick="setCurrency('ZMW')">ZMW ZK</button>
   </div>
   <div class="search-wrap">
     <span class="search-icon">&#128269;</span>
-    <input type="text" id="searchInput" placeholder="Search model, storage, series..." oninput="filterCards()">
+    <input type="text" id="searchInput" placeholder="Search model, storage, series..." data-i18n="search_ph" oninput="filterCards()">
   </div>
 </div>
 
 <div class="info-banner-row">
   <div class="info-card membership">
-    <h3>Membership Benefits</h3>
+    <h3 data-i18n="mem_h3">Membership Benefits</h3>
     <ul>
-      <li>Watermark-free real product photos</li>
-      <li>5% discount on all orders</li>
-      <li>Priority shipping &amp; handling</li>
+      <li data-i18n="mem_li1">Watermark-free real product photos</li>
+      <li data-i18n="mem_li2">5% discount on all orders</li>
+      <li data-i18n="mem_li3">Priority shipping &amp; handling</li>
     </ul>
-    <a class="btn" href="#contact" onclick="document.querySelector('.wechat-fab').click();return false;">Join Now</a>
+    <a class="btn" href="#contact" onclick="document.querySelector('.wechat-fab').click();return false;" data-i18n="mem_btn">Join Now</a>
   </div>
   <div class="info-card sourcing">
-    <h3>Sourcing &amp; Quality Control</h3>
+    <h3 data-i18n="sou_h3">Sourcing &amp; Quality Control</h3>
     <ul>
-      <li>Service fee: 3%-10% (varies by product category and order volume)</li>
-      <li>Translation Service (by appointment)</li>
-      <li>Quality Inspection (by appointment)</li>
-      <li>Packaging &amp; Consolidation (by appointment)</li>
+      <li data-i18n="sou_li1">Service fee: 3%-10% (varies by product category and order volume)</li>
+      <li data-i18n="sou_li2">Translation Service (by appointment)</li>
+      <li data-i18n="sou_li3">Quality Inspection (by appointment)</li>
+      <li data-i18n="sou_li4">Packaging &amp; Consolidation (by appointment)</li>
     </ul>
-    <a class="btn" href="#contact" onclick="document.querySelector('.wechat-fab').click();return false;">Book a Service</a>
+    <a class="btn" href="#contact" onclick="document.querySelector('.wechat-fab').click();return false;" data-i18n="sou_btn">Book a Service</a>
   </div>
   <div class="info-card grade-compare">
-    <h3>Grade Comparison</h3>
+    <h3 data-i18n="grade_h3">Grade Comparison</h3>
     <div class="grade-table-wrap">
     <table class="grade-table">
-      <thead><tr><th></th><th>Screen</th><th>Condition</th><th>Battery</th><th>Face ID</th></tr></thead>
+      <thead><tr><th></th><th data-i18n="g_th1">Screen</th><th data-i18n="g_th2">Condition</th><th data-i18n="g_th3">Battery</th><th data-i18n="g_th4">Face ID</th></tr></thead>
       <tbody>
         <tr>
           <td class="g-aplus">A+</td>
-          <td>Original</td><td>95% New, Neat Condition</td><td>85-100% original or changed battery</td><td>✓</td>
+          <td data-i18n="g_orig">Original</td><td data-i18n="g_aplus_cond">95% New, Neat Condition</td><td data-i18n="g_aplus_bat">85-100% original or changed battery</td><td data-i18n="g_yes">✓</td>
         </tr><tr>
           <td class="g-a">A</td>
-          <td>Original</td><td>90% New, Minor Scratch</td><td>70-80%+ original or changed battery</td><td>✓</td>
+          <td data-i18n="g_orig">Original</td><td data-i18n="g_a_cond">90% New, Minor Scratch</td><td data-i18n="g_ab_bat">70-80%+ original or changed battery</td><td data-i18n="g_yes">✓</td>
         </tr><tr>
           <td class="g-b">B</td>
-          <td>Original</td><td>85% New, Clear Scratch</td><td>70-80%+ original or changed battery</td><td>✓</td>
+          <td data-i18n="g_orig">Original</td><td data-i18n="g_b_cond">85% New, Clear Scratch</td><td data-i18n="g_ab_bat">70-80%+ original or changed battery</td><td data-i18n="g_yes">✓</td>
         </tr><tr>
           <td class="g-c">C</td>
-          <td>Unoriginal</td><td>Random</td><td>70%+ original or changed battery</td><td>Depends</td>
+          <td data-i18n="g_unorig">Unoriginal</td><td data-i18n="g_random">Random</td><td data-i18n="g_c_bat">70%+ original or changed battery</td><td data-i18n="g_depends">Depends</td>
         </tr>
       </tbody>
     </table>
     </div>
-    <p class="grade-note">Default random version and color, Pick version or color Add 50-200 rmb</p>
+    <p class="grade-note" data-i18n="grade_note">Default random version and color, Pick version or color Add 50-200 rmb</p>
   </div>
 </div>
 
@@ -8844,10 +8848,10 @@ body::before{
 
 <div class="fab-container">
   <button class="wechat-fab" id="wechatFab" onclick="openWechatModal()">
-    <span class="fab-icon">&#128172;</span> WeChat Me
+    <span class="fab-icon">&#128172;</span> <span data-i18n="fab_wechat">WeChat Me</span>
   </button>
   <button class="buy-now-fab" onclick="openWechatModal()">
-    <span class="fab-icon">&#128722;</span> Buy Now
+    <span class="fab-icon">&#128722;</span> <span data-i18n="fab_buy">Buy Now</span>
   </button>
 </div>
 
@@ -8855,12 +8859,12 @@ body::before{
   <div class="wechat-modal" onclick="event.stopPropagation()" style="position:relative;">
     <button class="wechat-close" onclick="closeWechatModal()">&times;</button>
     <img class="qr-img" src="images/wechat-qr.png" alt="WeChat QR Code">
-    <div class="wechat-title">Scan QR Code to Add</div>
+    <div class="wechat-title" data-i18n="wc_title">Scan QR Code to Add</div>
     <div class="wechat-id-row">
       <span class="wechat-id" id="wechatId">ElaineSupplyChain</span>
-      <button class="copy-btn" id="copyWechatBtn" onclick="copyWechat()">Copy</button>
+      <button class="copy-btn" id="copyWechatBtn" onclick="copyWechat()" data-i18n="wc_copy">Copy</button>
     </div>
-    <div class="wechat-hint">WeChat ID: ElaineSupplyChain</div>
+    <div class="wechat-hint" data-i18n="wc_hint">WeChat ID: ElaineSupplyChain</div>
   </div>
 </div>
 
@@ -8872,9 +8876,9 @@ body::before{
 </div>
 
 <div class="footer">
-  <div class="warranty-line">&#10003; 30-Day Warranty on All Products</div>
-  &copy; 2026 Elaine Supply Chain. All rights reserved. Unauthorized copying prohibited. <a href="admin.html" style="color:#475569;font-size:0.7rem">Manage Photos</a><br>
-  Pick version or color +&yen;50 &bull; Retail add &yen;100 &bull; Random Version / Random Color
+  <div class="warranty-line"><span data-i18n="footer_warranty">&#10003; 30-Day Warranty on All Products</span></div>
+  <span data-i18n="copyright">&copy; 2026 Elaine Supply Chain. All rights reserved. Unauthorized copying prohibited.</span> <a href="admin.html" style="color:#475569;font-size:0.7rem" data-i18n="manage_photos">Manage Photos</a><br>
+  <span data-i18n="footer_note">Pick version or color +&yen;50 &bull; Retail add &yen;100 &bull; Random Version / Random Color</span>
 </div>
 
 <div class="brand-content" data-brand="huawei">
@@ -9324,12 +9328,13 @@ function openDetail(input) {
   const card = typeof input === 'string' ? JSON.parse(input) : input;
   window._openCard = card;
   document.getElementById('modalTitle').textContent = card.model + ' ' + card.storage;
+  const T = I18N[curLanguage] || I18N.en;
   const prices = [
-    {grade:'A+ Grade', val:card.ap, cls:'ap', desc:'Original Screen / 99% New / Face ID / eSIM Unlock / Battery 85%-100%'},
-    {grade:'A Grade', val:card.a, cls:'a', desc:'Original Screen / 95% New / Face ID / eSIM Unlock / Battery 70%-80%+'},
-    {grade:'B Grade', val:card.b, cls:'b', desc:'Original Screen / 85% New / Clear Scratch / Face ID / eSIM Unlock'},
-    {grade:'C Grade', val:card.c, cls:'c', desc:'Non-Original Screen / With or Without Face ID / eSIM Locked or Unlocked'},
-    {grade:'WiFi Only', val:card.wifi, cls:'wifi', desc:'C Grade × 0.85 / WiFi Only (No Cellular)'},
+    {grade:T.grade_ap, val:card.ap, cls:'ap', desc:T.desc_ap},
+    {grade:T.grade_a, val:card.a, cls:'a', desc:T.desc_a},
+    {grade:T.grade_b, val:card.b, cls:'b', desc:T.desc_b},
+    {grade:T.grade_c, val:card.c, cls:'c', desc:T.desc_c},
+    {grade:T.grade_wifi, val:card.wifi, cls:'wifi', desc:T.desc_wifi},
   ];
   let priceHTML = '<div class="detail-prices">';
   prices.forEach(p => {
@@ -9342,9 +9347,9 @@ function openDetail(input) {
   if (card.image_prefix) {
     const imgPrefix = "images/huawei-nova/" + card.image_prefix + "-";
     const maxImg = card.image_count || 9;
-    mediaHTML += '<div class="media-section"><h3>Product Photos</h3><div class="media-grid">';
+    mediaHTML += '<div class="media-section"><h3>'+T.media_photos+'</h3><div class="media-grid">';
     for(let i=1;i<=maxImg;i++){
-      const label = "Photo "+i;
+      const label = T.photo_word + " " + i;
       mediaHTML += '<div class="img-protect-wrap">';
       mediaHTML += '<img src="'+imgPrefix+String(i).padStart(2,'0')+'.jpg" alt="'+label+'" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;cursor:pointer" onclick="openLightbox(this.src)" onerror="this.style.display=\'none\';this.parentElement.innerHTML=\'<div class=media-placeholder style=aspect-ratio:1><div class=icon>&#128247;</div><div class=label>'+label+'</div></div>\'">';
       mediaHTML += '</div>';
@@ -9359,7 +9364,7 @@ function openDetail(input) {
       {src:'images/iphone14pm-battery.jpg', label:'电池健康'},
       {src:'images/iphone14pm-screenoff.jpg', label:'正面熄屏'}
     ];
-    mediaHTML += '<div class="media-section"><h3>Sample Photos</h3><div class="media-grid">';
+    mediaHTML += '<div class="media-section"><h3>'+T.media_samples+'</h3><div class="media-grid">';
     images.forEach(function(img) {
       mediaHTML += '<div class="img-protect-wrap">';
       mediaHTML += '<img src="'+img.src+'" alt="'+img.label+'" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display=\'none\';this.parentElement.innerHTML=\'<div class=media-placeholder style=aspect-ratio:1><div class=icon>&#128247;</div><div class=label>'+img.label+'</div></div>\'">';
@@ -9371,7 +9376,7 @@ function openDetail(input) {
     const storageNs = card.storage.toLowerCase();
     const imgPrefix = "images/" + modelNs + "-" + storageNs + "-";
 
-    mediaHTML += '<div class="media-section"><h3>Sample Photos</h3><div class="media-grid">';
+    mediaHTML += '<div class="media-section"><h3>'+T.media_samples+'</h3><div class="media-grid">';
     for(let i=1;i<=9;i++){
       const label = "实拍照片 "+i;
       mediaHTML += '<div class="img-protect-wrap">';
@@ -9379,7 +9384,7 @@ function openDetail(input) {
       mediaHTML += '</div>';
     }
     mediaHTML += '</div></div>';
-    mediaHTML += '<div class="media-section"><h3>Sample Videos</h3><div class="media-grid">';
+    mediaHTML += '<div class="media-section"><h3>'+T.media_videos+'</h3><div class="media-grid">';
     for(let i=1;i<=3;i++){
       mediaHTML += '<div class="media-placeholder video"><div class="icon">🎬</div><div class="label">样品视频 '+i+'</div></div>';
     }
@@ -10333,18 +10338,27 @@ function navigateToHuaweiSeries(seriesName) {
 })();
 
 
-/* === Multi-currency switcher === */
+/* === Multi-currency switcher + i18n === */
 var curCurrency = 'CNY';
+var curLanguage = 'en';
 var CURRENCY_META = {
   CNY: {sym:'¥'},
   USD: {sym:'$'},
+  EUR: {sym:'€'},
+  GBP: {sym:'£'},
+  AUD: {sym:'A$'},
   NGN: {sym:'₦'},
-  ZAR: {sym:'R'}
+  CDF: {sym:'FC'},
+  ZMW: {sym:'ZK'}
 };
 function cnyTo(cny, cur){
   if(cur==='USD') return Math.round(cny/6.65 + 0.2);
+  if(cur==='EUR') return Math.round(cny/7.71 + 0.2);
+  if(cur==='GBP') return Math.round(cny/9.02 + 0.2);
+  if(cur==='AUD') return Math.round(cny/4.72 + 0.2);
   if(cur==='NGN') return Math.round(cny*208);
-  if(cur==='ZAR') return Math.round(cny*2.44);
+  if(cur==='CDF') return Math.round(cny*337.5);
+  if(cur==='ZMW') return Math.round(cny*2.81);
   return cny;
 }
 function fmtNum(n){ return n.toLocaleString('en-US'); }
@@ -10354,6 +10368,241 @@ function fmtPrice(cny){
     return '¥' + fmtNum(cny) + ' / $' + fmtNum(cnyTo(cny,'USD'));
   }
   return CURRENCY_META[curCurrency].sym + fmtNum(cnyTo(cny, curCurrency));
+}
+var I18N = {
+  en: {
+    title: 'Elaine Supply Chain - iPhone Wholesale Price List | A+ A B C WiFi Only | Shenzhen B2B Supplier',
+    h1: 'Elaine Supply Chain - Wholesale Used iPhone & Android Price List',
+    sub: 'Wholesale iPhone Price List \u00b7 Shenzhen',
+    warranty1: '\u2713 30-Day Warranty Included (Non-user-caused damage)',
+    warranty2: '\u2713 All phones are Fully Tested Preowned',
+    notice: 'Random color and Random version! Pick Color or Version Need Additional 50-100rmb!',
+    currency_label: 'Currency:',
+    search_ph: 'Search model, storage, series...',
+    mem_h3: 'Membership Benefits',
+    mem_li1: 'Watermark-free real product photos',
+    mem_li2: '5% discount on all orders',
+    mem_li3: 'Priority shipping & handling',
+    mem_btn: 'Join Now',
+    sou_h3: 'Sourcing & Quality Control',
+    sou_li1: 'Service fee: 3%-10% (varies by product category and order volume)',
+    sou_li2: 'Translation Service (by appointment)',
+    sou_li3: 'Quality Inspection (by appointment)',
+    sou_li4: 'Packaging & Consolidation (by appointment)',
+    sou_btn: 'Book a Service',
+    grade_h3: 'Grade Comparison',
+    g_th1: 'Screen', g_th2: 'Condition', g_th3: 'Battery', g_th4: 'Face ID',
+    g_orig: 'Original',
+    g_aplus_cond: '95% New, Neat Condition',
+    g_aplus_bat: '85-100% original or changed battery',
+    g_yes: '\u2713',
+    g_a_cond: '90% New, Minor Scratch',
+    g_ab_bat: '70-80%+ original or changed battery',
+    g_b_cond: '85% New, Clear Scratch',
+    g_unorig: 'Unoriginal',
+    g_random: 'Random',
+    g_c_bat: '70%+ original or changed battery',
+    g_depends: 'Depends',
+    grade_note: 'Default random version and color, Pick version or color Add 50-200 rmb',
+    view_photos: 'View Photos',
+    fab_wechat: 'WeChat Me',
+    fab_buy: 'Buy Now',
+    wc_title: 'Scan QR Code to Add',
+    wc_copy: 'Copy',
+    wc_hint: 'WeChat ID: ElaineSupplyChain',
+    footer_warranty: '\u2713 30-Day Warranty on All Products',
+    copyright: '\u00a9 2026 Elaine Supply Chain. All rights reserved. Unauthorized copying prohibited.',
+    manage_photos: 'Manage Photos',
+    footer_note: 'Pick version or color +\u00a550 \u2022 Retail add \u00a5100 \u2022 Random Version / Random Color',
+    marquee1: 'Summer Sale! Extra 5% off on orders over $1000',
+    marquee2: 'Global shipping',
+    marquee3: 'New arrivals daily \u2014 iPhone 7 to 17 series in stock',
+    marquee4: '30-Day Warranty on all purchases',
+    media_photos: 'Product Photos',
+    media_samples: 'Sample Photos',
+    media_videos: 'Sample Videos',
+    photo_word: 'Photo',
+    grade_ap: 'A+ Grade', grade_a: 'A Grade', grade_b: 'B Grade', grade_c: 'C Grade', grade_wifi: 'WiFi Only',
+    desc_ap: 'Original Screen / 99% New / Face ID / eSIM Unlock / Battery 85%-100%',
+    desc_a: 'Original Screen / 95% New / Face ID / eSIM Unlock / Battery 70%-80%+',
+    desc_b: 'Original Screen / 85% New / Clear Scratch / Face ID / eSIM Unlock',
+    desc_c: 'Non-Original Screen / With or Without Face ID / eSIM Locked or Unlocked',
+    desc_wifi: 'C Grade \u00d7 0.85 / WiFi Only (No Cellular)'
+  },
+  fr: {
+    title: 'Elaine Supply Chain - Liste de prix iPhone en gros | A+ A B C WiFi Only | Fournisseur B2B \u00e0 Shenzhen',
+    h1: "Elaine Supply Chain - Liste de prix en gros iPhone & Android d'occasion",
+    sub: 'Liste de prix iPhone en gros \u00b7 Shenzhen',
+    warranty1: '\u2713 Garantie 30 jours incluse (dommages non caus\u00e9s par l\'utilisateur)',
+    warranty2: '\u2713 Tous les t\u00e9l\u00e9phones sont des occasions enti\u00e8rement test\u00e9es',
+    notice: 'Couleur et version al\u00e9atoires ! Choisir la couleur ou la version n\u00e9cessite un suppl\u00e9ment de 50-100 RMB !',
+    currency_label: 'Devise:',
+    search_ph: 'Rechercher mod\u00e8le, stockage, s\u00e9rie...',
+    mem_h3: 'Avantages de l\'adh\u00e9sion',
+    mem_li1: 'Photos r\u00e9elles du produit sans filigrane',
+    mem_li2: '5% de r\u00e9duction sur toutes les commandes',
+    mem_li3: 'Exp\u00e9dition et traitement prioritaires',
+    mem_btn: 'Rejoindre',
+    sou_h3: 'Approvisionnement & Contr\u00f4le qualit\u00e9',
+    sou_li1: 'Frais de service : 3%-10% (selon la cat\u00e9gorie du produit et le volume de commande)',
+    sou_li2: 'Service de traduction (sur rendez-vous)',
+    sou_li3: 'Inspection qualit\u00e9 (sur rendez-vous)',
+    sou_li4: 'Emballage & regroupement (sur rendez-vous)',
+    sou_btn: 'R\u00e9server un service',
+    grade_h3: 'Comparaison des grades',
+    g_th1: '\u00c9cran', g_th2: '\u00c9tat', g_th3: 'Batterie', g_th4: 'Face ID',
+    g_orig: 'Original',
+    g_aplus_cond: '95% neuf, \u00e9tat impeccable',
+    g_aplus_bat: 'Batterie d\'origine ou remplac\u00e9e \u00e0 85-100%',
+    g_yes: '\u2713',
+    g_a_cond: '90% neuf, l\u00e9g\u00e8re rayure',
+    g_ab_bat: 'Batterie d\'origine ou remplac\u00e9e \u00e0 70-80%+',
+    g_b_cond: '85% neuf, rayure visible',
+    g_unorig: 'Non original',
+    g_random: 'Al\u00e9atoire',
+    g_c_bat: 'Batterie d\'origine ou remplac\u00e9e \u00e0 70%+',
+    g_depends: 'Selon',
+    grade_note: 'Version et couleur al\u00e9atoires par d\u00e9faut, choisir la version ou la couleur ajoute 50-200 RMB',
+    view_photos: 'Voir les photos',
+    fab_wechat: 'Contact WeChat',
+    fab_buy: 'Acheter maintenant',
+    wc_title: 'Scannez le QR code pour ajouter',
+    wc_copy: 'Copier',
+    wc_hint: 'ID WeChat : ElaineSupplyChain',
+    footer_warranty: '\u2713 Garantie 30 jours sur tous les produits',
+    copyright: '\u00a9 2026 Elaine Supply Chain. Tous droits r\u00e9serv\u00e9s. Copie non autoris\u00e9e interdite.',
+    manage_photos: 'G\u00e9rer les photos',
+    footer_note: 'Choisir version ou couleur +\u00a550 \u2022 Prix de d\u00e9tail +\u00a5100 \u2022 Version al\u00e9atoire / Couleur al\u00e9atoire',
+    marquee1: 'Soldes d\'\u00e9t\u00e9 ! 5% de r\u00e9duction suppl\u00e9mentaire sur les commandes de plus de 1000 $',
+    marquee2: 'Exp\u00e9dition mondiale',
+    marquee3: 'Nouveaut\u00e9s quotidiennes \u2014 iPhone 7 \u00e0 17 en stock',
+    marquee4: 'Garantie 30 jours sur tous les achats',
+    media_photos: 'Photos du produit',
+    media_samples: 'Photos d\'exemple',
+    media_videos: 'Vid\u00e9os d\'exemple',
+    photo_word: 'Photo',
+    grade_ap: 'Grade A+', grade_a: 'Grade A', grade_b: 'Grade B', grade_c: 'Grade C', grade_wifi: 'WiFi uniquement',
+    desc_ap: '\u00c9cran d\'origine / 99% neuf / Face ID / D\u00e9blocage eSIM / Batterie 85%-100%',
+    desc_a: '\u00c9cran d\'origine / 95% neuf / Face ID / D\u00e9blocage eSIM / Batterie 70%-80%+',
+    desc_b: '\u00c9cran d\'origine / 85% neuf / Rayure visible / Face ID / D\u00e9blocage eSIM',
+    desc_c: '\u00c9cran non original / Avec ou sans Face ID / eSIM verrouill\u00e9e ou d\u00e9verrouill\u00e9e',
+    desc_wifi: 'Grade C \u00d7 0.85 / WiFi uniquement (sans r\u00e9seau cellulaire)',
+    grade_map: {
+      'A+ (Battery 100%, 95 New)': 'A+ (Batterie 100%, 95% neuf)',
+      'A Grade (Battery 80%+, 90 New)': 'A (Batterie 80%+, 90% neuf)',
+      'B Grade (Battery 80%+, Clear Scratch)': 'B (Batterie 80%+, Rayure visible)',
+      'WiFi Grade': 'WiFi',
+      'C Grade (Unoriginal screen)': 'C (\u00c9cran non original)',
+      'C Grade (Unoriginal screen or Esim locked)': 'C (\u00c9cran non original ou eSIM verrouill\u00e9e)',
+      'A Grade (95 New)': 'A (95% neuf)',
+      'B Grade (90 New, Clear Scratch)': 'B (90% neuf, Rayure visible)'
+    }
+  },
+  de: {
+    title: 'Elaine Supply Chain - iPhone-Gro\u00dfhandelspreisliste | A+ A B C WiFi Only | B2B-Lieferant Shenzhen',
+    h1: 'Elaine Supply Chain - Gro\u00dfhandelspreise f\u00fcr gebrauchte iPhones & Androids',
+    sub: 'iPhone-Gro\u00dfhandelspreisliste \u00b7 Shenzhen',
+    warranty1: '\u2713 30-Tage-Garantie inklusive (Sch\u00e4den durch Nicht-Benutzereinwirkung)',
+    warranty2: '\u2713 Alle Telefone sind vollst\u00e4ndig getestete Gebrauchtger\u00e4te',
+    notice: 'Zuf\u00e4llige Farbe und zuf\u00e4llige Version! Farbe oder Version w\u00e4hlen kostet zus\u00e4tzlich 50-100 RMB!',
+    currency_label: 'W\u00e4hrung:',
+    search_ph: 'Modell, Speicher, Serie suchen...',
+    mem_h3: 'Mitgliedsvorteile',
+    mem_li1: 'Wasserzeichenfreie echte Produktfotos',
+    mem_li2: '5% Rabatt auf alle Bestellungen',
+    mem_li3: 'Priorisierter Versand & Bearbeitung',
+    mem_btn: 'Jetzt beitreten',
+    sou_h3: 'Beschaffung & Qualit\u00e4tskontrolle',
+    sou_li1: 'Servicegeb\u00fchr: 3%-10% (je nach Produktkategorie und Bestellvolumen)',
+    sou_li2: '\u00dcbersetzungsdienst (nach Vereinbarung)',
+    sou_li3: 'Qualit\u00e4tspr\u00fcfung (nach Vereinbarung)',
+    sou_li4: 'Verpackung & Konsolidierung (nach Vereinbarung)',
+    sou_btn: 'Service buchen',
+    grade_h3: 'Gradvergleich',
+    g_th1: 'Bildschirm', g_th2: 'Zustand', g_th3: 'Akku', g_th4: 'Face ID',
+    g_orig: 'Original',
+    g_aplus_cond: '95% neu, gepflegter Zustand',
+    g_aplus_bat: '85-100% Original- oder getauschter Akku',
+    g_yes: '\u2713',
+    g_a_cond: '90% neu, leichte Kratzer',
+    g_ab_bat: '70-80%+ Original- oder getauschter Akku',
+    g_b_cond: '85% neu, deutliche Kratzer',
+    g_unorig: 'Nicht original',
+    g_random: 'Zuf\u00e4llig',
+    g_c_bat: '70%+ Original- oder getauschter Akku',
+    g_depends: 'Je nachdem',
+    grade_note: 'Standardm\u00e4\u00dfig zuf\u00e4llige Version und Farbe, Version oder Farbe w\u00e4hlen kostet 50-200 RMB zus\u00e4tzlich',
+    view_photos: 'Fotos ansehen',
+    fab_wechat: 'WeChat-Kontakt',
+    fab_buy: 'Jetzt kaufen',
+    wc_title: 'QR-Code scannen zum Hinzuf\u00fcgen',
+    wc_copy: 'Kopieren',
+    wc_hint: 'WeChat-ID: ElaineSupplyChain',
+    footer_warranty: '\u2713 30-Tage-Garantie auf alle Produkte',
+    copyright: '\u00a9 2026 Elaine Supply Chain. Alle Rechte vorbehalten. Unbefugtes Kopieren verboten.',
+    manage_photos: 'Fotos verwalten',
+    footer_note: 'Version oder Farbe w\u00e4hlen +\u00a550 \u2022 Einzelhandel +\u00a5100 \u2022 Zuf\u00e4llige Version / Zuf\u00e4llige Farbe',
+    marquee1: 'Sommerschlussverkauf! Extra 5% Rabatt auf Bestellungen \u00fcber 1000 $',
+    marquee2: 'Weltweiter Versand',
+    marquee3: 'T\u00e4glich neue Ware \u2014 iPhone 7 bis 17 auf Lager',
+    marquee4: '30-Tage-Garantie auf alle K\u00e4ufe',
+    media_photos: 'Produktfotos',
+    media_samples: 'Beispielfotos',
+    media_videos: 'Beispielvideos',
+    photo_word: 'Foto',
+    grade_ap: 'Grad A+', grade_a: 'Grad A', grade_b: 'Grad B', grade_c: 'Grad C', grade_wifi: 'Nur WiFi',
+    desc_ap: 'Originalbildschirm / 99% neu / Face ID / eSIM-Entsperrung / Akku 85%-100%',
+    desc_a: 'Originalbildschirm / 95% neu / Face ID / eSIM-Entsperrung / Akku 70%-80%+',
+    desc_b: 'Originalbildschirm / 85% neu / Deutliche Kratzer / Face ID / eSIM-Entsperrung',
+    desc_c: 'Nicht-Originalbildschirm / Mit oder ohne Face ID / eSIM gesperrt oder entsperrt',
+    desc_wifi: 'Grad C \u00d7 0.85 / Nur WiFi (ohne Mobilfunk)',
+    grade_map: {
+      'A+ (Battery 100%, 95 New)': 'A+ (Akku 100%, 95% neu)',
+      'A Grade (Battery 80%+, 90 New)': 'A (Akku 80%+, 90% neu)',
+      'B Grade (Battery 80%+, Clear Scratch)': 'B (Akku 80%+, Deutliche Kratzer)',
+      'WiFi Grade': 'WiFi',
+      'C Grade (Unoriginal screen)': 'C (Nicht-Originalbildschirm)',
+      'C Grade (Unoriginal screen or Esim locked)': 'C (Nicht-Originalbildschirm oder eSIM gesperrt)',
+      'A Grade (95 New)': 'A (95% neu)',
+      'B Grade (90 New, Clear Scratch)': 'B (90% neu, Deutliche Kratzer)'
+    }
+  }
+};
+var LANG_OF_CUR = {CNY:'en', USD:'en', EUR:'de', GBP:'en', AUD:'en', NGN:'en', CDF:'fr', ZMW:'en'};
+var SERIES_WORD = {en:'Series', fr:'S\u00e9rie', de:'Serie'};
+function applyLanguage(lang){
+  curLanguage = lang;
+  var dict = I18N[lang] || I18N.en;
+  document.title = dict.title;
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var k = el.getAttribute('data-i18n');
+    if(dict[k] === undefined) return;
+    if(el.tagName === 'INPUT'){ el.placeholder = dict[k]; }
+    else { el.textContent = dict[k]; }
+  });
+  var sw = SERIES_WORD[lang] || 'Series';
+  document.querySelectorAll('.series-title, .dropdown-item').forEach(function(el){
+    if(!el.dataset.i18nEn) el.dataset.i18nEn = el.textContent;
+    el.textContent = el.dataset.i18nEn.replace(/\bSeries\b/g, sw);
+  });
+  document.querySelectorAll('.price-grade').forEach(function(el){
+    if(!el.dataset.i18nEn) el.dataset.i18nEn = el.textContent;
+    var enTxt = el.dataset.i18nEn;
+    el.textContent = dict.grade_map && dict.grade_map[enTxt] ? dict.grade_map[enTxt] : enTxt;
+  });
+  document.querySelectorAll('.photo-btn').forEach(function(el){
+    el.textContent = dict.view_photos;
+  });
+  var mqKeys = ['marquee1','marquee2','marquee3','marquee4'];
+  document.querySelectorAll('.marquee-item').forEach(function(el){
+    if(!el.dataset.i18nEn) el.dataset.i18nEn = el.textContent.trim();
+    var enTxt = el.dataset.i18nEn;
+    var idx = -1;
+    for(var i=0;i<mqKeys.length;i++){
+      if(enTxt === I18N.en[mqKeys[i]]){ idx = i; break; }
+    }
+    if(idx>=0) el.textContent = dict[mqKeys[idx]];
+  });
 }
 function setCurrency(cur){
   curCurrency = cur;
@@ -10370,6 +10619,7 @@ function setCurrency(cur){
       el.textContent = (v===null || v===undefined) ? '' : fmtPrice(v);
     });
   });
+  applyLanguage(LANG_OF_CUR[cur] || 'en');
   if(window._openCard){ openDetail(window._openCard); }
 }
 setCurrency('CNY');
