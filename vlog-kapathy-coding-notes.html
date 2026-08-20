@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="facebook-domain-verification" content="eeb5ijws9pyfajf6wwpc5lhxqz6t0f" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="kapathy learning notes: a set of LLM coding guidelines inspired by Andrej Karpathy's programming philosophy. Think first, keep it simple, edit precisely, stay goal-driven.">
+<meta name="keywords" content="kapathy, LLM coding guidelines, Karpathy, AI coding rules, Claude Code, Cursor, AI coding best practices">
+<meta property="og:title" content="kapathy Learning Notes: LLM Coding Guidelines | Elaine Supply Chain VLOG">
+<meta property="og:description" content="Four core principles for AI-assisted coding inspired by Andrej Karpathy: think before you code, simplicity first, precise edits, goal-driven.">
+<meta property="og:image" content="https://elainesupplychain.com/og-image.jpg">
+<meta property="og:url" content="https://elainesupplychain.com/vlog-kapathy-coding-notes.html">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="kapathy Learning Notes: LLM Coding Guidelines">
+<meta name="twitter:description" content="Four core principles for AI-assisted coding inspired by Andrej Karpathy's philosophy.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://elainesupplychain.com/vlog-kapathy-coding-notes.html">
+<title>kapathy Learning Notes: LLM Coding Guidelines | Elaine Supply Chain VLOG</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "kapathy Learning Notes: LLM Coding Guidelines",
+  "datePublished": "2026-08-20",
+  "dateModified": "2026-08-20",
+  "description": "A set of LLM coding guidelines inspired by Andrej Karpathy's programming philosophy: think first, keep it simple, edit precisely, stay goal-driven.",
+  "url": "https://elainesupplychain.com/vlog-kapathy-coding-notes.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Elaine Supply Chain",
+    "url": "https://elainesupplychain.com"
+  }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  background:#f0f2f5;color:#1a1a2e;line-height:1.5;
+}
+/* Watermark overlay - covers entire page, does not block clicks */
+body::before{
+  content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Ctext x='150' y='100' font-family='Arial,Helvetica,sans-serif' font-size='18' fill='%23000' fill-opacity='0.05' text-anchor='middle' dominant-baseline='middle' transform='rotate(-25,150,100)'%3EElaine Supply Chain%3C/text%3E%3C/svg%3E");
+  background-repeat:repeat;
+}
+.header{
+  background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 40%,#90caf9 100%);
+  color:#1a237e;padding:40px 16px 28px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.header::before{
+  content:'';position:absolute;top:-80px;right:-80px;
+  width:260px;height:260px;border-radius:50%;
+  background:radial-gradient(circle,rgba(25,118,210,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.header .logo-area{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  margin-bottom:10px;
+}
+.header .logo-icon{
+  width:48px;height:48px;background:linear-gradient(135deg,#3b82f6,#2563eb);
+  border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;font-weight:800;color:#fff;flex-shrink:0;
+  box-shadow:0 4px 14px rgba(59,130,246,0.4);
+}
+.header h1{font-size:1.6rem;font-weight:800;letter-spacing:-0.5px;line-height:1.2;color:#1a237e}
+.header .sub{font-size:0.9rem;color:#283593;margin-top:6px;letter-spacing:0.3px}
+.header .vlog-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,#059669,#10b981);
+  color:#fff;padding:6px 16px;border-radius:20px;
+  font-size:0.78rem;font-weight:600;margin-top:14px;
+  box-shadow:0 2px 8px rgba(5,150,105,0.35);
+  letter-spacing:0.2px;
+}
+.header .contact{
+  font-size:0.78rem;color:#283593;margin-top:14px;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:16px;
+}
+.header .contact span{white-space:nowrap}
+
+/* Back to home navigation */
+.back-nav-wrap{
+  position:sticky;top:0;z-index:900;
+  background:#bbdefb;border-top:1px solid rgba(255,255,255,0.6);
+  padding:8px 0;
+}
+.back-nav{
+  max-width:1200px;margin:0 auto;padding:0 16px;
+  display:flex;gap:8px;align-items:center;
+}
+.back-nav a{
+  flex-shrink:0;padding:8px 22px;
+  background:rgba(255,255,255,0.7);border:1px solid rgba(25,118,210,0.2);border-radius:8px;
+  color:#455a64;font-size:0.85rem;font-weight:500;
+  text-decoration:none;cursor:pointer;transition:all .2s;
+  white-space:nowrap;
+}
+.back-nav a:hover{color:#1a237e;border-color:rgba(25,118,210,0.4);background:rgba(255,255,255,0.95)}
+.back-nav .nav-active{
+  background:#3b82f6;border-color:#3b82f6;color:#fff;box-shadow:0 2px 8px rgba(59,130,246,0.35);
+}
+.back-nav .nav-active:hover{color:#fff}
+
+.container{
+  max-width:900px;margin:0 auto;padding:24px 16px 40px;
+}
+
+/* ===== Article Detail ===== */
+.article-card-detail{
+  background:#fff;border-radius:12px;
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
+  border:1px solid #e8ecf1;padding:32px 36px;
+}
+.article-kicker{
+  display:inline-block;background:#eff6ff;color:#2563eb;font-weight:600;
+  padding:3px 12px;border-radius:12px;font-size:0.72rem;margin-bottom:14px;
+}
+.article-detail-title{
+  font-size:1.6rem;font-weight:800;color:#0f172a;line-height:1.3;
+  letter-spacing:-0.5px;margin-bottom:10px;
+}
+.article-detail-meta{
+  font-size:0.78rem;color:#94a3b8;margin-bottom:22px;
+  padding-bottom:18px;border-bottom:1px solid #f1f5f9;
+}
+.article-content{font-size:0.95rem;color:#334155;line-height:1.75}
+.article-content h2{
+  font-size:1.15rem;font-weight:700;color:#1e293b;
+  margin:26px 0 10px;letter-spacing:-0.3px;
+}
+.article-content h3{
+  font-size:1rem;font-weight:700;color:#1e293b;
+  margin:20px 0 8px;
+}
+.article-content p{margin:10px 0}
+.article-content ul,.article-content ol{margin:10px 0 10px 22px}
+.article-content li{margin:6px 0}
+.article-content li strong{color:#0f172a}
+.article-content .principle{
+  display:flex;gap:12px;align-items:flex-start;
+  background:#f8fafc;border:1px solid #e8ecf1;border-radius:10px;
+  padding:12px 16px;margin:10px 0;
+}
+.article-content .principle .num{
+  flex-shrink:0;width:24px;height:24px;border-radius:50%;
+  background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;
+  font-size:0.72rem;font-weight:800;display:flex;align-items:center;justify-content:center;
+  margin-top:2px;
+}
+.article-content .principle b{display:block;color:#0f172a;font-size:0.9rem}
+.article-content .principle span{font-size:0.85rem;color:#475569}
+.article-note{
+  margin-top:24px;padding:12px 16px;border-radius:8px;
+  background:#f8fafc;border:1px solid #e2e8f0;
+  font-size:0.78rem;color:#64748b;line-height:1.6;
+}
+.article-note a{color:#2563eb;word-break:break-all}
+.article-back{
+  display:inline-block;margin-top:22px;
+  color:#2563eb;font-size:0.85rem;font-weight:600;text-decoration:none;
+}
+.article-back:hover{text-decoration:underline}
+
+/* ===== Ask a Question ===== */
+.section-title{
+  font-size:1.15rem;font-weight:700;color:#1e293b;
+  padding:26px 0 10px;margin-top:8px;
+  border-bottom:2px solid #e2e8f0;letter-spacing:-0.3px;
+}
+.section-title .sec-emoji{margin-right:6px}
+.ask-section{
+  background:#fff;border-radius:12px;
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
+  border:1px solid #e8ecf1;margin-top:8px;
+  padding:24px 24px 28px;
+}
+.ask-section .ask-desc{
+  font-size:0.85rem;color:#475569;margin:6px 0 18px;
+}
+.ask-form{display:grid;gap:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group label{
+  display:block;font-size:0.8rem;font-weight:600;color:#334155;margin-bottom:6px;
+}
+.form-group input,.form-group textarea{
+  width:100%;padding:10px 14px;
+  border:1px solid #cbd5e1;border-radius:8px;
+  background:#fff;color:#1a237e;font-size:0.88rem;
+  outline:none;transition:border .2s;font-family:inherit;
+}
+.form-group input:focus,.form-group textarea:focus{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,0.12)}
+.form-group input::placeholder,.form-group textarea::placeholder{color:#90a4ae}
+.form-group textarea{min-height:120px;resize:vertical}
+.ask-submit{
+  justify-self:start;padding:11px 36px;border:none;border-radius:8px;
+  background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;
+  font-size:0.9rem;font-weight:700;cursor:pointer;
+  transition:transform .15s,box-shadow .15s;
+}
+.ask-submit:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(59,130,246,0.4)}
+.ask-success{
+  display:none;margin-top:14px;padding:12px 16px;border-radius:8px;
+  background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46;font-size:0.85rem;
+}
+.ask-success.show{display:block}
+
+/* ===== FAQ ===== */
+.faq-list{margin-top:8px;display:grid;gap:10px}
+.faq-item{
+  background:#fff;border-radius:10px;
+  box-shadow:0 1px 4px rgba(0,0,0,.06);
+  border:1px solid #e8ecf1;overflow:hidden;
+}
+.faq-q{
+  padding:14px 18px;font-size:0.9rem;font-weight:600;color:#0f172a;
+  display:flex;align-items:center;gap:10px;cursor:pointer;
+  transition:background .15s;user-select:none;
+}
+.faq-q:hover{background:#f8fafc}
+.faq-q .q-mark{
+  flex-shrink:0;width:22px;height:22px;border-radius:50%;
+  background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;
+  font-size:0.75rem;font-weight:800;display:flex;align-items:center;justify-content:center;
+}
+.faq-q .q-arrow{margin-left:auto;color:#94a3b8;font-size:0.75rem;transition:transform .2s;flex-shrink:0}
+.faq-item.open .q-arrow{transform:rotate(180deg)}
+.faq-a{
+  display:none;padding:4px 18px 16px 50px;font-size:0.84rem;color:#475569;line-height:1.6;
+}
+.faq-item.open .faq-a{display:block}
+.faq-a .a-label{font-weight:700;color:#059669;margin-right:4px}
+.faq-note{
+  margin-top:14px;font-size:0.75rem;color:#94a3b8;text-align:center;
+}
+
+/* ===== Footer ===== */
+.footer{
+  text-align:center;padding:24px 16px;color:#94a3b8;
+  font-size:0.75rem;border-top:1px solid #e2e8f0;
+}
+.footer .warranty-line{
+  color:#059669;font-weight:600;font-size:0.8rem;margin-bottom:6px;
+}
+
+@media(max-width:768px){
+  .header h1{font-size:1.35rem}
+  .header{padding:28px 12px 18px}
+  .header .logo-icon{width:40px;height:40px;font-size:1.2rem}
+  .article-card-detail{padding:22px 18px}
+  .article-detail-title{font-size:1.25rem}
+  .form-row{grid-template-columns:1fr}
+  .back-nav{padding:0 12px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo-area">
+    <div class="logo-icon">ES</div>
+    <div>
+      <h1>Elaine Supply Chain - VLOG</h1>
+      <div class="sub">Market Insights &middot; Sourcing Tips &middot; Answers from Elaine</div>
+    </div>
+  </div>
+  <div class="vlog-badge">
+    <span>&#9998;</span> Blog &amp; Q&amp;A Center - Updated Weekly
+  </div>
+  <div class="contact">
+    <span>&#9993; WeChat: 17850136306</span>
+    <span>&#9742; WhatsApp: +1 626-539-2631</span>
+  </div>
+</div>
+
+<div class="back-nav-wrap">
+  <div class="back-nav">
+    <a href="index.html">&#8592; Back to Home Price List</a>
+    <a href="vlog.html" class="nav-active">&#8592; Back to VLOG</a>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="article-card-detail">
+    <span class="article-kicker">AI / Coding</span>
+    <h1 class="article-detail-title">kapathy Learning Notes: LLM Coding Guidelines</h1>
+    <div class="article-detail-meta">Published on Aug 20, 2026 &middot; 3 min read</div>
+
+    <div class="article-content">
+      <h2>What is kapathy?</h2>
+      <p>kapathy is a set of coding behavior guidelines for LLMs, inspired by Andrej Karpathy's programming philosophy. It is designed to keep AI-assisted coding disciplined, readable, and focused on solving the actual problem.</p>
+
+      <h2>Core Principles</h2>
+
+      <div class="principle">
+        <span class="num">1</span>
+        <div><b>Think before you code</b><span>Clarify your assumptions before you start. If anything is unclear, ask instead of guessing.</span></div>
+      </div>
+
+      <div class="principle">
+        <span class="num">2</span>
+        <div><b>Simplicity first</b><span>Write only the minimal code that solves the problem. No speculative features, no unnecessary abstractions.</span></div>
+      </div>
+
+      <div class="principle">
+        <span class="num">3</span>
+        <div><b>Precise edits</b><span>Change only what is necessary. Do not refactor code along the way just because you are already touching the file.</span></div>
+      </div>
+
+      <div class="principle">
+        <span class="num">4</span>
+        <div><b>Goal-driven</b><span>Stop when the task is done. Do not over-optimize or keep polishing beyond what was asked.</span></div>
+      </div>
+
+      <h2>When to Use It</h2>
+      <p>These guidelines apply to all AI-assisted coding tasks, and they are especially useful with tools like Claude Code and Cursor. If you rely on AI to write or edit code, following this rule set keeps the output small, predictable, and easy to review.</p>
+
+      <div class="article-note">
+        <strong>Source:</strong> This article is translated from an AI-generated note and provided for reference only.
+      </div>
+    </div>
+
+    <a class="article-back" href="vlog.html">&#8592; Back to all VLOG articles</a>
+  </div>
+
+  <!-- ===== Ask a Question ===== -->
+  <h2 class="section-title" id="ask"><span class="sec-emoji">&#10067;</span>Ask a Question</h2>
+  <div class="ask-section">
+    <p class="ask-desc">Have a question about our phones, grades, shipping, or wholesale orders? Send it below and we will answer it here on the VLOG or by email.</p>
+    <form class="ask-form" id="askForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="askName">Your Name</label>
+          <input type="text" id="askName" name="name" placeholder="e.g. John Smith" required>
+        </div>
+        <div class="form-group">
+          <label for="askEmail">Your Email</label>
+          <input type="email" id="askEmail" name="email" placeholder="e.g. john@example.com" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="askQuestion">Your Question</label>
+        <textarea id="askQuestion" name="question" placeholder="Write your question here..." required></textarea>
+      </div>
+      <button type="submit" class="ask-submit">Submit Question</button>
+    </form>
+    <div class="ask-success" id="askSuccess">Thank you! Your question has been received. We will reply by email and may feature it in the FAQ section.</div>
+  </div>
+
+  <!-- ===== FAQ ===== -->
+  <h2 class="section-title" id="faq"><span class="sec-emoji">&#128204;</span>Frequently Asked Questions</h2>
+  <div class="faq-list">
+
+    <div class="faq-item open">
+      <div class="faq-q"><span class="q-mark">Q</span> What is the minimum order quantity?<span class="q-arrow">&#9662;</span></div>
+      <div class="faq-a"><span class="a-label">A:</span> Our minimum order is 10 pieces per order. You can mix different models, brands, and grades in one order to reach the minimum.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="q-mark">Q</span> Do you offer a warranty on used phones?<span class="q-arrow">&#9662;</span></div>
+      <div class="faq-a"><span class="a-label">A:</span> Yes. Every phone comes with a 30-day warranty covering non-user-caused damage. We test every unit before shipping to ensure it works properly.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="q-mark">Q</span> Can I choose the color and version of the phones?<span class="q-arrow">&#9662;</span></div>
+      <div class="faq-a"><span class="a-label">A:</span> Orders ship with random color and random version by default. If you need a specific color or version, there is an additional fee of 50-200 RMB per unit depending on the model.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q"><span class="q-mark">Q</span> How do I pay for an order?<span class="q-arrow">&#9662;</span></div>
+      <div class="faq-a"><span class="a-label">A:</span> We accept bank transfer, Wise, USDT, and major payment methods agreed with our sales team. Contact us on WeChat or WhatsApp for the full payment guide.</div>
+    </div>
+
+  </div>
+  <p class="faq-note">More answers are added every week. Can't find your question? Use the Ask a Question form above.</p>
+
+</div>
+
+<div class="footer">
+  <div class="warranty-line">&#10003; 30-Day Warranty on All Products</div>
+  &copy; 2026 Elaine Supply Chain. All rights reserved. Unauthorized copying prohibited.<br>
+  Pick version or color +&yen;50 &bull; Retail add &yen;100 &bull; Random Version / Random Color
+</div>
+
+<script>
+// FAQ accordion toggle
+document.querySelectorAll('.faq-q').forEach(function(q){
+  q.addEventListener('click', function(){
+    var item = q.parentElement;
+    item.classList.toggle('open');
+  });
+});
+
+// Ask a Question form (local preview - no backend yet)
+document.getElementById('askForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  document.getElementById('askSuccess').classList.add('show');
+  this.reset();
+});
+</script>
+</body>
+</html>
