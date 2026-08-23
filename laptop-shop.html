@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Refurbished Business Laptops - HP / Lenovo / Dell | Elaine Supply Chain</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8f9fa;color:#333;line-height:1.6}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* Hero */
+.hero{text-align:center;padding:70px 20px 50px;background:linear-gradient(160deg,#0b0f1e 0%,#14213d 55%,#1b2a4a 100%);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,rgba(0,212,170,.14),transparent 45%),radial-gradient(circle at 80% 70%,rgba(0,163,255,.16),transparent 45%)}
+.hero h1{font-size:2.7rem;font-weight:700;background:linear-gradient(135deg,#00d4aa,#00a3ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative}
+.hero .tagline{font-size:1.15rem;color:#aab4c8;margin-top:14px;position:relative}
+.hero .brands{display:flex;justify-content:center;gap:16px;margin-top:22px;flex-wrap:wrap;position:relative}
+.hero .brand-pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:#e8ecf4;font-size:.9rem;font-weight:600;padding:8px 22px;border-radius:999px;letter-spacing:.5px}
+
+/* Header */
+.header{text-align:center;padding:50px 20px 20px}
+.header h1{font-size:2.4rem;font-weight:700;background:linear-gradient(135deg,#00d4aa,#00a3ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.header .tagline{font-size:1.05rem;color:#888;margin-top:10px}
+
+/* Section title */
+.section-title{text-align:center;font-size:1.8rem;font-weight:600;margin:50px 0 28px;color:#1a1a2e}
+
+/* Features */
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:20px;margin-bottom:50px}
+.feature-card{background:#fff;border-radius:12px;padding:26px 18px;text-align:center;border:1px solid #e0e0e0;transition:transform .3s,border-color .3s}
+.feature-card:hover{transform:translateY(-4px);border-color:#00d4aa}
+.feature-icon{font-size:2.2rem;margin-bottom:10px;display:block}
+.feature-card h3{font-size:.98rem;color:#1a1a2e;margin-bottom:6px}
+.feature-card p{font-size:.83rem;color:#666}
+
+/* Filter bar */
+.filter-bar{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:36px}
+.brand-filter{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.filter-btn{background:#fff;border:1px solid #ddd;border-radius:999px;padding:9px 22px;font-size:.88rem;font-weight:600;color:#555;cursor:pointer;transition:all .25s;font-family:inherit}
+.filter-btn:hover{border-color:#00d4aa;color:#00d4aa}
+.filter-btn.active{background:linear-gradient(135deg,#00d4aa,#00a3ff);border-color:transparent;color:#fff;box-shadow:0 4px 14px rgba(0,212,170,.3)}
+.search-box{padding:9px 18px;border:1px solid #ddd;border-radius:999px;font-size:.9rem;width:260px;outline:none;font-family:inherit;transition:border-color .25s}
+.search-box:focus{border-color:#00d4aa}
+
+/* Brand group */
+.brand-group{margin-bottom:46px}
+.brand-group-title{display:flex;align-items:center;gap:12px;font-size:1.45rem;font-weight:700;color:#1a1a2e;margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid #e8ebf2}
+.brand-group-title .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,#00d4aa,#00a3ff)}
+.brand-group-title .count{font-size:.82rem;font-weight:500;color:#999;background:#f0f2f5;border-radius:999px;padding:3px 12px}
+
+/* Models */
+.models{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+.model-card{background:#fff;border-radius:14px;overflow:hidden;border:1px solid #e0e0e0;transition:transform .3s,border-color .3s,box-shadow .3s;display:flex;flex-direction:column}
+.model-card:hover{transform:translateY(-4px);border-color:#00d4aa;box-shadow:0 8px 32px rgba(0,212,170,.12)}
+.model-top{background:linear-gradient(135deg,#14213d,#1e3a5f);padding:18px 20px;color:#fff}
+.model-top h3{font-size:1.08rem;font-weight:700}
+.model-top .model-sub{font-size:.78rem;color:#9fb3d1;margin-top:2px}
+.model-info{padding:16px 20px;display:flex;flex-direction:column;flex:1}
+.spec-row{display:flex;justify-content:space-between;font-size:.84rem;color:#555;padding:5px 0;border-bottom:1px dashed #eef0f5}
+.spec-row:last-of-type{border-bottom:none}
+.spec-row .label{color:#999}
+.price{font-size:1.55rem;font-weight:700;color:#1a1a2e;margin:14px 0 12px}
+.price .cny{color:#00d4aa}
+.price .was{font-size:.85rem;color:#999;font-weight:400;text-decoration:line-through;margin-left:8px}
+.price .unit{font-size:.85rem;color:#888;font-weight:400}
+.price-grades{display:flex;gap:6px;margin:14px 0 12px;flex-wrap:wrap}
+.grade-btn{flex:1;min-width:64px;background:#f0f2f5;border:1px solid #ddd;border-radius:8px;padding:6px 4px;font-size:.78rem;font-weight:600;color:#555;cursor:pointer;transition:all .2s;font-family:inherit;line-height:1.3}
+.grade-btn .gprice{display:block;font-size:.9rem;color:#1a1a2e}
+.grade-btn.active{background:linear-gradient(135deg,#00d4aa,#00a3ff);border-color:transparent;color:#fff}
+.grade-btn.active .gprice{color:#fff}
+
+/* Quantity + Buy Now */
+.model-actions{display:flex;gap:10px;align-items:center;margin-top:auto}
+.qty-selector{display:flex;align-items:center;background:#f0f2f5;border:1px solid #ddd;border-radius:8px;overflow:hidden}
+.qty-btn{background:transparent;color:#333;border:none;width:32px;height:36px;font-size:1.05rem;cursor:pointer;transition:background .2s;font-family:inherit}
+.qty-btn:hover{background:#e8e8e8}
+.qty-btn:active{background:#00d4aa;color:#fff}
+.qty-input{width:38px;height:36px;text-align:center;background:transparent;border:none;border-left:1px solid #ddd;border-right:1px solid #ddd;color:#333;font-size:.92rem;outline:none;font-family:inherit}
+.buy-now-btn{flex:1;background:linear-gradient(135deg,#ff6b35,#f97316);color:#fff;border:none;border-radius:8px;padding:10px 14px;font-size:.88rem;font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .2s;white-space:nowrap;font-family:inherit}
+.buy-now-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(249,115,22,.35)}
+.buy-now-btn:active{transform:scale(.97)}
+
+/* Empty state */
+.empty-state{text-align:center;color:#999;font-size:.95rem;padding:40px 0;display:none}
+
+/* Checkout Form Modal */
+.form-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:2998;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;padding:20px}
+.form-overlay.open{opacity:1;visibility:visible}
+.form-modal{background:#fff;border-radius:16px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;padding:32px;border:1px solid #e0e0e0;position:relative}
+.form-modal h2{color:#1a1a2e;font-size:1.3rem;margin-bottom:8px}
+.form-modal .form-subtitle{color:#666;font-size:.85rem;margin-bottom:24px}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;color:#555;font-size:.82rem;margin-bottom:6px;font-weight:500}
+.form-group input,.form-group textarea{width:100%;background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:11px 14px;color:#333;font-size:.9rem;font-family:inherit;outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group textarea:focus{border-color:#00d4aa}
+.form-group textarea{resize:vertical;min-height:70px}
+.form-actions{display:flex;gap:12px;margin-top:28px}
+.form-back{flex:1;background:transparent;border:1px solid #ddd;color:#666;border-radius:8px;padding:12px;font-size:.9rem;cursor:pointer;transition:border-color .2s,color .2s;font-family:inherit}
+.form-back:hover{border-color:#1a1a2e;color:#1a1a2e}
+.form-submit{flex:2;background:linear-gradient(135deg,#ff6b35,#f97316);color:#fff;border:none;border-radius:8px;padding:12px;font-size:.9rem;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s;font-family:inherit}
+.form-submit:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(249,115,22,.35)}
+.form-error{color:#ff4444;font-size:.8rem;margin-top:4px;display:none}
+.form-error.show{display:block}
+.currency-note{font-size:.78rem;color:#999;margin-top:6px}
+
+/* Order Summary in Form */
+.order-summary{background:#f0f2f5;border-radius:10px;padding:16px;margin-bottom:20px}
+.order-summary h4{color:#888;font-size:.8rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
+.order-summary-items{font-size:.85rem;color:#333}
+.order-summary-item{display:flex;justify-content:space-between;padding:4px 0}
+.order-summary-divider{border-top:1px solid #ddd;margin:8px 0;padding-top:8px}
+.order-summary-total{display:flex;justify-content:space-between;font-weight:700;color:#00d4aa;font-size:1rem}
+
+/* Toast */
+.toast{position:fixed;top:24px;left:50%;transform:translateX(-50%);background:#00d4aa;color:#fff;padding:12px 28px;border-radius:10px;font-weight:600;font-size:.9rem;z-index:4000;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;box-shadow:0 4px 20px rgba(0,212,170,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(4px)}
+
+/* CTA */
+.cta{text-align:center;padding:40px 20px 60px;background:linear-gradient(180deg,transparent,rgba(0,212,170,.08))}
+.cta .wechat{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid #ddd;border-radius:12px;padding:16px 32px;font-size:1.1rem;color:#1a1a2e;transition:border-color .3s;text-decoration:none}
+.cta .wechat:hover{border-color:#00d4aa}
+.cta .wechat-icon{color:#00d4aa;font-size:1.5rem}
+.cta p{color:#666;margin-top:16px;font-size:.9rem}
+
+/* Footer */
+.footer{text-align:center;padding:20px;color:#999;font-size:.8rem;border-top:1px solid #e0e0e0}
+
+/* Hidden PayPal Form */
+#paypalForm{display:none}
+
+/* Responsive */
+@media(max-width:768px){
+  .hero h1{font-size:1.9rem}
+  .header h1{font-size:1.8rem}
+  .features{grid-template-columns:repeat(2,1fr);gap:12px}
+  .feature-card{padding:20px 12px}
+  .feature-icon{font-size:1.8rem}
+  .search-box{width:100%}
+  .filter-bar{flex-direction:column;align-items:stretch}
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .features{grid-template-columns:repeat(2,1fr)}
+  .models{grid-template-columns:1fr}
+  .hero h1{font-size:1.5rem}
+  .form-modal{padding:24px}
+}
+</style>
+<!-- Facebook Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1830066908399596');
+fbq('track', 'PageView');
+</script>
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1830066908399596&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel Code -->
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>Refurbished Business Laptops</h1>
+  <p class="tagline">HP &middot; Lenovo &middot; Dell &mdash; Grade A Tested Units, Wholesale Prices, Worldwide Shipping</p>
+  <div class="brands">
+    <span class="brand-pill">HP ProBook / EliteBook</span>
+    <span class="brand-pill">Lenovo ThinkPad</span>
+    <span class="brand-pill">Dell Latitude</span>
+  </div>
+</div>
+
+<!-- Features -->
+<h2 class="section-title">Why Buy From Us</h2>
+<div class="container features">
+  <div class="feature-card">
+    <span class="feature-icon">&#128737;</span>
+    <h3>30-Day Warranty</h3>
+    <p>Every unit fully tested, backed by a 30-day warranty</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">&#9989;</span>
+    <h3>Grade A Refurbished</h3>
+    <p>Professionally inspected, cleaned and quality graded</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">&#128176;</span>
+    <h3>Wholesale Pricing</h3>
+    <p>Factory-direct prices for bulk and single orders</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">&#9992;</span>
+    <h3>Worldwide Shipping</h3>
+    <p>DHL / FedEx / UPS door-to-door delivery</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">&#128230;</span>
+    <h3>Mixed Bulk Orders</h3>
+    <p>Mix HP, Lenovo and Dell models in one container</p>
+  </div>
+  <div class="feature-card">
+    <span class="feature-icon">&#128274;</span>
+    <h3>Secure Payment</h3>
+    <p>PayPal Buyer Protection for safe checkout</p>
+  </div>
+</div>
+
+<!-- Filter -->
+<h2 class="section-title">Choose Your Laptop</h2>
+<div class="container">
+  <div class="filter-bar">
+    <div class="brand-filter" id="brandFilter">
+      <button class="filter-btn active" data-brand="all" onclick="setBrand('all')">All</button>
+      <button class="filter-btn" data-brand="HP" onclick="setBrand('HP')">HP</button>
+      <button class="filter-btn" data-brand="LENOVO" onclick="setBrand('LENOVO')">Lenovo</button>
+      <button class="filter-btn" data-brand="DELL" onclick="setBrand('DELL')">Dell</button>
+    </div>
+    <input type="text" class="search-box" id="searchInput" placeholder="Search model, CPU or RAM..." oninput="setSearch(this.value)">
+  </div>
+  <div id="laptopGrid"></div>
+  <div class="empty-state" id="emptyState">No laptops match your search. Try a different keyword.</div>
+</div>
+
+<!-- Contact -->
+<h2 class="section-title">Contact Us</h2>
+<div class="cta">
+  <a class="wechat" href="weixin://">
+    <span class="wechat-icon">&#128172;</span>
+    WeChat: ElaineSupplyChain
+  </a>
+  <p>Scan to add on WeChat for inquiries &middot; In stock &amp; ready to ship &middot; Bulk order discounts available</p>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  &copy; 2025 Elaine Supply Chain &mdash; Refurbished Laptops. All rights reserved.
+</div>
+
+<!-- Checkout Form Overlay -->
+<div class="form-overlay" id="formOverlay">
+  <div class="form-modal">
+    <h2>Checkout</h2>
+    <p class="form-subtitle">Fill in your details to complete your order</p>
+
+    <div class="order-summary" id="orderSummary"></div>
+
+    <div class="form-group">
+      <label>Full Name *</label>
+      <input type="text" id="custName" placeholder="John Doe" required>
+    </div>
+    <div class="form-group">
+      <label>Email *</label>
+      <input type="email" id="custEmail" placeholder="john@example.com" required>
+    </div>
+    <div class="form-group">
+      <label>WhatsApp Number *</label>
+      <input type="tel" id="custWhatsApp" placeholder="+86 138 0000 0000" required>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Country *</label>
+        <input type="text" id="custCountry" placeholder="United States" required>
+      </div>
+      <div class="form-group">
+        <label>City *</label>
+        <input type="text" id="custCity" placeholder="New York" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Shipping Address *</label>
+      <input type="text" id="custAddress" placeholder="123 Main St, Apt 4B" required>
+    </div>
+    <div class="form-group">
+      <label>Notes</label>
+      <textarea id="custNotes" placeholder="Any special requirements or delivery instructions..."></textarea>
+    </div>
+    <p class="form-error" id="formError">Please fill in all required fields.</p>
+    <p class="currency-note">Payment is processed in USD. Your total will be converted at checkout.</p>
+    <div class="form-actions">
+      <button class="form-back" onclick="closeCheckout()">Back</button>
+      <button class="form-submit" onclick="submitOrder()">Pay with PayPal</button>
+    </div>
+  </div>
+</div>
+
+<!-- PayPal Standard Cart Form -->
+<form id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+  <input type="hidden" name="cmd" value="_cart">
+  <input type="hidden" name="upload" value="1">
+  <input type="hidden" name="business" value="meiniang19861215@outlook.com">
+  <input type="hidden" name="currency_code" value="USD">
+  <input type="hidden" name="no_shipping" value="2">
+  <input type="hidden" name="rm" value="2">
+  <input type="hidden" name="return" value="">
+  <input type="hidden" name="cancel_return" value="">
+  <!-- Dynamic items injected by JS -->
+</form>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ============ PRODUCT DATA (price = base RMB; grades = A+/A/B tier prices) ============
+var products = [
+{brand:"HP",model:"430G3",screen:"13.3"",cpu:"i5-6th",ram:"8G",ssd:"256G",price:800,grades:{"A+":1200,"A":1100,"B":1000}},
+{brand:"HP",model:"430G4",screen:"13.3"",cpu:"i5-6th",ram:"8G",ssd:"256G",price:800,grades:{"A+":1200,"A":1100,"B":1000}},
+{brand:"HP",model:"830G7",screen:"13.3"",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1250,grades:{"A+":1650,"A":1550,"B":1450}},
+{brand:"HP",model:"830G6",screen:"13.3"",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1050,grades:{"A+":1450,"A":1350,"B":1250}},
+{brand:"HP",model:"840G3",screen:"14"",cpu:"i5-6th",ram:"8G",ssd:"256G",price:900,grades:{"A+":1300,"A":1200,"B":1100}},
+{brand:"HP",model:"840G3",screen:"14"",cpu:"i7-6th",ram:"8G",ssd:"256G",price:950,grades:{"A+":1350,"A":1250,"B":1150}},
+{brand:"HP",model:"840G6",screen:"14"",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1150,grades:{"A+":1550,"A":1450,"B":1350}},
+{brand:"HP",model:"840G6",screen:"14"",cpu:"i7-8th",ram:"8G",ssd:"256G",price:1350,grades:{"A+":1750,"A":1650,"B":1550}},
+{brand:"HP",model:"840G7",screen:"14"",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1380,grades:{"A+":1780,"A":1680,"B":1580}},
+{brand:"HP",model:"840G7",screen:"14"",cpu:"i7-10th",ram:"8G",ssd:"256G",price:1550,grades:{"A+":1950,"A":1850,"B":1750}},
+{brand:"HP",model:"840G8",screen:"14"",cpu:"i5-11th",ram:"16G",ssd:"512G",price:1900,grades:{"A+":2300,"A":2200,"B":2100}},
+{brand:"HP",model:"840G8",screen:"14"",cpu:"i7-11th",ram:"16G",ssd:"512G",price:2150,grades:{"A+":2550,"A":2450,"B":2350}},
+{brand:"HP",model:"850G6",screen:"15"",cpu:"i7-8th",ram:"8G",ssd:"256G",price:1450,grades:{"A+":1850,"A":1750,"B":1650}},
+{brand:"HP",model:"745G6",screen:"14"",cpu:"r5",ram:"8G",ssd:"256G",price:950,grades:{"A+":1350,"A":1250,"B":1150}},
+{brand:"HP",model:"745G6",screen:"14"",cpu:"r7",ram:"8G",ssd:"256G",price:1150,grades:{"A+":1550,"A":1450,"B":1350}},
+{brand:"HP",model:"845G8",screen:"14"",cpu:"r5",ram:"16G",ssd:"512G",price:1950,grades:{"A+":2350,"A":2250,"B":2150}},
+{brand:"HP",model:"845G8",screen:"14"",cpu:"r7",ram:"16G",ssd:"512G",price:2050,grades:{"A+":2450,"A":2350,"B":2250}},
+{brand:"HP",model:"ZBOOK15G7",screen:"15"",cpu:"i7-10th",ram:"16G",ssd:"512G",price:2200,grades:{"A+":2600,"A":2500,"B":2400}},
+{brand:"LENOVO",model:"T450",screen:"14"",cpu:"i5-5th",ram:"8G",ssd:"500G",price:820,grades:{"A+":1220,"A":1120,"B":1020}},
+{brand:"LENOVO",model:"T460",screen:"14"",cpu:"i5-6th",ram:"8G",ssd:"256G",price:880,grades:{"A+":1280,"A":1180,"B":1080}},
+{brand:"LENOVO",model:"T470",screen:"14"",cpu:"i5-7th",ram:"8G",ssd:"256G",price:950,grades:{"A+":1350,"A":1250,"B":1150}},
+{brand:"LENOVO",model:"T480",screen:"14"",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1150,grades:{"A+":1550,"A":1450,"B":1350}},
+{brand:"LENOVO",model:"T480S",screen:"14"",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1150,grades:{"A+":1550,"A":1450,"B":1350}},
+{brand:"LENOVO",model:"T480S",screen:"14"",cpu:"i7-8th",ram:"8G",ssd:"256G",price:1350,grades:{"A+":1750,"A":1650,"B":1550}},
+{brand:"LENOVO",model:"T490",screen:"14"",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1200,grades:{"A+":1600,"A":1500,"B":1400}},
+{brand:"LENOVO",model:"T490S",screen:"14"",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1200,grades:{"A+":1600,"A":1500,"B":1400}},
+{brand:"LENOVO",model:"T580",screen:"14"",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1400,grades:{"A+":1800,"A":1700,"B":1600}},
+{brand:"LENOVO",model:"T590",screen:"14"",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1450,grades:{"A+":1850,"A":1750,"B":1650}},
+{brand:"LENOVO",model:"L480",screen:"14"",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1100,grades:{"A+":1500,"A":1400,"B":1300}},
+{brand:"LENOVO",model:"L390",screen:"13"",cpu:"i5-8th",ram:"8G",ssd:"256G",price:980,grades:{"A+":1380,"A":1280,"B":1180}},
+{brand:"LENOVO",model:"L13",screen:"13"",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1250,grades:{"A+":1650,"A":1550,"B":1450}},
+{brand:"LENOVO",model:"X13",screen:"13"",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1350,grades:{"A+":1750,"A":1650,"B":1550}},
+{brand:"LENOVO",model:"X1C2020",screen:"14"",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1700,grades:{"A+":2100,"A":2000,"B":1900}},
+{brand:"LENOVO",model:"X1C2018",screen:"14"",cpu:"i7-8th",ram:"16G",ssd:"512G",price:1750,grades:{"A+":2150,"A":2050,"B":1950}},
+{brand:"LENOVO",model:"X1C2018",screen:"14"",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1350,grades:{"A+":1750,"A":1650,"B":1550}},
+{brand:"LENOVO",model:"E14",screen:"14"",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1250,grades:{"A+":1650,"A":1550,"B":1450}},
+{brand:"LENOVO",model:"E14",screen:"14"",cpu:"i5-11th",ram:"8G",ssd:"256G",price:1350,grades:{"A+":1750,"A":1650,"B":1550}},
+{brand:"LENOVO",model:"E450",screen:"14"",cpu:"i3-4th/i3-5th",ram:"8G",ssd:"256G",price:750,grades:{"A+":1150,"A":1050,"B":950}},
+{brand:"LENOVO",model:"T440S",screen:"14"",cpu:"i7-4th",ram:"8G",ssd:"128G",price:800,grades:{"A+":1200,"A":1100,"B":1000}},
+{brand:"LENOVO",model:"T14",screen:"14"",cpu:"i5-11th",ram:"8G",ssd:"256G",price:1700,grades:{"A+":2100,"A":2000,"B":1900}},
+{brand:"LENOVO",model:"T14S",screen:"14"",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1600,grades:{"A+":2000,"A":1900,"B":1800}},
+{brand:"LENOVO",model:"L14",screen:"14"",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1350,grades:{"A+":1750,"A":1650,"B":1550}},
+{brand:"LENOVO",model:"L14",screen:"14"",cpu:"i5-11th",ram:"8G",ssd:"256G",price:1450,grades:{"A+":1850,"A":1750,"B":1650}},
+{brand:"DELL",model:"5400",screen:"14"",cpu:"i5-8th",ram:"8G",ssd:"256G",price:980,grades:{"A+":1380,"A":1280,"B":1180}},
+{brand:"DELL",model:"5400",screen:"14"",cpu:"i7-8th",ram:"8G",ssd:"256G",price:1150,grades:{"A+":1550,"A":1450,"B":1350}},
+{brand:"DELL",model:"5410",screen:"14"",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1100,grades:{"A+":1500,"A":1400,"B":1300}},
+{brand:"DELL",model:"5420",screen:"14"",cpu:"i5-11th",ram:"8G",ssd:"256G",price:1250,grades:{"A+":1650,"A":1550,"B":1450}},
+{brand:"DELL",model:"5500",screen:"15.5"",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1300,grades:{"A+":1700,"A":1600,"B":1500}},
+{brand:"DELL",model:"5510",screen:"15.5"",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1450,grades:{"A+":1850,"A":1750,"B":1650}},
+{brand:"DELL",model:"7410",screen:"14"",cpu:"i5-10th",ram:"16G",ssd:"256G",price:1600,grades:{"A+":2000,"A":1900,"B":1800}},
+{brand:"DELL",model:"7400",screen:"14"",cpu:"i7-8th",ram:"8G",ssd:"256G",price:1250,grades:{"A+":1650,"A":1550,"B":1450}},
+{brand:"DELL",model:"7420",screen:"14"",cpu:"i5-11th",ram:"16G",ssd:"256G",price:1700,grades:{"A+":2100,"A":2000,"B":1900}},
+];
+
+// ============ STATE ============
+var PRICE_MARKUP = 500;          // +500 CNY on top of original price
+var USD_RATE = 6.65;             // CNY -> USD conversion for PayPal (approx)
+var activeBrand = 'all';
+var searchTerm = '';
+
+function cnyDisplay(v) { return '\u00a5' + v.toLocaleString('en-US'); }
+function usdValue(cny) { return Math.round((cny / USD_RATE) * 100) / 100; }
+
+function brandDisplay(b) {
+  if (b === 'LENOVO') return 'Lenovo';
+  if (b === 'DELL') return 'Dell';
+  return b;
+}
+function modelSub(p) {
+  return p.screen + ' \u00b7 ' + p.cpu + ' \u00b7 ' + p.ram + ' \u00b7 ' + p.ssd;
+}
+
+// ============ RENDER ============
+function filteredProducts() {
+  var kw = searchTerm.toLowerCase();
+  return products.filter(function(p) {
+    if (activeBrand !== 'all' && p.brand !== activeBrand) return false;
+    if (!kw) return true;
+    var hay = (p.brand + ' ' + p.model + ' ' + p.cpu + ' ' + p.ram + ' ' + p.ssd).toLowerCase();
+    return hay.indexOf(kw) !== -1;
+  });
+}
+
+function render() {
+  var list = filteredProducts();
+  var grid = document.getElementById('laptopGrid');
+  var empty = document.getElementById('emptyState');
+
+  if (list.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  var brands = ['HP', 'LENOVO', 'DELL'];
+  var html = '';
+  brands.forEach(function(b) {
+    var items = list.filter(function(p) { return p.brand === b; });
+    if (items.length === 0) return;
+    html += '<div class="brand-group">';
+    html += '<div class="brand-group-title"><span class="dot"></span>' + brandDisplay(b) +
+            '<span class="count">' + items.length + ' model' + (items.length > 1 ? 's' : '') + '</span></div>';
+    html += '<div class="models">';
+    items.forEach(function(p) {
+      html += '<div class="model-card" data-model="' + brandDisplay(p.brand) + ' ' + p.model +
+              '" data-cny="' + p.grades['A+'] + '" data-brand="' + p.brand + '">';
+      html += '<div class="model-top"><h3>' + brandDisplay(p.brand) + ' ' + p.model + '</h3>' +
+              '<div class="model-sub">' + p.screen + ' &middot; ' + p.cpu + ' &middot; ' + p.ram + ' &middot; ' + p.ssd + '</div></div>';
+      html += '<div class="model-info">';
+      html += '<div class="spec-row"><span class="label">Display</span><span>' + p.screen + '</span></div>';
+      html += '<div class="spec-row"><span class="label">CPU</span><span>' + p.cpu + '</span></div>';
+      html += '<div class="spec-row"><span class="label">RAM</span><span>' + p.ram + '</span></div>';
+      html += '<div class="spec-row"><span class="label">SSD</span><span>' + p.ssd + '</span></div>';
+      html += '<div class="price-grades" data-grades=\'{"A+":' + p.grades['A+'] + ',"A":' + p.grades['A'] + ',"B":' + p.grades['B'] + '}\'>';
+      html += '<button type="button" class="grade-btn active" data-grade="A+" onclick="setGrade(this)">A+ <span class="gprice">' + cnyDisplay(p.grades['A+']) + '</span></button>';
+      html += '<button type="button" class="grade-btn" data-grade="A" onclick="setGrade(this)">A <span class="gprice">' + cnyDisplay(p.grades['A']) + '</span></button>';
+      html += '<button type="button" class="grade-btn" data-grade="B" onclick="setGrade(this)">B <span class="gprice">' + cnyDisplay(p.grades['B']) + '</span></button>';
+      html += '</div>';
+      html += '<div class="model-actions">';
+      html += '<div class="qty-selector"><button class="qty-btn" onclick="changeQty(this, -1)">&minus;</button>' +
+              '<input class="qty-input" type="text" value="1" readonly>' +
+              '<button class="qty-btn" onclick="changeQty(this, 1)">+</button></div>';
+      html += '<button class="buy-now-btn" onclick="buyNow(this)">Buy Now</button>';
+      html += '</div></div></div>';
+    });
+    html += '</div></div>';
+  });
+  grid.innerHTML = html;
+}
+
+// ============ FILTER / SEARCH ============
+function setBrand(b) {
+  activeBrand = b;
+  var btns = document.querySelectorAll('#brandFilter .filter-btn');
+  btns.forEach(function(btn) { btn.classList.toggle('active', btn.getAttribute('data-brand') === b); });
+  render();
+}
+function setSearch(v) { searchTerm = v.trim(); render(); }
+
+
+// ============ GRADE SELECTOR ============
+function setGrade(btn) {
+  var card = btn.closest('.model-card');
+  var grades = JSON.parse(card.getAttribute('data-grades'));
+  var g = btn.getAttribute('data-grade');
+  card.setAttribute('data-cny', grades[g]);
+  card.querySelectorAll('.grade-btn').forEach(function(b) { b.classList.toggle('active', b.getAttribute('data-grade') === g); });
+}
+
+// ============ QUANTITY SELECTOR ============
+function changeQty(btn, delta) {
+  var input = btn.parentElement.querySelector('.qty-input');
+  var val = parseInt(input.value) + delta;
+  if (val < 1) val = 1;
+  if (val > 99) val = 99;
+  input.value = val;
+}
+
+// ============ BUY NOW ============
+var buyItem = null;
+
+function buyNow(btn) {
+  var card = btn.closest('.model-card');
+  var model = card.getAttribute('data-model');
+  var cny = parseFloat(card.getAttribute('data-cny'));
+  var qty = parseInt(card.querySelector('.qty-input').value);
+  buyItem = { model: model, qty: qty, cny: cny };
+  fbq('track', 'ViewContent', {
+    content_name: model,
+    content_category: 'Laptop',
+    value: usdValue(cny * qty),
+    currency: 'USD',
+    store: 'laptops'
+  });
+  openCheckout();
+}
+
+// ============ CHECKOUT FORM ============
+function openCheckout() {
+  if (!buyItem) return;
+  var item = buyItem;
+  var totalCny = item.cny * item.qty;
+  var summaryHTML = '<h4>Order Summary</h4><div class="order-summary-items">' +
+    '<div class="order-summary-item"><span>' + item.model + ' x' + item.qty + '</span><span>' + cnyDisplay(totalCny) + '</span></div>' +
+    '<div class="order-summary-divider"></div>' +
+    '<div class="order-summary-total"><span>Total</span><span>' + cnyDisplay(totalCny) + ' &middot; ~$' + usdValue(totalCny).toFixed(2) + '</span></div>' +
+    '</div>';
+  document.getElementById('orderSummary').innerHTML = summaryHTML;
+  document.getElementById('formOverlay').classList.add('open');
+  document.getElementById('formError').classList.remove('show');
+}
+
+function closeCheckout() {
+  document.getElementById('formOverlay').classList.remove('open');
+}
+
+// ============ SUBMIT ORDER ============
+function submitOrder() {
+  var name = document.getElementById('custName').value.trim();
+  var email = document.getElementById('custEmail').value.trim();
+  var whatsapp = document.getElementById('custWhatsApp').value.trim();
+  var country = document.getElementById('custCountry').value.trim();
+  var city = document.getElementById('custCity').value.trim();
+  var address = document.getElementById('custAddress').value.trim();
+
+  if (!name || !email || !whatsapp || !country || !city || !address) {
+    document.getElementById('formError').classList.add('show');
+    return;
+  }
+
+  var notes = document.getElementById('custNotes').value.trim();
+  var shippingAddr = address + ', ' + city + ', ' + country;
+  var orderNotes = 'Name: ' + name + ' | Email: ' + email + ' | WhatsApp: ' + whatsapp + ' | Address: ' + shippingAddr;
+  if (notes) orderNotes += ' | Notes: ' + notes;
+
+  var form = document.getElementById('paypalForm');
+  var items = form.querySelectorAll('.paypal-item');
+  items.forEach(function(el) { el.remove(); });
+
+  var input;
+  input = document.createElement('input'); input.type = 'hidden'; input.name = 'item_name_1'; input.value = buyItem.model + ' (CNY ' + cnyDisplay(buyItem.cny) + ')'; input.className = 'paypal-item'; form.appendChild(input);
+  input = document.createElement('input'); input.type = 'hidden'; input.name = 'amount_1'; input.value = usdValue(buyItem.cny).toFixed(2); input.className = 'paypal-item'; form.appendChild(input);
+  input = document.createElement('input'); input.type = 'hidden'; input.name = 'quantity_1'; input.value = buyItem.qty; input.className = 'paypal-item'; form.appendChild(input);
+
+  var notesInput = form.querySelector('input[name="custom"]');
+  if (!notesInput) { notesInput = document.createElement('input'); notesInput.type = 'hidden'; notesInput.name = 'custom'; form.appendChild(notesInput); }
+  notesInput.value = orderNotes;
+
+  var emailInput = form.querySelector('input[name="email"]');
+  if (!emailInput) { emailInput = document.createElement('input'); emailInput.type = 'hidden'; emailInput.name = 'email'; form.appendChild(emailInput); }
+  emailInput.value = email;
+
+  var currentUrl = window.location.href.split('?')[0];
+  form.querySelector('input[name="return"]').value = currentUrl + '?paid=1';
+  form.querySelector('input[name="cancel_return"]').value = currentUrl + '?cancelled=1';
+
+  fbq('track', 'InitiateCheckout', {
+    content_name: buyItem.model,
+    value: usdValue(buyItem.cny * buyItem.qty).toFixed(2),
+    currency: 'USD',
+    num_items: buyItem.qty,
+    store: 'laptops'
+  });
+  form.submit();
+}
+
+// ============ TOAST ============
+function showToast(msg) {
+  var toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toast._timeout);
+  toast._timeout = setTimeout(function() { toast.classList.remove('show'); }, 2500);
+}
+
+// ============ INIT ============
+render();
+
+// ============ PAYPAL RETURN ============
+var params = new URLSearchParams(window.location.search);
+if (params.get('paid') === '1') {
+  showToast('Payment successful! Thank you for your order. We will contact you shortly.');
+}
+if (params.get('cancelled') === '1') {
+  showToast('Payment was cancelled. You can try again.');
+}
+</script>
+</body>
+</html>
