@@ -17,11 +17,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .hero .brands{display:flex;justify-content:center;gap:16px;margin-top:22px;flex-wrap:wrap;position:relative}
 .hero .brand-pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:#e8ecf4;font-size:.9rem;font-weight:600;padding:8px 22px;border-radius:999px;letter-spacing:.5px}
 
-/* Header */
-.header{text-align:center;padding:50px 20px 20px}
-.header h1{font-size:2.4rem;font-weight:700;background:linear-gradient(135deg,#00d4aa,#00a3ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.header .tagline{font-size:1.05rem;color:#888;margin-top:10px}
-
 /* Section title */
 .section-title{text-align:center;font-size:1.8rem;font-weight:600;margin:50px 0 28px;color:#1a1a2e}
 
@@ -48,90 +43,113 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .brand-group-title .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,#00d4aa,#00a3ff)}
 .brand-group-title .count{font-size:.82rem;font-weight:500;color:#999;background:#f0f2f5;border-radius:999px;padding:3px 12px}
 
-/* Models */
-.models{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+/* Models — phone-catalog style cards with visible grade price rows */
+.models{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
 .model-card{background:#fff;border-radius:14px;overflow:hidden;border:1px solid #e0e0e0;transition:transform .3s,border-color .3s,box-shadow .3s;display:flex;flex-direction:column}
 .model-card:hover{transform:translateY(-4px);border-color:#00d4aa;box-shadow:0 8px 32px rgba(0,212,170,.12)}
-.model-top{background:linear-gradient(135deg,#14213d,#1e3a5f);padding:18px 20px;color:#fff}
+.model-top{background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 40%,#90caf9 100%);padding:16px 20px;color:#0f172a;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
 .model-top h3{font-size:1.08rem;font-weight:700}
-.model-top .model-sub{font-size:.78rem;color:#9fb3d1;margin-top:2px}
-.model-info{padding:16px 20px;display:flex;flex-direction:column;flex:1}
-.spec-row{display:flex;justify-content:space-between;font-size:.84rem;color:#555;padding:5px 0;border-bottom:1px dashed #eef0f5}
+.model-top .model-sub{font-size:.78rem;color:#1e3a5f;margin-top:2px}
+.add-btn{background:linear-gradient(135deg,#00d4aa,#00a3ff);color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:.8rem;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s;white-space:nowrap;font-family:inherit}
+.add-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,212,170,.4)}
+.add-btn:active{transform:scale(.95)}
+.add-btn.in-cart{background:#ff6b35}
+.model-info{padding:14px 20px 18px;display:flex;flex-direction:column;flex:1}
+.spec-row{display:flex;justify-content:space-between;font-size:.84rem;color:#555;padding:4px 0;border-bottom:1px dashed #eef0f5}
 .spec-row:last-of-type{border-bottom:none}
 .spec-row .label{color:#999}
-.price{font-size:1.55rem;font-weight:700;color:#1a1a2e;margin:14px 0 12px}
-.price .cny{color:#00d4aa}
-.price .was{font-size:.85rem;color:#999;font-weight:400;text-decoration:line-through;margin-left:8px}
-.price .unit{font-size:.85rem;color:#888;font-weight:400}
-.price-grades{display:flex;gap:6px;margin:14px 0 12px;flex-wrap:wrap}
-.grade-btn{flex:1;min-width:64px;background:#f0f2f5;border:1px solid #ddd;border-radius:8px;padding:6px 4px;font-size:.78rem;font-weight:600;color:#555;cursor:pointer;transition:all .2s;font-family:inherit;line-height:1.3}
-.grade-btn .gprice{display:block;font-size:.9rem;color:#1a1a2e}
-.grade-btn.active{background:linear-gradient(135deg,#00d4aa,#00a3ff);border-color:transparent;color:#fff}
-.grade-btn.active .gprice{color:#fff}
-
-/* Quantity + Buy Now */
-.model-actions{display:flex;gap:10px;align-items:center;margin-top:auto}
-.qty-selector{display:flex;align-items:center;background:#f0f2f5;border:1px solid #ddd;border-radius:8px;overflow:hidden}
-.qty-btn{background:transparent;color:#333;border:none;width:32px;height:36px;font-size:1.05rem;cursor:pointer;transition:background .2s;font-family:inherit}
-.qty-btn:hover{background:#e8e8e8}
-.qty-btn:active{background:#00d4aa;color:#fff}
-.qty-input{width:38px;height:36px;text-align:center;background:transparent;border:none;border-left:1px solid #ddd;border-right:1px solid #ddd;color:#333;font-size:.92rem;outline:none;font-family:inherit}
-.buy-now-btn{flex:1;background:linear-gradient(135deg,#ff6b35,#f97316);color:#fff;border:none;border-radius:8px;padding:10px 14px;font-size:.88rem;font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .2s;white-space:nowrap;font-family:inherit}
-.buy-now-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(249,115,22,.35)}
-.buy-now-btn:active{transform:scale(.97)}
+.price-grades{margin:12px 0 4px;display:flex;flex-direction:column;gap:6px}
+.grade-row{display:flex;justify-content:space-between;align-items:center;background:#f7f9fc;border:1px solid #e8ebf2;border-radius:8px;padding:7px 12px;cursor:pointer;transition:border-color .2s,background .2s}
+.grade-row:hover{border-color:#00d4aa;background:#f0fbf8}
+.grade-row .gname{font-size:.82rem;font-weight:600;color:#444}
+.grade-row .gprice{font-size:.92rem;font-weight:700;color:#1a1a2e}
+.grade-row .gprice .usd{font-size:.78rem;font-weight:500;color:#888;margin-left:6px}
+.grade-row.selected{border-color:#00d4aa;background:#e6faf5;box-shadow:0 0 0 1px #00d4aa}
+.grade-row.selected .gprice{color:#00b390}
 
 /* Empty state */
 .empty-state{text-align:center;color:#999;font-size:.95rem;padding:40px 0;display:none}
 
-/* Checkout Form Modal */
-.form-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:2998;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;padding:20px}
+/* Floating cart */
+.cart-fab{position:fixed;right:22px;bottom:22px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#00d4aa,#00a3ff);color:#fff;border:none;font-size:1.5rem;cursor:pointer;z-index:2990;box-shadow:0 8px 24px rgba(0,212,170,.4);transition:transform .2s;display:flex;align-items:center;justify-content:center;font-family:inherit}
+.cart-fab:hover{transform:scale(1.06)}
+.cart-badge{position:absolute;top:-4px;right:-4px;background:#ff6b35;color:#fff;font-size:.72rem;font-weight:700;min-width:22px;height:22px;border-radius:999px;display:none;align-items:center;justify-content:center;border:2px solid #fff}
+
+/* Cart drawer */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:3000;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.cart-overlay.open{opacity:1;visibility:visible}
+.cart-drawer{position:fixed;top:0;right:0;width:100%;max-width:430px;height:100%;background:#fff;z-index:3001;transform:translateX(100%);transition:transform .35s cubic-bezier(.22,.61,.36,1);display:flex;flex-direction:column;box-shadow:-8px 0 32px rgba(0,0,0,.18)}
+.cart-drawer.open{transform:translateX(0)}
+.cart-header{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;background:linear-gradient(135deg,#14213d,#1e3a5f);color:#fff}
+.cart-header h2{font-size:1.15rem}
+.cart-close{background:rgba(255,255,255,.12);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:1.05rem;cursor:pointer;transition:background .2s;font-family:inherit}
+.cart-close:hover{background:rgba(255,255,255,.25)}
+.cart-body{flex:1;overflow-y:auto;padding:16px 22px}
+.cart-empty{text-align:center;color:#999;font-size:.9rem;padding:60px 0}
+.cart-empty .big{font-size:2.6rem;display:block;margin-bottom:12px}
+.cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid #eef0f5}
+.cart-item-info{flex:1;min-width:0}
+.cart-item-title{font-size:.9rem;font-weight:700;color:#1a1a2e}
+.cart-item-spec{font-size:.76rem;color:#888;margin-top:2px}
+.cart-item-grade{display:inline-block;font-size:.72rem;font-weight:700;background:#e6faf5;color:#00b390;border-radius:5px;padding:2px 8px;margin-top:5px}
+.cart-item-price{font-size:.8rem;color:#555;margin-top:3px}
+.cart-item-actions{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between}
+.cart-qty{display:flex;align-items:center;background:#f0f2f5;border:1px solid #ddd;border-radius:7px;overflow:hidden}
+.cart-qty button{background:transparent;border:none;width:26px;height:30px;font-size:.95rem;cursor:pointer;color:#333;font-family:inherit}
+.cart-qty button:hover{background:#e2e2e2}
+.cart-qty span{width:32px;text-align:center;font-size:.85rem;font-weight:600}
+.cart-item-remove{background:transparent;border:none;color:#ccc;font-size:.85rem;cursor:pointer;transition:color .2s;font-family:inherit}
+.cart-item-remove:hover{color:#ff4444}
+.cart-footer{padding:18px 22px 24px;border-top:1px solid #e8ebf2;background:#fafbfc}
+.cart-total{display:flex;justify-content:space-between;font-size:1.05rem;font-weight:700;color:#1a1a2e;margin-bottom:6px}
+.cart-total .usd{font-size:.85rem;font-weight:500;color:#888}
+.cart-note{font-size:.76rem;color:#999;margin-bottom:14px}
+.submit-btn{width:100%;background:linear-gradient(135deg,#ff6b35,#f97316);color:#fff;border:none;border-radius:10px;padding:14px;font-size:.95rem;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s;font-family:inherit}
+.submit-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(249,115,22,.35)}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* Checkout modal */
+.form-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:3100;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;padding:20px}
 .form-overlay.open{opacity:1;visibility:visible}
-.form-modal{background:#fff;border-radius:16px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;padding:32px;border:1px solid #e0e0e0;position:relative}
-.form-modal h2{color:#1a1a2e;font-size:1.3rem;margin-bottom:8px}
-.form-modal .form-subtitle{color:#666;font-size:.85rem;margin-bottom:24px}
-.form-group{margin-bottom:18px}
-.form-group label{display:block;color:#555;font-size:.82rem;margin-bottom:6px;font-weight:500}
-.form-group input,.form-group textarea{width:100%;background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:11px 14px;color:#333;font-size:.9rem;font-family:inherit;outline:none;transition:border-color .2s}
+.form-modal{background:#fff;border-radius:16px;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;padding:30px;border:1px solid #e0e0e0;position:relative}
+.form-modal h2{color:#1a1a2e;font-size:1.3rem;margin-bottom:6px}
+.form-modal .form-subtitle{color:#666;font-size:.85rem;margin-bottom:20px}
+.order-summary{background:#f0f2f5;border-radius:10px;padding:14px;margin-bottom:18px;max-height:180px;overflow-y:auto}
+.order-summary h4{color:#888;font-size:.76rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.order-summary-items{font-size:.83rem;color:#333}
+.order-summary-item{display:flex;justify-content:space-between;padding:3px 0;gap:10px}
+.order-summary-item .q{color:#00b390;font-weight:600}
+.order-summary-total{display:flex;justify-content:space-between;font-weight:700;color:#00b390;font-size:.95rem;border-top:1px solid #ddd;margin-top:6px;padding-top:8px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;color:#555;font-size:.82rem;margin-bottom:5px;font-weight:500}
+.form-group input,.form-group textarea{width:100%;background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:10px 13px;color:#333;font-size:.9rem;font-family:inherit;outline:none;transition:border-color .2s}
 .form-group input:focus,.form-group textarea:focus{border-color:#00d4aa}
-.form-group textarea{resize:vertical;min-height:70px}
-.form-actions{display:flex;gap:12px;margin-top:28px}
-.form-back{flex:1;background:transparent;border:1px solid #ddd;color:#666;border-radius:8px;padding:12px;font-size:.9rem;cursor:pointer;transition:border-color .2s,color .2s;font-family:inherit}
-.form-back:hover{border-color:#1a1a2e;color:#1a1a2e}
-.form-submit{flex:2;background:linear-gradient(135deg,#ff6b35,#f97316);color:#fff;border:none;border-radius:8px;padding:12px;font-size:.9rem;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s;font-family:inherit}
-.form-submit:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(249,115,22,.35)}
+.form-group textarea{resize:vertical;min-height:60px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .form-error{color:#ff4444;font-size:.8rem;margin-top:4px;display:none}
 .form-error.show{display:block}
-.currency-note{font-size:.78rem;color:#999;margin-top:6px}
-
-/* Order Summary in Form */
-.order-summary{background:#f0f2f5;border-radius:10px;padding:16px;margin-bottom:20px}
-.order-summary h4{color:#888;font-size:.8rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px}
-.order-summary-items{font-size:.85rem;color:#333}
-.order-summary-item{display:flex;justify-content:space-between;padding:4px 0}
-.order-summary-divider{border-top:1px solid #ddd;margin:8px 0;padding-top:8px}
-.order-summary-total{display:flex;justify-content:space-between;font-weight:700;color:#00d4aa;font-size:1rem}
+.form-actions{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+.form-back{flex:1;background:transparent;border:1px solid #ddd;color:#666;border-radius:8px;padding:12px;font-size:.88rem;cursor:pointer;transition:border-color .2s,color .2s;font-family:inherit}
+.form-back:hover{border-color:#1a1a2e;color:#1a1a2e}
+.form-submit{flex:2;background:linear-gradient(135deg,#00d4aa,#00a3ff);color:#fff;border:none;border-radius:8px;padding:12px;font-size:.9rem;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s;font-family:inherit}
+.form-submit:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,212,170,.35)}
+.copy-btn{flex:2;background:linear-gradient(135deg,#ff6b35,#f97316);color:#fff;border:none;border-radius:8px;padding:12px;font-size:.9rem;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s;font-family:inherit}
+.copy-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(249,115,22,.35)}
 
 /* Toast */
 .toast{position:fixed;top:24px;left:50%;transform:translateX(-50%);background:#00d4aa;color:#fff;padding:12px 28px;border-radius:10px;font-weight:600;font-size:.9rem;z-index:4000;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;box-shadow:0 4px 20px rgba(0,212,170,.3)}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(4px)}
 
 /* CTA */
-.cta{text-align:center;padding:40px 20px 60px;background:linear-gradient(180deg,transparent,rgba(0,212,170,.08))}
-.cta .wechat{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid #ddd;border-radius:12px;padding:16px 32px;font-size:1.1rem;color:#1a1a2e;transition:border-color .3s;text-decoration:none}
-.cta .wechat:hover{border-color:#00d4aa}
-.cta .wechat-icon{color:#00d4aa;font-size:1.5rem}
+.cta{text-align:center;padding:40px 20px 90px;background:linear-gradient(180deg,transparent,rgba(0,212,170,.08))}
 .cta p{color:#666;margin-top:16px;font-size:.9rem}
 
 /* Footer */
 .footer{text-align:center;padding:20px;color:#999;font-size:.8rem;border-top:1px solid #e0e0e0}
 
-/* Hidden PayPal Form */
-#paypalForm{display:none}
-
 /* Responsive */
 @media(max-width:768px){
   .hero h1{font-size:1.9rem}
-  .header h1{font-size:1.8rem}
   .features{grid-template-columns:repeat(2,1fr);gap:12px}
   .feature-card{padding:20px 12px}
   .feature-icon{font-size:1.8rem}
@@ -143,79 +161,39 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   .features{grid-template-columns:repeat(2,1fr)}
   .models{grid-template-columns:1fr}
   .hero h1{font-size:1.5rem}
-  .form-modal{padding:24px}
+  .form-modal{padding:22px}
 }
 </style>
-<!-- Facebook Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window,document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1830066908399596');
-fbq('track', 'PageView');
-</script>
-<noscript>
-<img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1830066908399596&ev=PageView&noscript=1"/>
-</noscript>
-<!-- End Facebook Pixel Code -->
 </head>
 <body>
 
 <!-- Hero -->
-<div class="hero">
-  <h1>Used Business Laptops</h1>
-  <p class="tagline">HP &middot; Lenovo &middot; Dell &mdash; Grade A Tested Units, Wholesale Prices, Worldwide Shipping</p>
-  <div class="brands">
-    <span class="brand-pill">HP ProBook / EliteBook</span>
-    <span class="brand-pill">Lenovo ThinkPad</span>
-    <span class="brand-pill">Dell Latitude</span>
+<section class="hero">
+  <div class="container">
+    <h1>Used Business Laptops</h1>
+    <p class="tagline">HP · Lenovo · Dell — Grade A Tested Units, Wholesale Prices, Worldwide Shipping</p>
+    <div class="brands">
+      <span class="brand-pill">HP ProBook / EliteBook</span>
+      <span class="brand-pill">Lenovo ThinkPad</span>
+      <span class="brand-pill">Dell Latitude</span>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- Features -->
-<h2 class="section-title">Why Buy From Us</h2>
-<div class="container features">
-  <div class="feature-card">
-    <span class="feature-icon">&#128737;</span>
-    <h3>30-Day Warranty</h3>
-    <p>Every unit fully tested, backed by a 30-day warranty</p>
-  </div>
-  <div class="feature-card">
-    <span class="feature-icon">&#9989;</span>
-    <h3>Grade A Used</h3>
-    <p>Professionally inspected, cleaned and quality graded</p>
-  </div>
-  <div class="feature-card">
-    <span class="feature-icon">&#128176;</span>
-    <h3>Wholesale Pricing</h3>
-    <p>Factory-direct prices for bulk and single orders</p>
-  </div>
-  <div class="feature-card">
-    <span class="feature-icon">&#9992;</span>
-    <h3>Worldwide Shipping</h3>
-    <p>DHL / FedEx / UPS door-to-door delivery</p>
-  </div>
-  <div class="feature-card">
-    <span class="feature-icon">&#128230;</span>
-    <h3>Mixed Bulk Orders</h3>
-    <p>Mix HP, Lenovo and Dell models in one container</p>
-  </div>
-  <div class="feature-card">
-    <span class="feature-icon">&#128274;</span>
-    <h3>Secure Payment</h3>
-    <p>PayPal Buyer Protection for safe checkout</p>
-  </div>
-</div>
-
-<!-- Filter -->
-<h2 class="section-title">Choose Your Laptop</h2>
 <div class="container">
+
+  <!-- Features -->
+  <h2 class="section-title">Why Buy From Us</h2>
+  <div class="features">
+    <div class="feature-card"><span class="feature-icon">🛡️</span><h3>30-Day Warranty</h3><p>Every unit fully tested, backed by a 30-day warranty</p></div>
+    <div class="feature-card"><span class="feature-icon">✅</span><h3>Grade A Used</h3><p>Professionally inspected, cleaned and quality graded</p></div>
+    <div class="feature-card"><span class="feature-icon">💰</span><h3>Wholesale Pricing</h3><p>Factory-direct prices for bulk and single orders</p></div>
+    <div class="feature-card"><span class="feature-icon">✈️</span><h3>Worldwide Shipping</h3><p>DHL / FedEx / UPS door-to-door delivery</p></div>
+    <div class="feature-card"><span class="feature-icon">📦</span><h3>Mixed Bulk Orders</h3><p>Mix HP, Lenovo and Dell models in one container</p></div>
+    <div class="feature-card"><span class="feature-icon">🔒</span><h3>Secure Payment</h3><p>PayPal Buyer Protection for safe checkout</p></div>
+  </div>
+
+  <!-- Filter -->
   <div class="filter-bar">
     <div class="brand-filter" id="brandFilter">
       <button class="filter-btn active" data-brand="all" onclick="setBrand('all')">All</button>
@@ -223,166 +201,195 @@ src="https://www.facebook.com/tr?id=1830066908399596&ev=PageView&noscript=1"/>
       <button class="filter-btn" data-brand="LENOVO" onclick="setBrand('LENOVO')">Lenovo</button>
       <button class="filter-btn" data-brand="DELL" onclick="setBrand('DELL')">Dell</button>
     </div>
-    <input type="text" class="search-box" id="searchInput" placeholder="Search model, CPU or RAM..." oninput="setSearch(this.value)">
+    <input class="search-box" id="searchBox" type="text" placeholder="Search model, CPU, RAM..." oninput="setSearch(this.value)">
   </div>
+
+  <!-- Products -->
   <div id="laptopGrid"></div>
   <div class="empty-state" id="emptyState">No laptops match your search. Try a different keyword.</div>
+
 </div>
 
-<!-- Contact -->
-<h2 class="section-title">Contact Us</h2>
-<div class="cta">
-  <a class="wechat" href="weixin://">
-    <span class="wechat-icon">&#128172;</span>
-    WeChat: ElaineSupplyChain
-  </a>
-  <p>Scan to add on WeChat for inquiries &middot; In stock &amp; ready to ship &middot; Bulk order discounts available</p>
-</div>
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <p>Build your order list with the cart button below, then submit — we will reply within 24 hours with final pricing and shipping quote.</p>
+  </div>
+</section>
 
 <!-- Footer -->
-<div class="footer">
-  &copy; 2025 Elaine Supply Chain &mdash; Used Laptops. All rights reserved.
-</div>
+<div class="footer">&copy; 2026 Elaine Supply Chain &mdash; Used Laptops. All rights reserved.</div>
 
-<!-- Checkout Form Overlay -->
-<div class="form-overlay" id="formOverlay">
-  <div class="form-modal">
-    <h2>Checkout</h2>
-    <p class="form-subtitle">Fill in your details to complete your order</p>
+<!-- Floating cart button -->
+<button class="cart-fab" onclick="openCart()">🛒<span class="cart-badge" id="cartBadge">0</span></button>
 
-    <div class="order-summary" id="orderSummary"></div>
-
-    <div class="form-group">
-      <label>Full Name *</label>
-      <input type="text" id="custName" placeholder="John Doe" required>
-    </div>
-    <div class="form-group">
-      <label>Email *</label>
-      <input type="email" id="custEmail" placeholder="john@example.com" required>
-    </div>
-    <div class="form-group">
-      <label>WhatsApp Number *</label>
-      <input type="tel" id="custWhatsApp" placeholder="+86 138 0000 0000" required>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label>Country *</label>
-        <input type="text" id="custCountry" placeholder="United States" required>
-      </div>
-      <div class="form-group">
-        <label>City *</label>
-        <input type="text" id="custCity" placeholder="New York" required>
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Shipping Address *</label>
-      <input type="text" id="custAddress" placeholder="123 Main St, Apt 4B" required>
-    </div>
-    <div class="form-group">
-      <label>Notes</label>
-      <textarea id="custNotes" placeholder="Any special requirements or delivery instructions..."></textarea>
-    </div>
-    <p class="form-error" id="formError">Please fill in all required fields.</p>
-    <p class="currency-note">Payment is processed in USD. Your total will be converted at checkout.</p>
-    <div class="form-actions">
-      <button class="form-back" onclick="closeCheckout()">Back</button>
-      <button class="form-submit" onclick="submitOrder()">Pay with PayPal</button>
-    </div>
+<!-- Cart drawer -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h2>Your Order List</h2>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total"><span>Total</span><span><span id="cartTotalCny">¥0</span> <span class="usd" id="cartTotalUsd">/ $0</span></span></div>
+    <div class="cart-note">Prices in CNY (¥) / USD ($) estimate. Final quote confirmed by email.</div>
+    <button class="submit-btn" onclick="openCheckout()">Submit Order List →</button>
   </div>
 </div>
 
-<!-- PayPal Standard Cart Form -->
-<form id="paypalForm" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-  <input type="hidden" name="cmd" value="_cart">
-  <input type="hidden" name="upload" value="1">
-  <input type="hidden" name="business" value="meiniang19861215@outlook.com">
-  <input type="hidden" name="currency_code" value="USD">
-  <input type="hidden" name="no_shipping" value="2">
-  <input type="hidden" name="rm" value="2">
-  <input type="hidden" name="return" value="">
-  <input type="hidden" name="cancel_return" value="">
-  <!-- Dynamic items injected by JS -->
-</form>
+<!-- Checkout modal -->
+<div class="form-overlay" id="checkoutOverlay">
+  <div class="form-modal">
+    <h2>Submit Your Order List</h2>
+    <p class="form-subtitle">Fill in your contact details — we will confirm the final quote by email.</p>
+    <div class="order-summary">
+      <h4>Order Summary</h4>
+      <div class="order-summary-items" id="checkoutSummary"></div>
+    </div>
+    <form id="checkoutForm" onsubmit="return submitOrder(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="custName" required>
+        </div>
+        <div class="form-group">
+          <label>Company / Shop</label>
+          <input type="text" id="custCompany">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" id="custEmail" required>
+        </div>
+        <div class="form-group">
+          <label>Country *</label>
+          <input type="text" id="custCountry" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>City / Address</label>
+        <input type="text" id="custAddress">
+      </div>
+      <div class="form-group">
+        <label>Notes (optional)</label>
+        <textarea id="custNotes" placeholder="e.g. preferred shipping method, target price, delivery deadline..."></textarea>
+      </div>
+      <div class="form-error" id="formError">Please fill in all required fields.</div>
+      <div class="form-actions">
+        <button type="button" class="form-back" onclick="closeCheckout()">Back</button>
+        <button type="submit" class="form-submit">Generate My List →</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Result modal -->
+<div class="form-overlay" id="resultOverlay">
+  <div class="form-modal">
+    <h2>Your Order List is Ready</h2>
+    <p class="form-subtitle">Copy the list below and send it to us by email, or download it as a file.</p>
+    <div class="order-summary" style="max-height:300px">
+      <pre id="resultText" style="font-family:inherit;font-size:.83rem;white-space:pre-wrap;word-break:break-word;color:#333"></pre>
+    </div>
+    <div class="form-actions">
+      <button class="form-back" onclick="closeResult()">Back</button>
+      <button class="copy-btn" onclick="copyResult()">Copy List</button>
+      <button class="form-submit" onclick="emailResult()">Send by Email</button>
+    </div>
+  </div>
+</div>
 
 <!-- Toast -->
 <div class="toast" id="toast"></div>
 
 <script>
-// ============ PRODUCT DATA (price = base RMB; grades = A+/A/B tier prices) ============
+// ============ PRODUCT DATA (52 models, price in CNY; grades = A+/A/B) ============
 var products = [
-{brand:"HP",model:"430G3",screen:"13.3",cpu:"i5-6th",ram:"8G",ssd:"256G",price:800,grades:{"A+":1200,"A":1100,"B":1000}},
-{brand:"HP",model:"430G4",screen:"13.3",cpu:"i5-6th",ram:"8G",ssd:"256G",price:800,grades:{"A+":1200,"A":1100,"B":1000}},
-{brand:"HP",model:"830G7",screen:"13.3",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1250,grades:{"A+":1650,"A":1550,"B":1450}},
-{brand:"HP",model:"830G6",screen:"13.3",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1050,grades:{"A+":1450,"A":1350,"B":1250}},
-{brand:"HP",model:"840G3",screen:"14",cpu:"i5-6th",ram:"8G",ssd:"256G",price:900,grades:{"A+":1300,"A":1200,"B":1100}},
-{brand:"HP",model:"840G3",screen:"14",cpu:"i7-6th",ram:"8G",ssd:"256G",price:950,grades:{"A+":1350,"A":1250,"B":1150}},
-{brand:"HP",model:"840G6",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1150,grades:{"A+":1550,"A":1450,"B":1350}},
-{brand:"HP",model:"840G6",screen:"14",cpu:"i7-8th",ram:"8G",ssd:"256G",price:1350,grades:{"A+":1750,"A":1650,"B":1550}},
-{brand:"HP",model:"840G7",screen:"14",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1380,grades:{"A+":1780,"A":1680,"B":1580}},
-{brand:"HP",model:"840G7",screen:"14",cpu:"i7-10th",ram:"8G",ssd:"256G",price:1550,grades:{"A+":1950,"A":1850,"B":1750}},
-{brand:"HP",model:"840G8",screen:"14",cpu:"i5-11th",ram:"16G",ssd:"512G",price:1900,grades:{"A+":2300,"A":2200,"B":2100}},
-{brand:"HP",model:"840G8",screen:"14",cpu:"i7-11th",ram:"16G",ssd:"512G",price:2150,grades:{"A+":2550,"A":2450,"B":2350}},
-{brand:"HP",model:"850G6",screen:"15",cpu:"i7-8th",ram:"8G",ssd:"256G",price:1450,grades:{"A+":1850,"A":1750,"B":1650}},
-{brand:"HP",model:"745G6",screen:"14",cpu:"r5",ram:"8G",ssd:"256G",price:950,grades:{"A+":1350,"A":1250,"B":1150}},
-{brand:"HP",model:"745G6",screen:"14",cpu:"r7",ram:"8G",ssd:"256G",price:1150,grades:{"A+":1550,"A":1450,"B":1350}},
-{brand:"HP",model:"845G8",screen:"14",cpu:"r5",ram:"16G",ssd:"512G",price:1950,grades:{"A+":2350,"A":2250,"B":2150}},
-{brand:"HP",model:"845G8",screen:"14",cpu:"r7",ram:"16G",ssd:"512G",price:2050,grades:{"A+":2450,"A":2350,"B":2250}},
-{brand:"HP",model:"ZBOOK15G7",screen:"15",cpu:"i7-10th",ram:"16G",ssd:"512G",price:2200,grades:{"A+":2600,"A":2500,"B":2400}},
-{brand:"LENOVO",model:"T450",screen:"14",cpu:"i5-5th",ram:"8G",ssd:"500G",price:820,grades:{"A+":1220,"A":1120,"B":1020}},
-{brand:"LENOVO",model:"T460",screen:"14",cpu:"i5-6th",ram:"8G",ssd:"256G",price:880,grades:{"A+":1280,"A":1180,"B":1080}},
-{brand:"LENOVO",model:"T470",screen:"14",cpu:"i5-7th",ram:"8G",ssd:"256G",price:950,grades:{"A+":1350,"A":1250,"B":1150}},
-{brand:"LENOVO",model:"T480",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1150,grades:{"A+":1550,"A":1450,"B":1350}},
-{brand:"LENOVO",model:"T480S",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1150,grades:{"A+":1550,"A":1450,"B":1350}},
-{brand:"LENOVO",model:"T480S",screen:"14",cpu:"i7-8th",ram:"8G",ssd:"256G",price:1350,grades:{"A+":1750,"A":1650,"B":1550}},
-{brand:"LENOVO",model:"T490",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1200,grades:{"A+":1600,"A":1500,"B":1400}},
-{brand:"LENOVO",model:"T490S",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1200,grades:{"A+":1600,"A":1500,"B":1400}},
-{brand:"LENOVO",model:"T580",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1400,grades:{"A+":1800,"A":1700,"B":1600}},
-{brand:"LENOVO",model:"T590",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1450,grades:{"A+":1850,"A":1750,"B":1650}},
-{brand:"LENOVO",model:"L480",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1100,grades:{"A+":1500,"A":1400,"B":1300}},
-{brand:"LENOVO",model:"L390",screen:"13",cpu:"i5-8th",ram:"8G",ssd:"256G",price:980,grades:{"A+":1380,"A":1280,"B":1180}},
-{brand:"LENOVO",model:"L13",screen:"13",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1250,grades:{"A+":1650,"A":1550,"B":1450}},
-{brand:"LENOVO",model:"X13",screen:"13",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1350,grades:{"A+":1750,"A":1650,"B":1550}},
-{brand:"LENOVO",model:"X1C2020",screen:"14",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1700,grades:{"A+":2100,"A":2000,"B":1900}},
-{brand:"LENOVO",model:"X1C2018",screen:"14",cpu:"i7-8th",ram:"16G",ssd:"512G",price:1750,grades:{"A+":2150,"A":2050,"B":1950}},
-{brand:"LENOVO",model:"X1C2018",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1350,grades:{"A+":1750,"A":1650,"B":1550}},
-{brand:"LENOVO",model:"E14",screen:"14",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1250,grades:{"A+":1650,"A":1550,"B":1450}},
-{brand:"LENOVO",model:"E14",screen:"14",cpu:"i5-11th",ram:"8G",ssd:"256G",price:1350,grades:{"A+":1750,"A":1650,"B":1550}},
-{brand:"LENOVO",model:"E450",screen:"14",cpu:"i3-4th/i3-5th",ram:"8G",ssd:"256G",price:750,grades:{"A+":1150,"A":1050,"B":950}},
-{brand:"LENOVO",model:"T440S",screen:"14",cpu:"i7-4th",ram:"8G",ssd:"128G",price:800,grades:{"A+":1200,"A":1100,"B":1000}},
-{brand:"LENOVO",model:"T14",screen:"14",cpu:"i5-11th",ram:"8G",ssd:"256G",price:1700,grades:{"A+":2100,"A":2000,"B":1900}},
-{brand:"LENOVO",model:"T14S",screen:"14",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1600,grades:{"A+":2000,"A":1900,"B":1800}},
-{brand:"LENOVO",model:"L14",screen:"14",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1350,grades:{"A+":1750,"A":1650,"B":1550}},
-{brand:"LENOVO",model:"L14",screen:"14",cpu:"i5-11th",ram:"8G",ssd:"256G",price:1450,grades:{"A+":1850,"A":1750,"B":1650}},
-{brand:"DELL",model:"5400",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",price:980,grades:{"A+":1380,"A":1280,"B":1180}},
-{brand:"DELL",model:"5400",screen:"14",cpu:"i7-8th",ram:"8G",ssd:"256G",price:1150,grades:{"A+":1550,"A":1450,"B":1350}},
-{brand:"DELL",model:"5410",screen:"14",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1100,grades:{"A+":1500,"A":1400,"B":1300}},
-{brand:"DELL",model:"5420",screen:"14",cpu:"i5-11th",ram:"8G",ssd:"256G",price:1250,grades:{"A+":1650,"A":1550,"B":1450}},
-{brand:"DELL",model:"5500",screen:"15.5",cpu:"i5-8th",ram:"8G",ssd:"256G",price:1300,grades:{"A+":1700,"A":1600,"B":1500}},
-{brand:"DELL",model:"5510",screen:"15.5",cpu:"i5-10th",ram:"8G",ssd:"256G",price:1450,grades:{"A+":1850,"A":1750,"B":1650}},
-{brand:"DELL",model:"7410",screen:"14",cpu:"i5-10th",ram:"16G",ssd:"256G",price:1600,grades:{"A+":2000,"A":1900,"B":1800}},
-{brand:"DELL",model:"7400",screen:"14",cpu:"i7-8th",ram:"8G",ssd:"256G",price:1250,grades:{"A+":1650,"A":1550,"B":1450}},
-{brand:"DELL",model:"7420",screen:"14",cpu:"i5-11th",ram:"16G",ssd:"256G",price:1700,grades:{"A+":2100,"A":2000,"B":1900}},
+{brand:"HP",model:"430G3",screen:"13.3",cpu:"i5-6th",ram:"8G",ssd:"256G",grades:{"A+":1200,"A":1100,"B":1000}},
+{brand:"HP",model:"430G4",screen:"13.3",cpu:"i5-6th",ram:"8G",ssd:"256G",grades:{"A+":1200,"A":1100,"B":1000}},
+{brand:"HP",model:"830G7",screen:"13.3",cpu:"i5-10th",ram:"8G",ssd:"256G",grades:{"A+":1650,"A":1550,"B":1450}},
+{brand:"HP",model:"830G6",screen:"13.3",cpu:"i5-8th",ram:"8G",ssd:"256G",grades:{"A+":1450,"A":1350,"B":1250}},
+{brand:"HP",model:"840G3",screen:"14",cpu:"i5-6th",ram:"8G",ssd:"256G",grades:{"A+":1300,"A":1200,"B":1100}},
+{brand:"HP",model:"840G3",screen:"14",cpu:"i7-6th",ram:"8G",ssd:"256G",grades:{"A+":1350,"A":1250,"B":1150}},
+{brand:"HP",model:"840G6",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",grades:{"A+":1550,"A":1450,"B":1350}},
+{brand:"HP",model:"840G6",screen:"14",cpu:"i7-8th",ram:"8G",ssd:"256G",grades:{"A+":1750,"A":1650,"B":1550}},
+{brand:"HP",model:"840G7",screen:"14",cpu:"i5-10th",ram:"8G",ssd:"256G",grades:{"A+":1780,"A":1680,"B":1580}},
+{brand:"HP",model:"840G7",screen:"14",cpu:"i7-10th",ram:"8G",ssd:"256G",grades:{"A+":1950,"A":1850,"B":1750}},
+{brand:"HP",model:"840G8",screen:"14",cpu:"i5-11th",ram:"16G",ssd:"512G",grades:{"A+":2300,"A":2200,"B":2100}},
+{brand:"HP",model:"840G8",screen:"14",cpu:"i7-11th",ram:"16G",ssd:"512G",grades:{"A+":2550,"A":2450,"B":2350}},
+{brand:"HP",model:"850G6",screen:"15.6",cpu:"i7-8th",ram:"8G",ssd:"256G",grades:{"A+":1850,"A":1750,"B":1650}},
+{brand:"HP",model:"745G6",screen:"14",cpu:"r5",ram:"8G",ssd:"256G",grades:{"A+":1350,"A":1250,"B":1150}},
+{brand:"HP",model:"745G6",screen:"14",cpu:"r7",ram:"8G",ssd:"256G",grades:{"A+":1550,"A":1450,"B":1350}},
+{brand:"HP",model:"845G8",screen:"14",cpu:"r5",ram:"16G",ssd:"512G",grades:{"A+":2350,"A":2250,"B":2150}},
+{brand:"HP",model:"845G8",screen:"14",cpu:"r7",ram:"16G",ssd:"512G",grades:{"A+":2450,"A":2350,"B":2250}},
+{brand:"HP",model:"ZBOOK15G7",screen:"15.6",cpu:"i7-10th",ram:"16G",ssd:"512G",grades:{"A+":2600,"A":2500,"B":2400}},
+{brand:"LENOVO",model:"T450",screen:"14",cpu:"i5-5th",ram:"8G",ssd:"500G",grades:{"A+":1220,"A":1120,"B":1020}},
+{brand:"LENOVO",model:"T460",screen:"14",cpu:"i5-6th",ram:"8G",ssd:"256G",grades:{"A+":1280,"A":1180,"B":1080}},
+{brand:"LENOVO",model:"T470",screen:"14",cpu:"i5-7th",ram:"8G",ssd:"256G",grades:{"A+":1350,"A":1250,"B":1150}},
+{brand:"LENOVO",model:"T480",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",grades:{"A+":1550,"A":1450,"B":1350}},
+{brand:"LENOVO",model:"T480S",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",grades:{"A+":1550,"A":1450,"B":1350}},
+{brand:"LENOVO",model:"T480S",screen:"14",cpu:"i7-8th",ram:"8G",ssd:"256G",grades:{"A+":1750,"A":1650,"B":1550}},
+{brand:"LENOVO",model:"T490",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",grades:{"A+":1600,"A":1500,"B":1400}},
+{brand:"LENOVO",model:"T490S",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",grades:{"A+":1600,"A":1500,"B":1400}},
+{brand:"LENOVO",model:"T580",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",grades:{"A+":1800,"A":1700,"B":1600}},
+{brand:"LENOVO",model:"T590",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",grades:{"A+":1850,"A":1750,"B":1650}},
+{brand:"LENOVO",model:"L480",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",grades:{"A+":1500,"A":1400,"B":1300}},
+{brand:"LENOVO",model:"L390",screen:"13.3",cpu:"i5-8th",ram:"8G",ssd:"256G",grades:{"A+":1380,"A":1280,"B":1180}},
+{brand:"LENOVO",model:"L13",screen:"13.3",cpu:"i5-10th",ram:"8G",ssd:"256G",grades:{"A+":1650,"A":1550,"B":1450}},
+{brand:"LENOVO",model:"X13",screen:"13.3",cpu:"i5-10th",ram:"8G",ssd:"256G",grades:{"A+":1750,"A":1650,"B":1550}},
+{brand:"LENOVO",model:"X1C2020",screen:"14",cpu:"i5-10th",ram:"8G",ssd:"256G",grades:{"A+":2100,"A":2000,"B":1900}},
+{brand:"LENOVO",model:"X1C2018",screen:"14",cpu:"i7-10th",ram:"16G",ssd:"512G",grades:{"A+":2150,"A":2050,"B":1950}},
+{brand:"LENOVO",model:"X1C2018",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",grades:{"A+":1750,"A":1650,"B":1550}},
+{brand:"LENOVO",model:"E14",screen:"14",cpu:"i5-10th",ram:"8G",ssd:"256G",grades:{"A+":1650,"A":1550,"B":1450}},
+{brand:"LENOVO",model:"E14",screen:"14",cpu:"i5-11th",ram:"8G",ssd:"256G",grades:{"A+":1750,"A":1650,"B":1550}},
+{brand:"LENOVO",model:"E450",screen:"14",cpu:"i3-4th/i3-5th",ram:"8G",ssd:"256G",grades:{"A+":1150,"A":1050,"B":950}},
+{brand:"LENOVO",model:"T440S",screen:"14",cpu:"i7-4th",ram:"8G",ssd:"128G",grades:{"A+":1200,"A":1100,"B":1000}},
+{brand:"LENOVO",model:"T14",screen:"14",cpu:"i5-11th",ram:"8G",ssd:"256G",grades:{"A+":2100,"A":2000,"B":1900}},
+{brand:"LENOVO",model:"T14S",screen:"14",cpu:"i5-10th",ram:"8G",ssd:"256G",grades:{"A+":2000,"A":1900,"B":1800}},
+{brand:"LENOVO",model:"L14",screen:"14",cpu:"i5-10th",ram:"8G",ssd:"256G",grades:{"A+":1750,"A":1650,"B":1550}},
+{brand:"LENOVO",model:"L14",screen:"14",cpu:"i5-11th",ram:"8G",ssd:"256G",grades:{"A+":1850,"A":1750,"B":1650}},
+{brand:"DELL",model:"5400",screen:"14",cpu:"i5-8th",ram:"8G",ssd:"256G",grades:{"A+":1380,"A":1280,"B":1180}},
+{brand:"DELL",model:"5400",screen:"14",cpu:"i7-8th",ram:"8G",ssd:"256G",grades:{"A+":1550,"A":1450,"B":1350}},
+{brand:"DELL",model:"5410",screen:"14",cpu:"i5-10th",ram:"8G",ssd:"256G",grades:{"A+":1500,"A":1400,"B":1300}},
+{brand:"DELL",model:"5420",screen:"14",cpu:"i5-11th",ram:"8G",ssd:"256G",grades:{"A+":1650,"A":1550,"B":1450}},
+{brand:"DELL",model:"5500",screen:"15.6",cpu:"i5-8th",ram:"8G",ssd:"256G",grades:{"A+":1700,"A":1600,"B":1500}},
+{brand:"DELL",model:"5510",screen:"15.6",cpu:"i5-10th",ram:"8G",ssd:"256G",grades:{"A+":1850,"A":1750,"B":1650}},
+{brand:"DELL",model:"7410",screen:"14",cpu:"i5-10th",ram:"16G",ssd:"256G",grades:{"A+":2000,"A":1900,"B":1800}},
+{brand:"DELL",model:"7400",screen:"14",cpu:"i7-8th",ram:"8G",ssd:"256G",grades:{"A+":1650,"A":1550,"B":1450}},
+{brand:"DELL",model:"7420",screen:"14",cpu:"i5-11th",ram:"16G",ssd:"256G",grades:{"A+":2100,"A":2000,"B":1900}}
 ];
 
 // ============ STATE ============
-var PRICE_MARKUP = 500;          // +500 CNY on top of original price
-var USD_RATE = 6.65;             // CNY -> USD conversion for PayPal (approx)
+var USD_RATE = 6.65; // CNY -> USD estimate
+var MERCHANT_EMAIL = 'sales@elainesupplychain.com'; // TODO: replace with your receiving email
 var activeBrand = 'all';
 var searchTerm = '';
+var cart = loadCart();
+var selectedGrade = {};
 
-function cnyDisplay(v) { return '\u00a5' + v.toLocaleString('en-US'); }
-function usdValue(cny) { return Math.round((cny / USD_RATE) * 100) / 100; }
-
-function brandDisplay(b) {
-  if (b === 'LENOVO') return 'Lenovo';
-  if (b === 'DELL') return 'Dell';
-  return b;
+function brandDisplay(b) { return b === 'LENOVO' ? 'Lenovo' : b === 'DELL' ? 'Dell' : b; }
+function cny(v) { return '\u00a5' + v.toLocaleString('en-US'); }
+function usd(v) { return '$' + (Math.round(v / USD_RATE * 100) / 100).toLocaleString('en-US'); }
+function specText(p) { return p.screen + '" \u00b7 ' + p.cpu + ' \u00b7 ' + p.ram + ' \u00b7 ' + p.ssd; }
+function gradeLabel(g) {
+  if (g === 'A+') return 'A+ Grade';
+  if (g === 'A') return 'A Grade';
+  return 'B Grade';
 }
-function modelSub(p) {
-  return p.screen + ' \u00b7 ' + p.cpu + ' \u00b7 ' + p.ram + ' \u00b7 ' + p.ssd;
-}
 
-// ============ RENDER ============
+// ============ CART PERSISTENCE (shared across pages via localStorage) ============
+function loadCart() {
+  try { return JSON.parse(localStorage.getItem('esc_cart') || '[]'); } catch (e) { return []; }
+}
+function saveCart() {
+  localStorage.setItem('esc_cart', JSON.stringify(cart));
+  updateCartUI();
+}
+function cartKey(p, grade) { return p.brand + '|' + p.model + '|' + p.cpu + '|' + p.ram + '|' + p.ssd + '|' + grade; }
+
+// ============ RENDER PRODUCTS ============
 function filteredProducts() {
   var kw = searchTerm.toLowerCase();
   return products.filter(function(p) {
@@ -397,14 +404,12 @@ function render() {
   var list = filteredProducts();
   var grid = document.getElementById('laptopGrid');
   var empty = document.getElementById('emptyState');
-
   if (list.length === 0) {
     grid.innerHTML = '';
     empty.style.display = 'block';
     return;
   }
   empty.style.display = 'none';
-
   var brands = ['HP', 'LENOVO', 'DELL'];
   var html = '';
   brands.forEach(function(b) {
@@ -415,30 +420,36 @@ function render() {
             '<span class="count">' + items.length + ' model' + (items.length > 1 ? 's' : '') + '</span></div>';
     html += '<div class="models">';
     items.forEach(function(p) {
-      html += '<div class="model-card" data-model="' + brandDisplay(p.brand) + ' ' + p.model +
-              '" data-cny="' + p.grades['A+'] + '" data-brand="' + p.brand + '">';
-      html += '<div class="model-top"><h3>' + brandDisplay(p.brand) + ' ' + p.model + '</h3>' +
-              '<div class="model-sub">' + p.screen + ' &middot; ' + p.cpu + ' &middot; ' + p.ram + ' &middot; ' + p.ssd + '</div></div>';
+      var key = cartKey(p, 'A+');
+      var inCart = cart.some(function(i) { return i.key === cartKey(p, (selectedGrade[key] || 'A+')); });
+      html += '<div class="model-card">';
+      html += '<div class="model-top"><div><h3>' + brandDisplay(p.brand) + ' ' + p.model + '</h3>' +
+              '<div class="model-sub">' + specText(p) + '</div></div>' +
+              '<button class="add-btn' + (inCart ? ' in-cart' : '') + '" id="addbtn-' + key.replace(/[^a-zA-Z0-9]/g, '') + '" onclick="quickAdd(\'' + key.replace(/'/g, "\\'") + '\')">' + (inCart ? 'In Cart ✓' : 'Add to Cart') + '</button></div>';
       html += '<div class="model-info">';
-      html += '<div class="spec-row"><span class="label">Display</span><span>' + p.screen + '</span></div>';
+      html += '<div class="spec-row"><span class="label">Display</span><span>' + p.screen + '"</span></div>';
       html += '<div class="spec-row"><span class="label">CPU</span><span>' + p.cpu + '</span></div>';
       html += '<div class="spec-row"><span class="label">RAM</span><span>' + p.ram + '</span></div>';
       html += '<div class="spec-row"><span class="label">SSD</span><span>' + p.ssd + '</span></div>';
-      html += '<div class="price-grades" data-grades=\'{"A+":' + p.grades['A+'] + ',"A":' + p.grades['A'] + ',"B":' + p.grades['B'] + '}\'>';
-      html += '<button type="button" class="grade-btn active" data-grade="A+" onclick="setGrade(this)">A+ <span class="gprice">' + cnyDisplay(p.grades['A+']) + '</span></button>';
-      html += '<button type="button" class="grade-btn" data-grade="A" onclick="setGrade(this)">A <span class="gprice">' + cnyDisplay(p.grades['A']) + '</span></button>';
-      html += '<button type="button" class="grade-btn" data-grade="B" onclick="setGrade(this)">B <span class="gprice">' + cnyDisplay(p.grades['B']) + '</span></button>';
-      html += '</div>';
-      html += '<div class="model-actions">';
-      html += '<div class="qty-selector"><button class="qty-btn" onclick="changeQty(this, -1)">&minus;</button>' +
-              '<input class="qty-input" type="text" value="1" readonly>' +
-              '<button class="qty-btn" onclick="changeQty(this, 1)">+</button></div>';
-      html += '<button class="buy-now-btn" onclick="buyNow(this)">Buy Now</button>';
+      html += '<div class="price-grades">';
+      ['A+', 'A', 'B'].forEach(function(g) {
+        var gkey = cartKey(p, g);
+        var sel = selectedGrade[key] === g;
+        html += '<div class="grade-row' + (sel ? ' selected' : '') + '" onclick="selectGrade(\'' + key.replace(/'/g, "\\'") + '\',\'' + g + '\')">' +
+                '<span class="gname">' + gradeLabel(g) + '</span>' +
+                '<span class="gprice">' + cny(p.grades[g]) + '<span class="usd">/ ' + usd(p.grades[g]) + '</span></span></div>';
+      });
       html += '</div></div></div>';
     });
     html += '</div></div>';
   });
   grid.innerHTML = html;
+}
+
+// ============ GRADE SELECTION ============
+function selectGrade(key, g) {
+  selectedGrade[key] = g;
+  render();
 }
 
 // ============ FILTER / SEARCH ============
@@ -450,133 +461,218 @@ function setBrand(b) {
 }
 function setSearch(v) { searchTerm = v.trim(); render(); }
 
-
-// ============ GRADE SELECTOR ============
-function setGrade(btn) {
-  var card = btn.closest('.model-card');
-  var grades = JSON.parse(card.getAttribute('data-grades'));
-  var g = btn.getAttribute('data-grade');
-  card.setAttribute('data-cny', grades[g]);
-  card.querySelectorAll('.grade-btn').forEach(function(b) { b.classList.toggle('active', b.getAttribute('data-grade') === g); });
+// ============ CART ACTIONS ============
+function findProductByKey(key) {
+  var parts = key.split('|');
+  for (var i = 0; i < products.length; i++) {
+    var p = products[i];
+    if (p.brand + '|' + p.model + '|' + p.cpu + '|' + p.ram + '|' + p.ssd === parts.slice(0, 5).join('|')) return p;
+  }
+  return null;
 }
 
-// ============ QUANTITY SELECTOR ============
-function changeQty(btn, delta) {
-  var input = btn.parentElement.querySelector('.qty-input');
-  var val = parseInt(input.value) + delta;
-  if (val < 1) val = 1;
-  if (val > 99) val = 99;
-  input.value = val;
+function quickAdd(key) {
+  var idx = cart.findIndex(function(i) { return i.key === key; });
+  if (idx >= 0) {
+    cart.splice(idx, 1);
+    showToast('Removed from order list');
+  } else {
+    var p = findProductByKey(key);
+    if (!p) return;
+    var g = key.split('|')[5] || 'A+';
+    var ex = cart.find(function(i) { return i.key === key; });
+    if (ex) { ex.qty += 1; } else { cart.push({ key: key, brand: p.brand, model: p.model, cpu: p.cpu, ram: p.ram, ssd: p.ssd, grade: g, price: p.grades[g], qty: 1 }); }
+    showToast('Added to order list');
+  }
+  saveCart();
+  render();
 }
 
-// ============ BUY NOW ============
-var buyItem = null;
-
-function buyNow(btn) {
-  var card = btn.closest('.model-card');
-  var model = card.getAttribute('data-model');
-  var cny = parseFloat(card.getAttribute('data-cny'));
-  var qty = parseInt(card.querySelector('.qty-input').value);
-  buyItem = { model: model, qty: qty, cny: cny };
-  fbq('track', 'ViewContent', {
-    content_name: model,
-    content_category: 'Laptop',
-    value: usdValue(cny * qty),
-    currency: 'USD',
-    store: 'laptops'
-  });
-  openCheckout();
+function addToCart(key) {
+  var idx = cart.findIndex(function(i) { return i.key === key; });
+  if (idx >= 0) { cart[idx].qty += 1; showToast('Quantity updated'); }
+  else {
+    var p = findProductByKey(key);
+    if (!p) return;
+    var g = key.split('|')[5] || 'A+';
+    cart.push({ key: key, brand: p.brand, model: p.model, cpu: p.cpu, ram: p.ram, ssd: p.ssd, grade: g, price: p.grades[g], qty: 1 });
+    showToast('Added to order list');
+  }
+  saveCart();
+  render();
 }
 
-// ============ CHECKOUT FORM ============
-function openCheckout() {
-  if (!buyItem) return;
-  var item = buyItem;
-  var totalCny = item.cny * item.qty;
-  var summaryHTML = '<h4>Order Summary</h4><div class="order-summary-items">' +
-    '<div class="order-summary-item"><span>' + item.model + ' x' + item.qty + '</span><span>' + cnyDisplay(totalCny) + '</span></div>' +
-    '<div class="order-summary-divider"></div>' +
-    '<div class="order-summary-total"><span>Total</span><span>' + cnyDisplay(totalCny) + ' &middot; ~$' + usdValue(totalCny).toFixed(2) + '</span></div>' +
-    '</div>';
-  document.getElementById('orderSummary').innerHTML = summaryHTML;
-  document.getElementById('formOverlay').classList.add('open');
-  document.getElementById('formError').classList.remove('show');
+function changeQty(key, delta) {
+  var idx = cart.findIndex(function(i) { return i.key === key; });
+  if (idx < 0) return;
+  cart[idx].qty += delta;
+  if (cart[idx].qty < 1) cart[idx].qty = 1;
+  if (cart[idx].qty > 99) cart[idx].qty = 99;
+  saveCart();
+  renderCart();
 }
 
-function closeCheckout() {
-  document.getElementById('formOverlay').classList.remove('open');
+function removeItem(key) {
+  cart = cart.filter(function(i) { return i.key !== key; });
+  saveCart();
+  render();
+  renderCart();
 }
 
-// ============ SUBMIT ORDER ============
-function submitOrder() {
-  var name = document.getElementById('custName').value.trim();
-  var email = document.getElementById('custEmail').value.trim();
-  var whatsapp = document.getElementById('custWhatsApp').value.trim();
-  var country = document.getElementById('custCountry').value.trim();
-  var city = document.getElementById('custCity').value.trim();
-  var address = document.getElementById('custAddress').value.trim();
+// ============ CART UI ============
+function updateCartUI() {
+  var badge = document.getElementById('cartBadge');
+  var count = cart.reduce(function(s, i) { return s + i.qty; }, 0);
+  badge.textContent = count;
+  badge.style.display = count > 0 ? 'flex' : 'none';
+  renderCart();
+}
 
-  if (!name || !email || !whatsapp || !country || !city || !address) {
-    document.getElementById('formError').classList.add('show');
+function renderCart() {
+  var body = document.getElementById('cartBody');
+  var footer = document.getElementById('cartFooter');
+  if (cart.length === 0) {
+    body.innerHTML = '<div class="cart-empty"><span class="big">🛒</span>Your order list is empty.<br>Click "Add to Cart" on any laptop to start.</div>';
+    footer.style.display = 'none';
     return;
   }
-
-  var notes = document.getElementById('custNotes').value.trim();
-  var shippingAddr = address + ', ' + city + ', ' + country;
-  var orderNotes = 'Name: ' + name + ' | Email: ' + email + ' | WhatsApp: ' + whatsapp + ' | Address: ' + shippingAddr;
-  if (notes) orderNotes += ' | Notes: ' + notes;
-
-  var form = document.getElementById('paypalForm');
-  var items = form.querySelectorAll('.paypal-item');
-  items.forEach(function(el) { el.remove(); });
-
-  var input;
-  input = document.createElement('input'); input.type = 'hidden'; input.name = 'item_name_1'; input.value = buyItem.model + ' (CNY ' + cnyDisplay(buyItem.cny) + ')'; input.className = 'paypal-item'; form.appendChild(input);
-  input = document.createElement('input'); input.type = 'hidden'; input.name = 'amount_1'; input.value = usdValue(buyItem.cny).toFixed(2); input.className = 'paypal-item'; form.appendChild(input);
-  input = document.createElement('input'); input.type = 'hidden'; input.name = 'quantity_1'; input.value = buyItem.qty; input.className = 'paypal-item'; form.appendChild(input);
-
-  var notesInput = form.querySelector('input[name="custom"]');
-  if (!notesInput) { notesInput = document.createElement('input'); notesInput.type = 'hidden'; notesInput.name = 'custom'; form.appendChild(notesInput); }
-  notesInput.value = orderNotes;
-
-  var emailInput = form.querySelector('input[name="email"]');
-  if (!emailInput) { emailInput = document.createElement('input'); emailInput.type = 'hidden'; emailInput.name = 'email'; form.appendChild(emailInput); }
-  emailInput.value = email;
-
-  var currentUrl = window.location.href.split('?')[0];
-  form.querySelector('input[name="return"]').value = currentUrl + '?paid=1';
-  form.querySelector('input[name="cancel_return"]').value = currentUrl + '?cancelled=1';
-
-  fbq('track', 'InitiateCheckout', {
-    content_name: buyItem.model,
-    value: usdValue(buyItem.cny * buyItem.qty).toFixed(2),
-    currency: 'USD',
-    num_items: buyItem.qty,
-    store: 'laptops'
+  footer.style.display = 'block';
+  var html = '';
+  var total = 0;
+  cart.forEach(function(i) {
+    var sub = i.price * i.qty;
+    total += sub;
+    html += '<div class="cart-item">' +
+      '<div class="cart-item-info">' +
+      '<div class="cart-item-title">' + brandDisplay(i.brand) + ' ' + i.model + '</div>' +
+      '<div class="cart-item-spec">' + i.cpu + ' \u00b7 ' + i.ram + ' \u00b7 ' + i.ssd + '</div>' +
+      '<div><span class="cart-item-grade">' + gradeLabel(i.grade) + '</span></div>' +
+      '<div class="cart-item-price">' + cny(i.price) + ' / ' + usd(i.price) + ' \u00d7 ' + i.qty + ' = ' + cny(sub) + '</div>' +
+      '</div>' +
+      '<div class="cart-item-actions">' +
+      '<div class="cart-qty"><button onclick="changeQty(\'' + i.key.replace(/'/g, "\\'") + '\',-1)">-</button><span>' + i.qty + '</span><button onclick="changeQty(\'' + i.key.replace(/'/g, "\\'") + '\',1)">+</button></div>' +
+      '<button class="cart-item-remove" onclick="removeItem(\'' + i.key.replace(/'/g, "\\'") + '\')">Remove</button>' +
+      '</div></div>';
   });
-  form.submit();
+  body.innerHTML = html;
+  document.getElementById('cartTotalCny').textContent = cny(total);
+  document.getElementById('cartTotalUsd').textContent = '/ ' + usd(total);
+}
+
+function openCart() {
+  document.getElementById('cartDrawer').classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+  renderCart();
+}
+function closeCart() {
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+}
+
+// ============ CHECKOUT ============
+function openCheckout() {
+  if (cart.length === 0) return;
+  var html = '';
+  var total = 0;
+  cart.forEach(function(i) {
+    var sub = i.price * i.qty;
+    total += sub;
+    html += '<div class="order-summary-item"><span><span class="q">' + i.qty + '\u00d7</span> ' + brandDisplay(i.brand) + ' ' + i.model + ' (' + gradeLabel(i.grade) + ')</span><span>' + cny(sub) + '</span></div>';
+  });
+  html += '<div class="order-summary-total"><span>Total (' + cart.reduce(function(s, i) { return s + i.qty; }, 0) + ' units)</span><span>' + cny(total) + ' / ' + usd(total) + '</span></div>';
+  document.getElementById('checkoutSummary').innerHTML = html;
+  document.getElementById('checkoutOverlay').classList.add('open');
+}
+function closeCheckout() {
+  document.getElementById('checkoutOverlay').classList.remove('open');
+}
+
+function submitOrder(e) {
+  e.preventDefault();
+  var name = document.getElementById('custName').value.trim();
+  var email = document.getElementById('custEmail').value.trim();
+  var country = document.getElementById('custCountry').value.trim();
+  if (!name || !email || !country) {
+    document.getElementById('formError').classList.add('show');
+    return false;
+  }
+  document.getElementById('formError').classList.remove('show');
+  var company = document.getElementById('custCompany').value.trim();
+  var address = document.getElementById('custAddress').value.trim();
+  var notes = document.getElementById('custNotes').value.trim();
+  var text = buildListText(name, company, email, country, address, notes);
+  document.getElementById('resultText').textContent = text;
+  document.getElementById('checkoutOverlay').classList.remove('open');
+  document.getElementById('resultOverlay').classList.add('open');
+  return false;
+}
+
+function buildListText(name, company, email, country, address, notes) {
+  var lines = [];
+  var d = new Date();
+  var dateStr = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  lines.push('==========================================');
+  lines.push('ORDER REQUEST - Elaine Supply Chain');
+  lines.push('==========================================');
+  lines.push('Date: ' + dateStr);
+  lines.push('Name: ' + name);
+  if (company) lines.push('Company: ' + company);
+  lines.push('Email: ' + email);
+  lines.push('Country: ' + country);
+  if (address) lines.push('Address: ' + address);
+  if (notes) lines.push('Notes: ' + notes);
+  lines.push('------------------------------------------');
+  lines.push('ITEMS (' + cart.reduce(function(s, i) { return s + i.qty; }, 0) + ' units):');
+  var total = 0;
+  cart.forEach(function(i, n) {
+    var sub = i.price * i.qty;
+    total += sub;
+    lines.push((n + 1) + '. ' + brandDisplay(i.brand) + ' ' + i.model + ' | ' + i.cpu + ' | ' + i.ram + ' | ' + i.ssd + ' | ' + gradeLabel(i.grade) + ' | ' + cny(i.price) + ' (' + usd(i.price) + ') x' + i.qty + ' = ' + cny(sub));
+  });
+  lines.push('------------------------------------------');
+  lines.push('TOTAL: ' + cny(total) + ' / ' + usd(total));
+  lines.push('(Final quote and shipping cost to be confirmed by email.)');
+  return lines.join('\n');
+}
+
+// ============ RESULT ACTIONS ============
+function copyResult() {
+  var text = document.getElementById('resultText').textContent;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() { showToast('Order list copied!'); });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('Order list copied!');
+  }
+}
+function emailResult() {
+  var text = document.getElementById('resultText').textContent;
+  var subject = 'Order Request - ' + document.getElementById('custName').value.trim();
+  var body = encodeURIComponent(text);
+  window.location.href = 'mailto:' + MERCHANT_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + body;
+  showToast('Opening your email app...');
+}
+function closeResult() {
+  document.getElementById('resultOverlay').classList.remove('open');
 }
 
 // ============ TOAST ============
 function showToast(msg) {
-  var toast = document.getElementById('toast');
-  toast.textContent = msg;
-  toast.classList.add('show');
-  clearTimeout(toast._timeout);
-  toast._timeout = setTimeout(function() { toast.classList.remove('show'); }, 2500);
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(function() { t.classList.remove('show'); }, 2200);
 }
 
 // ============ INIT ============
 render();
-
-// ============ PAYPAL RETURN ============
-var params = new URLSearchParams(window.location.search);
-if (params.get('paid') === '1') {
-  showToast('Payment successful! Thank you for your order. We will contact you shortly.');
-}
-if (params.get('cancelled') === '1') {
-  showToast('Payment was cancelled. You can try again.');
-}
+updateCartUI();
 </script>
 </body>
 </html>
