@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Used Laptops & MacBooks - HP / Lenovo / Dell / Apple | Elaine Supply Chain</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8f9fa;color:#333;line-height:1.6}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+/* Hero */
+.hero{text-align:center;padding:70px 20px 50px;background:linear-gradient(160deg,#0b0f1e 0%,#14213d 55%,#1b2a4a 100%);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,rgba(0,212,170,.14),transparent 45%),radial-gradient(circle at 80% 70%,rgba(0,163,255,.16),transparent 45%)}
+.hero h1{font-size:2.7rem;font-weight:700;background:linear-gradient(135deg,#00d4aa,#00a3ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative}
+.hero .tagline{font-size:1.15rem;color:#aab4c8;margin-top:14px;position:relative}
+.hero .brands{display:flex;justify-content:center;gap:16px;margin-top:22px;flex-wrap:wrap;position:relative}
+.hero .brand-pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:#e8ecf4;font-size:.9rem;font-weight:600;padding:8px 22px;border-radius:999px;letter-spacing:.5px}
+
+/* Section title */
+.section-title{text-align:center;font-size:1.8rem;font-weight:600;margin:50px 0 28px;color:#1a1a2e}
+
+/* Features */
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:20px;margin-bottom:50px}
+.feature-card{background:#fff;border-radius:12px;padding:26px 18px;text-align:center;border:1px solid #e0e0e0;transition:transform .3s,border-color .3s}
+.feature-card:hover{transform:translateY(-4px);border-color:#00d4aa}
+.feature-icon{font-size:2.2rem;margin-bottom:10px;display:block}
+.feature-card h3{font-size:.98rem;color:#1a1a2e;margin-bottom:6px}
+.feature-card p{font-size:.83rem;color:#666}
+
+/* Filter bar */
+.filter-bar{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:36px}
+.brand-filter{display:flex;justify-content:center}
+.brand-select{background:#fff;border:1px solid #ddd;border-radius:10px;padding:10px 38px 10px 16px;font-size:.88rem;font-weight:600;color:#333;cursor:pointer;font-family:inherit;outline:none;min-width:180px;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23999' d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;transition:border-color .25s,box-shadow .25s}
+.brand-select:hover,.brand-select:focus{border-color:#00d4aa;box-shadow:0 0 0 3px rgba(0,212,170,.12)}
+.search-box{padding:9px 18px;border:1px solid #ddd;border-radius:999px;font-size:.9rem;width:260px;outline:none;font-family:inherit;transition:border-color .25s}
+.search-box:focus{border-color:#00d4aa}
+
+/* Brand group */
+.brand-group{margin-bottom:46px}
+.brand-group-title{display:flex;align-items:center;gap:12px;font-size:1.45rem;font-weight:700;color:#1a1a2e;margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid #e8ebf2}
+.brand-group-title .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,#00d4aa,#00a3ff)}
+.brand-group-title .count{font-size:.82rem;font-weight:500;color:#999;background:#f0f2f5;border-radius:999px;padding:3px 12px}
+
+/* Models — phone-catalog style cards with visible grade price rows */
+.models{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.model-card{background:#fff;border-radius:14px;overflow:hidden;border:1px solid #e0e0e0;transition:transform .3s,border-color .3s,box-shadow .3s;display:flex;flex-direction:column}
+.model-card:hover{transform:translateY(-4px);border-color:#00d4aa;box-shadow:0 8px 32px rgba(0,212,170,.12)}
+.model-top{background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 40%,#90caf9 100%);padding:14px 20px;color:#0f172a;display:flex;flex-direction:column;gap:10px}
+.model-title-row{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;width:100%}
+.model-top h3{font-size:1.08rem;font-weight:700}
+.model-top .spec-quad{border-bottom:none;padding:0;gap:0 8px}
+.model-top .spec-quad .spec-row .label{color:#1e3a5f;opacity:.72}
+.model-top .spec-quad .spec-row span:last-child{color:#0f172a}
+.add-btn{background:linear-gradient(135deg,#00d4aa,#00a3ff);color:#fff;border:none;border-radius:8px;padding:8px 14px;font-size:.8rem;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s;white-space:nowrap;font-family:inherit}
+.add-btn:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,212,170,.4)}
+.add-btn:active{transform:scale(.95)}
+.add-btn.in-cart{background:#ff6b35}
+.model-info{padding:14px 20px 18px;display:flex;flex-direction:column;flex:1}
+.spec-row{display:flex;justify-content:space-between;font-size:.84rem;color:#555;padding:4px 0;border-bottom:1px dashed #eef0f5}
+.spec-row:last-of-type{border-bottom:none}
+.spec-row .label{color:#999}
+.spec-pair{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+.spec-pair .spec-row{border-bottom:1px dashed #eef0f5}
+.spec-quad{display:grid;grid-template-columns:repeat(4,1fr);gap:0 8px;padding:8px 0 6px;border-bottom:1px dashed #eef0f5}
+.spec-quad .spec-row{display:flex;flex-direction:column;align-items:flex-start;gap:1px;padding:0;border-bottom:none;font-size:.78rem;line-height:1.25;min-width:0}
+.spec-quad .spec-row .label{font-size:.66rem;color:#999;white-space:nowrap}
+.spec-quad .spec-row span:last-child{font-weight:600;color:#333;max-width:100%;overflow-wrap:anywhere;word-break:break-word}
+.price-grades{margin:12px 0 4px;display:flex;flex-direction:column;gap:6px}
+.grade-row{display:flex;justify-content:space-between;align-items:center;background:#f7f9fc;border:1px solid #e8ebf2;border-radius:8px;padding:7px 12px;cursor:pointer;transition:border-color .2s,background .2s}
+.grade-row:hover{border-color:#00d4aa;background:#f0fbf8}
+.grade-row .gname{font-size:.82rem;font-weight:600;color:#444}
+.grade-row .gprice{font-size:.92rem;font-weight:700;color:#1a1a2e}
+.grade-row .gprice .usd{font-size:.78rem;font-weight:500;color:#888;margin-left:6px}
+.grade-row.selected{border-color:#00d4aa;background:#e6faf5;box-shadow:0 0 0 1px #00d4aa}
+.grade-row.selected .gprice{color:#00b390}
+
+/* Empty state */
+.empty-state{text-align:center;color:#999;font-size:.95rem;padding:40px 0;display:none}
+
+/* Floating cart */
+.cart-fab{position:fixed;right:22px;bottom:22px;width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#00d4aa,#00a3ff);color:#fff;border:none;font-size:1.5rem;cursor:pointer;z-index:2990;box-shadow:0 8px 24px rgba(0,212,170,.4);transition:transform .2s;display:flex;align-items:center;justify-content:center;font-family:inherit}
+.cart-fab:hover{transform:scale(1.06)}
+.cart-badge{position:absolute;top:-4px;right:-4px;background:#ff6b35;color:#fff;font-size:.72rem;font-weight:700;min-width:22px;height:22px;border-radius:999px;display:none;align-items:center;justify-content:center;border:2px solid #fff}
+
+/* Cart drawer */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:3000;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.cart-overlay.open{opacity:1;visibility:visible}
+.cart-drawer{position:fixed;top:0;right:0;width:100%;max-width:430px;height:100%;background:#fff;z-index:3001;transform:translateX(100%);transition:transform .35s cubic-bezier(.22,.61,.36,1);display:flex;flex-direction:column;box-shadow:-8px 0 32px rgba(0,0,0,.18)}
+.cart-drawer.open{transform:translateX(0)}
+.cart-header{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;background:linear-gradient(135deg,#14213d,#1e3a5f);color:#fff}
+.cart-header h2{font-size:1.15rem}
+.cart-close{background:rgba(255,255,255,.12);border:none;color:#fff;width:34px;height:34px;border-radius:50%;font-size:1.05rem;cursor:pointer;transition:background .2s;font-family:inherit}
+.cart-close:hover{background:rgba(255,255,255,.25)}
+.cart-body{flex:1;overflow-y:auto;padding:16px 22px}
+.cart-empty{text-align:center;color:#999;font-size:.9rem;padding:60px 0}
+.cart-empty .big{font-size:2.6rem;display:block;margin-bottom:12px}
+.cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid #eef0f5}
+.cart-item-info{flex:1;min-width:0}
+.cart-item-title{font-size:.9rem;font-weight:700;color:#1a1a2e}
+.cart-item-spec{font-size:.76rem;color:#888;margin-top:2px}
+.cart-item-grade{display:inline-block;font-size:.72rem;font-weight:700;background:#e6faf5;color:#00b390;border-radius:5px;padding:2px 8px;margin-top:5px}
+.cart-item-price{font-size:.8rem;color:#555;margin-top:3px}
+.cart-item-actions{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between}
+.cart-qty{display:flex;align-items:center;background:#f0f2f5;border:1px solid #ddd;border-radius:7px;overflow:hidden}
+.cart-qty button{background:transparent;border:none;width:26px;height:30px;font-size:.95rem;cursor:pointer;color:#333;font-family:inherit}
+.cart-qty button:hover{background:#e2e2e2}
+.cart-qty span{width:32px;text-align:center;font-size:.85rem;font-weight:600}
+.cart-item-remove{background:transparent;border:none;color:#ccc;font-size:.85rem;cursor:pointer;transition:color .2s;font-family:inherit}
+.cart-item-remove:hover{color:#ff4444}
+.cart-footer{padding:18px 22px 24px;border-top:1px solid #e8ebf2;background:#fafbfc}
+.cart-total{display:flex;justify-content:space-between;font-size:1.05rem;font-weight:700;color:#1a1a2e;margin-bottom:6px}
+.cart-total .usd{font-size:.85rem;font-weight:500;color:#888}
+.cart-note{font-size:.76rem;color:#999;margin-bottom:14px}
+.submit-btn{width:100%;background:linear-gradient(135deg,#ff6b35,#f97316);color:#fff;border:none;border-radius:10px;padding:14px;font-size:.95rem;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s;font-family:inherit}
+.submit-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(249,115,22,.35)}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* Checkout modal */
+.form-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:3100;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;padding:20px}
+.form-overlay.open{opacity:1;visibility:visible}
+.form-modal{background:#fff;border-radius:16px;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;padding:30px;border:1px solid #e0e0e0;position:relative}
+.form-modal h2{color:#1a1a2e;font-size:1.3rem;margin-bottom:6px}
+.form-modal .form-subtitle{color:#666;font-size:.85rem;margin-bottom:20px}
+.order-summary{background:#f0f2f5;border-radius:10px;padding:14px;margin-bottom:18px;max-height:180px;overflow-y:auto}
+.order-summary h4{color:#888;font-size:.76rem;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.order-summary-items{font-size:.83rem;color:#333}
+.order-summary-item{display:flex;justify-content:space-between;padding:3px 0;gap:10px}
+.order-summary-item .q{color:#00b390;font-weight:600}
+.order-summary-total{display:flex;justify-content:space-between;font-weight:700;color:#00b390;font-size:.95rem;border-top:1px solid #ddd;margin-top:6px;padding-top:8px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;color:#555;font-size:.82rem;margin-bottom:5px;font-weight:500}
+.form-group input,.form-group textarea{width:100%;background:#f8f9fa;border:1px solid #ddd;border-radius:8px;padding:10px 13px;color:#333;font-size:.9rem;font-family:inherit;outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group textarea:focus{border-color:#00d4aa}
+.form-group textarea{resize:vertical;min-height:60px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-error{color:#ff4444;font-size:.8rem;margin-top:4px;display:none}
+.form-error.show{display:block}
+.form-actions{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+.form-back{flex:1;background:transparent;border:1px solid #ddd;color:#666;border-radius:8px;padding:12px;font-size:.88rem;cursor:pointer;transition:border-color .2s,color .2s;font-family:inherit}
+.form-back:hover{border-color:#1a1a2e;color:#1a1a2e}
+.form-submit{flex:2;background:linear-gradient(135deg,#00d4aa,#00a3ff);color:#fff;border:none;border-radius:8px;padding:12px;font-size:.9rem;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s;font-family:inherit}
+.form-submit:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(0,212,170,.35)}
+.copy-btn{flex:2;background:linear-gradient(135deg,#ff6b35,#f97316);color:#fff;border:none;border-radius:8px;padding:12px;font-size:.9rem;font-weight:700;cursor:pointer;transition:transform .2s,box-shadow .2s;font-family:inherit}
+.copy-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(249,115,22,.35)}
+
+/* Toast */
+.toast{position:fixed;top:24px;left:50%;transform:translateX(-50%);background:#00d4aa;color:#fff;padding:12px 28px;border-radius:10px;font-weight:600;font-size:.9rem;z-index:4000;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;box-shadow:0 4px 20px rgba(0,212,170,.3)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(4px)}
+
+/* CTA */
+.cta{text-align:center;padding:40px 20px 90px;background:linear-gradient(180deg,transparent,rgba(0,212,170,.08))}
+.cta p{color:#666;margin-top:16px;font-size:.9rem}
+
+/* Footer */
+.footer{text-align:center;padding:20px;color:#999;font-size:.8rem;border-top:1px solid #e0e0e0}
+
+/* Responsive */
+@media(max-width:768px){
+  .hero h1{font-size:1.9rem}
+  .features{grid-template-columns:repeat(2,1fr);gap:12px}
+  .feature-card{padding:20px 12px}
+  .feature-icon{font-size:1.8rem}
+  .search-box{width:100%}
+  .filter-bar{flex-direction:column;align-items:stretch}
+  .form-row{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .features{grid-template-columns:repeat(2,1fr)}
+  .models{grid-template-columns:1fr}
+  .spec-pair{grid-template-columns:1fr}
+  .hero h1{font-size:1.5rem}
+  .form-modal{padding:22px}
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>Used Apple Watch</h1>
+    <p class="tagline">Apple Watch Series 11 · 10 · SE · Ultra — Grade A Tested Units, Wholesale Prices, Worldwide Shipping</p>
+    <div class="brands">
+      <span class="brand-pill">Apple Watch Series 11</span>
+      <span class="brand-pill">Apple Watch SE</span>
+      <span class="brand-pill">Apple Watch Ultra</span>
+      <span class="brand-pill">Series 6 &amp; Older</span>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- Features -->
+  <h2 class="section-title">Why Buy From Us</h2>
+  <div class="features">
+    <div class="feature-card"><span class="feature-icon">🛡️</span><h3>30-Day Warranty</h3><p>Every unit fully tested, backed by a 30-day warranty</p></div>
+    <div class="feature-card"><span class="feature-icon">✅</span><h3>Grade A Used</h3><p>Professionally inspected, cleaned and quality graded</p></div>
+    <div class="feature-card"><span class="feature-icon">💰</span><h3>Retail Wholesale</h3><p>Best prices for bulk and single orders</p></div>
+    <div class="feature-card"><span class="feature-icon">✈️</span><h3>Worldwide Shipping</h3><p>DHL / FedEx / UPS door-to-door delivery</p></div>
+    <div class="feature-card"><span class="feature-icon">📦</span><h3>Mixed Bulk Orders</h3><p>Mix Apple Watch, phone and laptop models in one container</p></div>
+    <div class="feature-card"><span class="feature-icon">🔒</span><h3>Secure Payment</h3><p>PayPal Buyer Protection for safe checkout</p></div>
+  </div>
+
+  <!-- Filter -->
+  <div class="filter-bar">
+    <div class="brand-filter" id="brandFilter">
+      <select class="brand-select" id="brandSelect" onchange="setBrand(this.value)" aria-label="Filter by brand">
+        <option value="all">All Brands</option>        <option value="Series 11">Series 11</option>
+        <option value="Series 10">Series 10</option>
+        <option value="Series 9">Series 9</option>
+        <option value="Series 8">Series 8</option>
+        <option value="Series 7">Series 7</option>
+        <option value="Series 6">Series 6</option>
+        <option value="SE 3">SE 3</option>
+        <option value="SE 2">SE 2</option>
+        <option value="SE 1">SE 1</option>
+        <option value="Ultra">Ultra</option>
+        <option value="Series 5">Series 5</option>
+        <option value="Series 4">Series 4</option>
+        <option value="Series 3">Series 3</option>
+        <option value="Series 2">Series 2</option>
+        <option value="Series 1">Series 1</option>
+        <option value="1st Gen">1st Gen</option>
+</select>
+    </div>
+    <input class="search-box" id="searchBox" type="text" placeholder="Search model, size, material..." oninput="setSearch(this.value)">
+  </div>
+
+  <!-- Products -->
+  <div id="watchGrid"></div>
+  <div class="empty-state" id="emptyState">No watches match your search. Try a different keyword.</div>
+
+</div>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="container">
+    <p>Build your order list with the cart button below, then submit — we will reply within 24 hours with final pricing and shipping quote.</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<div class="footer">&copy; 2026 Elaine Supply Chain &mdash; Used Laptops. All rights reserved.</div>
+
+<!-- Floating cart button -->
+<button class="cart-fab" onclick="openCart()">🛒<span class="cart-badge" id="cartBadge">0</span></button>
+
+<!-- Cart drawer -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h2>Your Order List</h2>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-body" id="cartBody"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total"><span>Total</span><span><span id="cartTotalCny">¥0</span> <span class="usd" id="cartTotalUsd">/ $0</span></span></div>
+    <div class="cart-note">Prices in CNY (¥) / USD ($) estimate. Final quote confirmed by email.</div>
+    <button class="submit-btn" onclick="openCheckout()">Submit Order List →</button>
+  </div>
+</div>
+
+<!-- Checkout modal -->
+<div class="form-overlay" id="checkoutOverlay">
+  <div class="form-modal">
+    <h2>Submit Your Order List</h2>
+    <p class="form-subtitle">Fill in your contact details — we will confirm the final quote by email.</p>
+    <div class="order-summary">
+      <h4>Order Summary</h4>
+      <div class="order-summary-items" id="checkoutSummary"></div>
+    </div>
+    <form id="checkoutForm" onsubmit="return submitOrder(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Full Name *</label>
+          <input type="text" id="custName" required>
+        </div>
+        <div class="form-group">
+          <label>Company / Shop</label>
+          <input type="text" id="custCompany">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email *</label>
+          <input type="email" id="custEmail" required>
+        </div>
+        <div class="form-group">
+          <label>Country *</label>
+          <input type="text" id="custCountry" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>City / Address</label>
+        <input type="text" id="custAddress">
+      </div>
+      <div class="form-group">
+        <label>Notes (optional)</label>
+        <textarea id="custNotes" placeholder="e.g. preferred shipping method, target price, delivery deadline..."></textarea>
+      </div>
+      <div class="form-error" id="formError">Please fill in all required fields.</div>
+      <div class="form-actions">
+        <button type="button" class="form-back" onclick="closeCheckout()">Back</button>
+        <button type="submit" class="form-submit">Generate My List →</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Result modal -->
+<div class="form-overlay" id="resultOverlay">
+  <div class="form-modal">
+    <h2>Your Order List is Ready</h2>
+    <p class="form-subtitle">Copy the list below and send it to us by email, or download it as a file.</p>
+    <div class="order-summary" style="max-height:300px">
+      <pre id="resultText" style="font-family:inherit;font-size:.83rem;white-space:pre-wrap;word-break:break-word;color:#333"></pre>
+    </div>
+    <div class="form-actions">
+      <button class="form-back" onclick="closeResult()">Back</button>
+      <button class="copy-btn" onclick="copyResult()">Copy List</button>
+      <button class="form-submit" onclick="emailResult()">Send by Email</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ============ PRODUCT DATA (77 Apple Watch models, price in CNY; grades = A+/A/B) ============
+var products = [
+{"brand": "Series 11", "model": "S11", "size": "42mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 11 42mm (GPS)", "cpu": "S11", "ram": "42mm", "ssd": "Aluminum", "grades": {"A+": 1700, "A": 1600, "B": 1500}},
+{"brand": "Series 11", "model": "S11", "size": "42mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch Series 11 42mm (GPS+Cellular)", "cpu": "S11", "ram": "42mm", "ssd": "Aluminum", "grades": {"A+": 1950, "A": 1850, "B": 1750}},
+{"brand": "Series 11", "model": "S11", "size": "46mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 11 46mm (GPS)", "cpu": "S11", "ram": "46mm", "ssd": "Aluminum", "grades": {"A+": 1800, "A": 1700, "B": 1600}},
+{"brand": "Series 11", "model": "S11", "size": "46mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch Series 11 46mm (GPS+Cellular)", "cpu": "S11", "ram": "46mm", "ssd": "Aluminum", "grades": {"A+": 2050, "A": 1950, "B": 1850}},
+{"brand": "Series 11", "model": "S11", "size": "42mm", "material": "Titanium", "internet": "GPS+Cellular", "title": "Apple Watch Series 11 42mm (GPS+Cellular)", "cpu": "S11", "ram": "42mm", "ssd": "Titanium", "grades": {"A+": 3150, "A": 3050, "B": 2950}},
+{"brand": "Series 11", "model": "S11", "size": "46mm", "material": "Titanium", "internet": "GPS+Cellular", "title": "Apple Watch Series 11 46mm (GPS+Cellular)", "cpu": "S11", "ram": "46mm", "ssd": "Titanium", "grades": {"A+": 3350, "A": 3250, "B": 3150}},
+{"brand": "Series 10", "model": "S10", "size": "42mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 10 42mm (GPS)", "cpu": "S10", "ram": "42mm", "ssd": "Aluminum", "grades": {"A+": 1300, "A": 1200, "B": 1100}},
+{"brand": "Series 10", "model": "S10", "size": "42mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch Series 10 42mm (GPS+Cellular)", "cpu": "S10", "ram": "42mm", "ssd": "Aluminum", "grades": {"A+": 1550, "A": 1450, "B": 1350}},
+{"brand": "Series 10", "model": "S10", "size": "46mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 10 46mm (GPS)", "cpu": "S10", "ram": "46mm", "ssd": "Aluminum", "grades": {"A+": 1400, "A": 1300, "B": 1200}},
+{"brand": "Series 10", "model": "S10", "size": "46mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch Series 10 46mm (GPS+Cellular)", "cpu": "S10", "ram": "46mm", "ssd": "Aluminum", "grades": {"A+": 1650, "A": 1550, "B": 1450}},
+{"brand": "Series 10", "model": "S10", "size": "42mm", "material": "Titanium", "internet": "GPS+Cellular", "title": "Apple Watch Series 10 42mm (GPS+Cellular)", "cpu": "S10", "ram": "42mm", "ssd": "Titanium", "grades": {"A+": 2650, "A": 2550, "B": 2450}},
+{"brand": "Series 10", "model": "S10", "size": "46mm", "material": "Titanium", "internet": "GPS+Cellular", "title": "Apple Watch Series 10 46mm (GPS+Cellular)", "cpu": "S10", "ram": "46mm", "ssd": "Titanium", "grades": {"A+": 2850, "A": 2750, "B": 2650}},
+{"brand": "Series 9", "model": "S9", "size": "41mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 9 41mm (GPS)", "cpu": "S9", "ram": "41mm", "ssd": "Aluminum", "grades": {"A+": 1000, "A": 900, "B": 800}},
+{"brand": "Series 9", "model": "S9", "size": "41mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch Series 9 41mm (GPS+Cellular)", "cpu": "S9", "ram": "41mm", "ssd": "Aluminum", "grades": {"A+": 1200, "A": 1100, "B": 1000}},
+{"brand": "Series 9", "model": "S9", "size": "45mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 9 45mm (GPS)", "cpu": "S9", "ram": "45mm", "ssd": "Aluminum", "grades": {"A+": 1100, "A": 1000, "B": 900}},
+{"brand": "Series 9", "model": "S9", "size": "45mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch Series 9 45mm (GPS+Cellular)", "cpu": "S9", "ram": "45mm", "ssd": "Aluminum", "grades": {"A+": 1300, "A": 1200, "B": 1100}},
+{"brand": "Series 9", "model": "S9", "size": "41mm", "material": "Stainless Steel", "internet": "GPS+Cellular", "title": "Apple Watch Series 9 41mm (GPS+Cellular)", "cpu": "S9", "ram": "41mm", "ssd": "Stainless Steel", "grades": {"A+": 1750, "A": 1650, "B": 1550}},
+{"brand": "Series 9", "model": "S9", "size": "45mm", "material": "Stainless Steel", "internet": "GPS+Cellular", "title": "Apple Watch Series 9 45mm (GPS+Cellular)", "cpu": "S9", "ram": "45mm", "ssd": "Stainless Steel", "grades": {"A+": 1950, "A": 1850, "B": 1750}},
+{"brand": "Series 8", "model": "S8", "size": "41mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 8 41mm (GPS)", "cpu": "S8", "ram": "41mm", "ssd": "Aluminum", "grades": {"A+": 850, "A": 800, "B": 750}},
+{"brand": "Series 8", "model": "S8", "size": "41mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch Series 8 41mm (GPS+Cellular)", "cpu": "S8", "ram": "41mm", "ssd": "Aluminum", "grades": {"A+": 1050, "A": 950, "B": 850}},
+{"brand": "Series 8", "model": "S8", "size": "45mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 8 45mm (GPS)", "cpu": "S8", "ram": "45mm", "ssd": "Aluminum", "grades": {"A+": 950, "A": 900, "B": 850}},
+{"brand": "Series 8", "model": "S8", "size": "45mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch Series 8 45mm (GPS+Cellular)", "cpu": "S8", "ram": "45mm", "ssd": "Aluminum", "grades": {"A+": 1150, "A": 1050, "B": 950}},
+{"brand": "Series 8", "model": "S8", "size": "41mm", "material": "Stainless Steel", "internet": "GPS+Cellular", "title": "Apple Watch Series 8 41mm (GPS+Cellular)", "cpu": "S8", "ram": "41mm", "ssd": "Stainless Steel", "grades": {"A+": 1550, "A": 1450, "B": 1350}},
+{"brand": "Series 8", "model": "S8", "size": "45mm", "material": "Stainless Steel", "internet": "GPS+Cellular", "title": "Apple Watch Series 8 45mm (GPS+Cellular)", "cpu": "S8", "ram": "45mm", "ssd": "Stainless Steel", "grades": {"A+": 1750, "A": 1650, "B": 1550}},
+{"brand": "Series 7", "model": "S7", "size": "41mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 7 41mm (GPS)", "cpu": "S7", "ram": "41mm", "ssd": "Aluminum", "grades": {"A+": 650, "A": 600, "B": 550}},
+{"brand": "Series 7", "model": "S7", "size": "41mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch Series 7 41mm (GPS+Cellular)", "cpu": "S7", "ram": "41mm", "ssd": "Aluminum", "grades": {"A+": 850, "A": 800, "B": 750}},
+{"brand": "Series 7", "model": "S7", "size": "45mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 7 45mm (GPS)", "cpu": "S7", "ram": "45mm", "ssd": "Aluminum", "grades": {"A+": 750, "A": 700, "B": 650}},
+{"brand": "Series 7", "model": "S7", "size": "45mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch Series 7 45mm (GPS+Cellular)", "cpu": "S7", "ram": "45mm", "ssd": "Aluminum", "grades": {"A+": 950, "A": 900, "B": 850}},
+{"brand": "Series 7", "model": "S7", "size": "41mm", "material": "Stainless Steel", "internet": "GPS+Cellular", "title": "Apple Watch Series 7 41mm (GPS+Cellular)", "cpu": "S7", "ram": "41mm", "ssd": "Stainless Steel", "grades": {"A+": 1350, "A": 1250, "B": 1150}},
+{"brand": "Series 7", "model": "S7", "size": "45mm", "material": "Stainless Steel", "internet": "GPS+Cellular", "title": "Apple Watch Series 7 45mm (GPS+Cellular)", "cpu": "S7", "ram": "45mm", "ssd": "Stainless Steel", "grades": {"A+": 1550, "A": 1450, "B": 1350}},
+{"brand": "Series 6", "model": "S6", "size": "40mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 6 40mm (GPS)", "cpu": "S6", "ram": "40mm", "ssd": "Aluminum", "grades": {"A+": 400, "A": 350, "B": 300}},
+{"brand": "Series 6", "model": "S6", "size": "40mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch Series 6 40mm (GPS+Cellular)", "cpu": "S6", "ram": "40mm", "ssd": "Aluminum", "grades": {"A+": 550, "A": 500, "B": 450}},
+{"brand": "Series 6", "model": "S6", "size": "44mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 6 44mm (GPS)", "cpu": "S6", "ram": "44mm", "ssd": "Aluminum", "grades": {"A+": null, "A": 450, "B": 400}},
+{"brand": "Series 6", "model": "S6", "size": "44mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch Series 6 44mm (GPS+Cellular)", "cpu": "S6", "ram": "44mm", "ssd": "Aluminum", "grades": {"A+": 600, "A": 550, "B": 500}},
+{"brand": "Series 6", "model": "S6", "size": "40mm", "material": "Stainless Steel", "internet": "GPS+Cellular", "title": "Apple Watch Series 6 40mm (GPS+Cellular)", "cpu": "S6", "ram": "40mm", "ssd": "Stainless Steel", "grades": {"A+": 900, "A": 850, "B": 800}},
+{"brand": "Series 6", "model": "S6", "size": "44mm", "material": "Stainless Steel", "internet": "GPS+Cellular", "title": "Apple Watch Series 6 44mm (GPS+Cellular)", "cpu": "S6", "ram": "44mm", "ssd": "Stainless Steel", "grades": {"A+": 1000, "A": 900, "B": 800}},
+{"brand": "SE 3", "model": "SE 3", "size": "40mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch SE 3 40mm (GPS)", "cpu": "SE 3", "ram": "40mm", "ssd": "Aluminum", "grades": {"A+": 1050, "A": 950, "B": 850}},
+{"brand": "SE 3", "model": "SE 3", "size": "40mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch SE 3 40mm (GPS+Cellular)", "cpu": "SE 3", "ram": "40mm", "ssd": "Aluminum", "grades": {"A+": 1250, "A": 1150, "B": 1050}},
+{"brand": "SE 3", "model": "SE 3", "size": "44mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch SE 3 44mm (GPS)", "cpu": "SE 3", "ram": "44mm", "ssd": "Aluminum", "grades": {"A+": 1150, "A": 1050, "B": 950}},
+{"brand": "SE 3", "model": "SE 3", "size": "44mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch SE 3 44mm (GPS+Cellular)", "cpu": "SE 3", "ram": "44mm", "ssd": "Aluminum", "grades": {"A+": 1350, "A": 1250, "B": 1150}},
+{"brand": "SE 2", "model": "SE 2", "size": "40mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch SE 2 40mm (GPS)", "cpu": "SE 2", "ram": "40mm", "ssd": "Aluminum", "grades": {"A+": 500, "A": 450, "B": 300}},
+{"brand": "SE 2", "model": "SE 2", "size": "40mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch SE 2 40mm (GPS+Cellular)", "cpu": "SE 2", "ram": "40mm", "ssd": "Aluminum", "grades": {"A+": 650, "A": 600, "B": 550}},
+{"brand": "SE 2", "model": "SE 2", "size": "44mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch SE 2 44mm (GPS)", "cpu": "SE 2", "ram": "44mm", "ssd": "Aluminum", "grades": {"A+": 550, "A": 500, "B": 450}},
+{"brand": "SE 2", "model": "SE 2", "size": "44mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch SE 2 44mm (GPS+Cellular)", "cpu": "SE 2", "ram": "44mm", "ssd": "Aluminum", "grades": {"A+": 700, "A": 650, "B": 600}},
+{"brand": "SE 1", "model": "SE 1", "size": "40mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch SE 1 40mm (GPS)", "cpu": "SE 1", "ram": "40mm", "ssd": "Aluminum", "grades": {"A+": null, "A": 330, "B": 300}},
+{"brand": "SE 1", "model": "SE 1", "size": "40mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch SE 1 40mm (GPS+Cellular)", "cpu": "SE 1", "ram": "40mm", "ssd": "Aluminum", "grades": {"A+": null, "A": 450, "B": 400}},
+{"brand": "SE 1", "model": "SE 1", "size": "44mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch SE 1 44mm (GPS)", "cpu": "SE 1", "ram": "44mm", "ssd": "Aluminum", "grades": {"A+": null, "A": 370, "B": 340}},
+{"brand": "SE 1", "model": "SE 1", "size": "44mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch SE 1 44mm (GPS+Cellular)", "cpu": "SE 1", "ram": "44mm", "ssd": "Aluminum", "grades": {"A+": 500, "A": 450, "B": 400}},
+{"brand": "Ultra", "model": "Ultra 3", "size": "49mm", "material": "Titanium", "internet": "GPS+Cellular", "title": "Apple Watch Ultra 49mm (GPS+Cellular)", "cpu": "Ultra 3", "ram": "49mm", "ssd": "Titanium", "grades": {"A+": 4450, "A": 4350, "B": 4250}},
+{"brand": "Ultra", "model": "Ultra 3", "size": "49mm", "material": "Titanium Black", "internet": "GPS+Cellular", "title": "Apple Watch Ultra 49mm (GPS+Cellular)", "cpu": "Ultra 3", "ram": "49mm", "ssd": "Titanium Black", "grades": {"A+": 4650, "A": 4550, "B": 4450}},
+{"brand": "Ultra", "model": "Ultra 2", "size": "49mm", "material": "Titanium", "internet": "GPS+Cellular", "title": "Apple Watch Ultra 49mm (GPS+Cellular)", "cpu": "Ultra 2", "ram": "49mm", "ssd": "Titanium", "grades": {"A+": 2950, "A": 2850, "B": 2750}},
+{"brand": "Ultra", "model": "Ultra 2", "size": "49mm", "material": "Titanium Black", "internet": "GPS+Cellular", "title": "Apple Watch Ultra 49mm (GPS+Cellular)", "cpu": "Ultra 2", "ram": "49mm", "ssd": "Titanium Black", "grades": {"A+": 3150, "A": 3050, "B": 2950}},
+{"brand": "Ultra", "model": "Ultra 1", "size": "49mm", "material": "Titanium", "internet": "GPS+Cellular", "title": "Apple Watch Ultra 49mm (GPS+Cellular)", "cpu": "Ultra 1", "ram": "49mm", "ssd": "Titanium", "grades": {"A+": 2050, "A": 1950, "B": 1850}},
+{"brand": "Series 5", "model": "S5", "size": "40mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 5 40mm (GPS)", "cpu": "S5", "ram": "40mm", "ssd": "Aluminum", "grades": {"A+": " none", "A": 350, "B": 280}},
+{"brand": "Series 5", "model": "S5", "size": "40mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch Series 5 40mm (GPS+Cellular)", "cpu": "S5", "ram": "40mm", "ssd": "Aluminum", "grades": {"A+": null, "A": 470, "B": 440}},
+{"brand": "Series 5", "model": "S5", "size": "44mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 5 44mm (GPS)", "cpu": "S5", "ram": "44mm", "ssd": "Aluminum", "grades": {"A+": " none", "A": 390, "B": 360}},
+{"brand": "Series 5", "model": "S5", "size": "44mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch Series 5 44mm (GPS+Cellular)", "cpu": "S5", "ram": "44mm", "ssd": "Aluminum", "grades": {"A+": null, "A": 520, "B": 490}},
+{"brand": "Series 5", "model": "S5", "size": "40mm", "material": "Stainless Steel", "internet": "GPS+Cellular", "title": "Apple Watch Series 5 40mm (GPS+Cellular)", "cpu": "S5", "ram": "40mm", "ssd": "Stainless Steel", "grades": {"A+": " none", "A": 670, "B": 640}},
+{"brand": "Series 5", "model": "S5", "size": "44mm", "material": "Stainless Steel", "internet": "GPS+Cellular", "title": "Apple Watch Series 5 44mm (GPS+Cellular)", "cpu": "S5", "ram": "44mm", "ssd": "Stainless Steel", "grades": {"A+": null, "A": 770, "B": 740}},
+{"brand": "Series 4", "model": "S4", "size": "40mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 4 40mm (GPS)", "cpu": "S4", "ram": "40mm", "ssd": "Aluminum", "grades": {"A+": " none", "A": 290, "B": 260}},
+{"brand": "Series 4", "model": "S4", "size": "40mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch Series 4 40mm (GPS+Cellular)", "cpu": "S4", "ram": "40mm", "ssd": "Aluminum", "grades": {"A+": null, "A": 410, "B": 380}},
+{"brand": "Series 4", "model": "S4", "size": "44mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 4 44mm (GPS)", "cpu": "S4", "ram": "44mm", "ssd": "Aluminum", "grades": {"A+": " none", "A": 320, "B": 290}},
+{"brand": "Series 4", "model": "S4", "size": "44mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch Series 4 44mm (GPS+Cellular)", "cpu": "S4", "ram": "44mm", "ssd": "Aluminum", "grades": {"A+": null, "A": 450, "B": 420}},
+{"brand": "Series 4", "model": "S4", "size": "40mm", "material": "Stainless Steel", "internet": "GPS+Cellular", "title": "Apple Watch Series 4 40mm (GPS+Cellular)", "cpu": "S4", "ram": "40mm", "ssd": "Stainless Steel", "grades": {"A+": " none", "A": 570, "B": 540}},
+{"brand": "Series 4", "model": "S4", "size": "44mm", "material": "Stainless Steel", "internet": "GPS+Cellular", "title": "Apple Watch Series 4 44mm (GPS+Cellular)", "cpu": "S4", "ram": "44mm", "ssd": "Stainless Steel", "grades": {"A+": null, "A": 670, "B": 640}},
+{"brand": "Series 3", "model": "S3", "size": "38mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 3 38mm (GPS)", "cpu": "S3", "ram": "38mm", "ssd": "Aluminum", "grades": {"A+": null, "A": 220, "B": 160}},
+{"brand": "Series 3", "model": "S3", "size": "38mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch Series 3 38mm (GPS+Cellular)", "cpu": "S3", "ram": "38mm", "ssd": "Aluminum", "grades": {"A+": null, "A": 320, "B": 260}},
+{"brand": "Series 3", "model": "S3", "size": "42mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 3 42mm (GPS)", "cpu": "S3", "ram": "42mm", "ssd": "Aluminum", "grades": {"A+": null, "A": 250, "B": 190}},
+{"brand": "Series 3", "model": "S3", "size": "42mm", "material": "Aluminum", "internet": "GPS+Cellular", "title": "Apple Watch Series 3 42mm (GPS+Cellular)", "cpu": "S3", "ram": "42mm", "ssd": "Aluminum", "grades": {"A+": null, "A": 350, "B": 290}},
+{"brand": "Series 2", "model": "S2", "size": "38mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 2 38mm (GPS)", "cpu": "S2", "ram": "38mm", "ssd": "Aluminum", "grades": {"A+": null, "A": 150, "B": 130}},
+{"brand": "Series 2", "model": "S2", "size": "42mm", "material": "Aluminum", "internet": "GPS", "title": "Apple Watch Series 2 42mm (GPS)", "cpu": "S2", "ram": "42mm", "ssd": "Aluminum", "grades": {"A+": null, "A": 170, "B": 140}},
+{"brand": "Series 2", "model": "S2", "size": "42mm", "material": "Stainless Steel", "internet": "GPS", "title": "Apple Watch Series 2 42mm (GPS)", "cpu": "S2", "ram": "42mm", "ssd": "Stainless Steel", "grades": {"A+": null, "A": 320, "B": 300}},
+{"brand": "Series 1", "model": "S1", "size": "38mm", "material": "Aluminum", "internet": "GPS (Phone)", "title": "Apple Watch Series 1 38mm (GPS (Phone))", "cpu": "S1", "ram": "38mm", "ssd": "Aluminum", "grades": {"A+": null, "A": 120, "B": 100}},
+{"brand": "Series 1", "model": "S1", "size": "42mm", "material": "Aluminum", "internet": "GPS (Phone)", "title": "Apple Watch Series 1 42mm (GPS (Phone))", "cpu": "S1", "ram": "42mm", "ssd": "Aluminum", "grades": {"A+": null, "A": 150, "B": 130}},
+{"brand": "1st Gen", "model": "Watch 1", "size": "38mm", "material": "Aluminum", "internet": "GPS (Phone)", "title": "Apple Watch (1st Gen) 38mm (GPS (Phone))", "cpu": "Watch 1", "ram": "38mm", "ssd": "Aluminum", "grades": {"A+": null, "A": 90, "B": 70}},
+{"brand": "1st Gen", "model": "Watch 1", "size": "42mm", "material": "Aluminum", "internet": "GPS (Phone)", "title": "Apple Watch (1st Gen) 42mm (GPS (Phone))", "cpu": "Watch 1", "ram": "42mm", "ssd": "Aluminum", "grades": {"A+": null, "A": 120, "B": 100}},
+{"brand": "1st Gen", "model": "Watch 1", "size": "42mm", "material": "Stainless Steel", "internet": "GPS (Phone)", "title": "Apple Watch (1st Gen) 42mm (GPS (Phone))", "cpu": "Watch 1", "ram": "42mm", "ssd": "Stainless Steel", "grades": {"A+": null, "A": 270, "B": 250}}
+];
+
+// ============ STATE ============
+var USD_RATE = 6.65; // CNY -> USD estimate
+var MERCHANT_EMAIL = 'sales@elainesupplychain.com'; // TODO: replace with your receiving email
+var activeBrand = 'all';
+var searchTerm = '';
+var cart = loadCart();
+var selectedGrade = {};
+
+function brandDisplay(b) { return b === 'LENOVO' ? 'Lenovo' : b === 'DELL' ? 'Dell' : b; }
+function titleOf(p) { return p.title || (brandDisplay(p.brand) + ' ' + p.model); }
+function cny(v) { return '\u00a5' + v.toLocaleString('en-US'); }
+function usd(v) { return '$' + (Math.round(v / USD_RATE * 100) / 100).toLocaleString('en-US'); }
+function specText(p) { return p.model + ' \u00b7 ' + p.size + ' \u00b7 ' + p.material + ' \u00b7 ' + p.internet; }
+function gradeLabel(g) {
+  if (g === 'A+') return 'A+ Grade';
+  if (g === 'A') return 'A Grade';
+  return 'B Grade';
+}
+
+// ============ CART PERSISTENCE (shared across pages via localStorage) ============
+function loadCart() {
+  try { return JSON.parse(localStorage.getItem('esc_cart_watch') || '[]'); } catch (e) { return []; }
+}
+function saveCart() {
+  localStorage.setItem('esc_cart_watch', JSON.stringify(cart));
+  updateCartUI();
+}
+function cartKey(p, grade) { return p.brand + '|' + p.model + '|' + p.size + '|' + p.material + '|' + p.internet + '|' + grade; }
+
+// ============ RENDER PRODUCTS ============
+function filteredProducts() {
+  var kw = searchTerm.toLowerCase();
+  return products.filter(function(p) {
+    if (activeBrand !== 'all' && p.brand !== activeBrand) return false;
+    if (!kw) return true;
+    var hay = (p.brand + ' ' + p.model + ' ' + p.size + ' ' + p.material + ' ' + p.internet + ' ' + (p.title || '') + ' ' + (p.year || '')).toLowerCase();
+    return hay.indexOf(kw) !== -1;
+  });
+}
+
+function render() {
+  var list = filteredProducts();
+  var grid = document.getElementById('watchGrid');
+  var empty = document.getElementById('emptyState');
+  if (list.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  var brands = ["Series 11", "Series 10", "Series 9", "Series 8", "Series 7", "Series 6", "SE 3", "SE 2", "SE 1", "Ultra", "Series 5", "Series 4", "Series 3", "Series 2", "Series 1", "1st Gen"];
+  var html = '';
+  brands.forEach(function(b) {
+    var items = list.filter(function(p) { return p.brand === b; });
+    if (items.length === 0) return;
+    html += '<div class="brand-group">';
+    html += '<div class="brand-group-title"><span class="dot"></span>' + brandDisplay(b) +
+            '<span class="count">' + items.length + ' model' + (items.length > 1 ? 's' : '') + '</span></div>';
+    html += '<div class="models">';
+    items.forEach(function(p) {
+      var key = cartKey(p, 'A+');
+      var inCart = cart.some(function(i) { return i.key === cartKey(p, (selectedGrade[key] || 'A+')); });
+      html += '<div class="model-card">';
+      html += '<div class="model-top">';
+      html += '<div class="model-title-row"><h3>' + titleOf(p) + '</h3>' +
+              '<button class="add-btn' + (inCart ? ' in-cart' : '') + '" id="addbtn-' + key.replace(/[^a-zA-Z0-9]/g, '') + '" onclick="quickAdd(\'' + key.replace(/'/g, "\\'") + '\')">' + (inCart ? 'In Cart ✓' : 'Add to Cart') + '</button></div>';
+      html += '<div class="spec-quad">';
+      html += '<div class="spec-row"><span class="label">Model</span><span>' + p.model + '</span></div>';
+      html += '<div class="spec-row"><span class="label">Size</span><span>' + p.size + '</span></div>';
+      html += '<div class="spec-row"><span class="label">Material</span><span>' + p.material + '</span></div>';
+      html += '<div class="spec-row"><span class="label">Internet</span><span>' + p.internet + '</span></div>';
+      html += '</div>';
+      html += '</div>';
+      html += '<div class="model-info">';
+      html += '<div class="price-grades">';
+      ['A+', 'A', 'B'].forEach(function(g) {
+        var gkey = cartKey(p, g);
+        var sel = selectedGrade[key] === g;
+        var gv = p.grades[g];
+        var gprice = (gv == null) ? '<span class="gprice">N/A</span>' : '<span class="gprice">' + cny(gv) + '<span class="usd">/ ' + usd(gv) + '</span></span>';
+        html += '<div class="grade-row' + (sel ? ' selected' : '') + '" onclick="selectGrade(\'' + key.replace(/'/g, "\\'") + '\',\'' + g + '\')">' +
+                '<span class="gname">' + gradeLabel(g) + '</span>' +
+                gprice + '</div>';
+      });
+      html += '</div></div></div>';
+    });
+    html += '</div></div>';
+  });
+  grid.innerHTML = html;
+}
+
+// ============ GRADE SELECTION ============
+function selectGrade(key, g) {
+  var p = findProductByKey(key);
+  if (p && p.grades[g] == null) return;
+  selectedGrade[key] = g;
+  render();
+}
+
+// ============ FILTER / SEARCH ============
+function setBrand(b) {
+  activeBrand = b;
+  var sel = document.getElementById('brandSelect');
+  if (sel) sel.value = b;
+  render();
+}
+function setSearch(v) { searchTerm = v.trim(); render(); }
+
+// ============ CART ACTIONS ============
+function findProductByKey(key) {
+  var parts = key.split('|');
+  for (var i = 0; i < products.length; i++) {
+    var p = products[i];
+    if (p.brand + '|' + p.model + '|' + p.size + '|' + p.material + '|' + p.internet === parts.slice(0, 5).join('|')) return p;
+  }
+  return null;
+}
+
+function quickAdd(key) {
+  var idx = cart.findIndex(function(i) { return i.key === key; });
+  if (idx >= 0) {
+    cart.splice(idx, 1);
+    showToast('Removed from order list');
+  } else {
+    var p = findProductByKey(key);
+    if (!p) return;
+    var g = key.split('|')[5] || 'A+';
+    var ex = cart.find(function(i) { return i.key === key; });
+    if (ex) { ex.qty += 1; } else { cart.push({ key: key, brand: p.brand, title: titleOf(p), cpu: p.cpu, ram: p.ram, ssd: p.ssd, grade: g, price: p.grades[g], qty: 1 }); }
+    showToast('Added to order list');
+  }
+  saveCart();
+  render();
+}
+
+function addToCart(key) {
+  var idx = cart.findIndex(function(i) { return i.key === key; });
+  if (idx >= 0) { cart[idx].qty += 1; showToast('Quantity updated'); }
+  else {
+    var p = findProductByKey(key);
+    if (!p) return;
+    var g = key.split('|')[5] || 'A+';
+    cart.push({ key: key, brand: p.brand, title: titleOf(p), cpu: p.cpu, ram: p.ram, ssd: p.ssd, grade: g, price: p.grades[g], qty: 1 });
+    showToast('Added to order list');
+  }
+  saveCart();
+  render();
+}
+
+function changeQty(key, delta) {
+  var idx = cart.findIndex(function(i) { return i.key === key; });
+  if (idx < 0) return;
+  cart[idx].qty += delta;
+  if (cart[idx].qty < 1) cart[idx].qty = 1;
+  if (cart[idx].qty > 99) cart[idx].qty = 99;
+  saveCart();
+  renderCart();
+}
+
+function removeItem(key) {
+  cart = cart.filter(function(i) { return i.key !== key; });
+  saveCart();
+  render();
+  renderCart();
+}
+
+// ============ CART UI ============
+function updateCartUI() {
+  var badge = document.getElementById('cartBadge');
+  var count = cart.reduce(function(s, i) { return s + i.qty; }, 0);
+  badge.textContent = count;
+  badge.style.display = count > 0 ? 'flex' : 'none';
+  renderCart();
+}
+
+function renderCart() {
+  var body = document.getElementById('cartBody');
+  var footer = document.getElementById('cartFooter');
+  if (cart.length === 0) {
+    body.innerHTML = '<div class="cart-empty"><span class="big">🛒</span>Your order list is empty.<br>Click "Add to Cart" on any watch to start.</div>';
+    footer.style.display = 'none';
+    document.getElementById('cartTotalCny').textContent = cny(0);
+    document.getElementById('cartTotalUsd').textContent = '/ ' + usd(0);
+    return;
+  }
+  footer.style.display = 'block';
+  var html = '';
+  var total = 0;
+  cart.forEach(function(i) {
+    var sub = i.price * i.qty;
+    total += sub;
+    html += '<div class="cart-item">' +
+      '<div class="cart-item-info">' +
+      '<div class="cart-item-title">' + i.title + '</div>' +
+      '<div class="cart-item-spec">' + i.cpu + ' \u00b7 ' + i.ram + ' \u00b7 ' + i.ssd + '</div>' +
+      '<div><span class="cart-item-grade">' + gradeLabel(i.grade) + '</span></div>' +
+      '<div class="cart-item-price">' + cny(i.price) + ' / ' + usd(i.price) + ' \u00d7 ' + i.qty + ' = ' + cny(sub) + '</div>' +
+      '</div>' +
+      '<div class="cart-item-actions">' +
+      '<div class="cart-qty"><button onclick="changeQty(\'' + i.key.replace(/'/g, "\\'") + '\',-1)">-</button><span>' + i.qty + '</span><button onclick="changeQty(\'' + i.key.replace(/'/g, "\\'") + '\',1)">+</button></div>' +
+      '<button class="cart-item-remove" onclick="removeItem(\'' + i.key.replace(/'/g, "\\'") + '\')">Remove</button>' +
+      '</div></div>';
+  });
+  body.innerHTML = html;
+  document.getElementById('cartTotalCny').textContent = cny(total);
+  document.getElementById('cartTotalUsd').textContent = '/ ' + usd(total);
+}
+
+function openCart() {
+  document.getElementById('cartDrawer').classList.add('open');
+  document.getElementById('cartOverlay').classList.add('open');
+  renderCart();
+}
+function closeCart() {
+  document.getElementById('cartDrawer').classList.remove('open');
+  document.getElementById('cartOverlay').classList.remove('open');
+}
+
+// ============ CHECKOUT ============
+function openCheckout() {
+  if (cart.length === 0) return;
+  var html = '';
+  var total = 0;
+  cart.forEach(function(i) {
+    var sub = i.price * i.qty;
+    total += sub;
+    html += '<div class="order-summary-item"><span><span class="q">' + i.qty + '\u00d7</span> ' + i.title + ' (' + gradeLabel(i.grade) + ')</span><span>' + cny(sub) + '</span></div>';
+  });
+  html += '<div class="order-summary-total"><span>Total (' + cart.reduce(function(s, i) { return s + i.qty; }, 0) + ' units)</span><span>' + cny(total) + ' / ' + usd(total) + '</span></div>';
+  document.getElementById('checkoutSummary').innerHTML = html;
+  document.getElementById('checkoutOverlay').classList.add('open');
+}
+function closeCheckout() {
+  document.getElementById('checkoutOverlay').classList.remove('open');
+}
+
+function submitOrder(e) {
+  e.preventDefault();
+  var name = document.getElementById('custName').value.trim();
+  var email = document.getElementById('custEmail').value.trim();
+  var country = document.getElementById('custCountry').value.trim();
+  if (!name || !email || !country) {
+    document.getElementById('formError').classList.add('show');
+    return false;
+  }
+  document.getElementById('formError').classList.remove('show');
+  var company = document.getElementById('custCompany').value.trim();
+  var address = document.getElementById('custAddress').value.trim();
+  var notes = document.getElementById('custNotes').value.trim();
+  var text = buildListText(name, company, email, country, address, notes);
+  document.getElementById('resultText').textContent = text;
+  document.getElementById('checkoutOverlay').classList.remove('open');
+  document.getElementById('resultOverlay').classList.add('open');
+  return false;
+}
+
+function buildListText(name, company, email, country, address, notes) {
+  var lines = [];
+  var d = new Date();
+  var dateStr = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  lines.push('==========================================');
+  lines.push('ORDER REQUEST - Elaine Supply Chain');
+  lines.push('==========================================');
+  lines.push('Date: ' + dateStr);
+  lines.push('Name: ' + name);
+  if (company) lines.push('Company: ' + company);
+  lines.push('Email: ' + email);
+  lines.push('Country: ' + country);
+  if (address) lines.push('Address: ' + address);
+  if (notes) lines.push('Notes: ' + notes);
+  lines.push('------------------------------------------');
+  lines.push('ITEMS (' + cart.reduce(function(s, i) { return s + i.qty; }, 0) + ' units):');
+  var total = 0;
+  cart.forEach(function(i, n) {
+    var sub = i.price * i.qty;
+    total += sub;
+    lines.push((n + 1) + '. ' + i.title + ' | ' + i.cpu + ' | ' + i.ram + ' | ' + i.ssd + ' | ' + gradeLabel(i.grade) + ' | ' + cny(i.price) + ' (' + usd(i.price) + ') x' + i.qty + ' = ' + cny(sub));
+  });
+  lines.push('------------------------------------------');
+  lines.push('TOTAL: ' + cny(total) + ' / ' + usd(total));
+  lines.push('(Final quote and shipping cost to be confirmed by email.)');
+  return lines.join('\n');
+}
+
+// ============ RESULT ACTIONS ============
+function copyResult() {
+  var text = document.getElementById('resultText').textContent;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() { showToast('Order list copied!'); });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('Order list copied!');
+  }
+}
+function emailResult() {
+  var text = document.getElementById('resultText').textContent;
+  var subject = 'Order Request - ' + document.getElementById('custName').value.trim();
+  var body = encodeURIComponent(text);
+  window.location.href = 'mailto:' + MERCHANT_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + body;
+  showToast('Opening your email app...');
+}
+function closeResult() {
+  document.getElementById('resultOverlay').classList.remove('open');
+}
+
+// ============ TOAST ============
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(function() { t.classList.remove('show'); }, 2200);
+}
+
+// ============ INIT ============
+render();
+updateCartUI();
+</script>
+</body>
+</html>
