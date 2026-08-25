@@ -172,9 +172,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   .hero h1{font-size:1.5rem}
   .form-modal{padding:22px}
 }
+
+/* ===== Site Nav ===== */
+.site-nav{display:flex;justify-content:center;align-items:center;gap:26px;flex-wrap:wrap;background:linear-gradient(180deg,#0b0f1e,#14213d);padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.08)}
+.site-nav a{color:#cbd5e1;text-decoration:none;font-size:.92rem;font-weight:600;padding:6px 14px;border-radius:20px;transition:all .2s}
+.site-nav a:hover{color:#fff;background:rgba(255,255,255,.1)}
+.site-nav a.active{color:#fff;background:rgba(255,255,255,.14);box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+@media (max-width:600px){.site-nav{gap:10px;padding:10px 8px}.site-nav a{font-size:.8rem;padding:5px 10px}}
+
 </style>
 </head>
 <body>
+
+<nav class="site-nav">
+  <a href="index.html">Phones</a>
+  <a href="laptop-shop.html" class="active">Laptops &amp; MacBooks</a>
+  <a href="smartwatch-shop.html">Smart Watches</a>
+</nav>
 
 <!-- Hero -->
 <section class="hero">
