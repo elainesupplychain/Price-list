@@ -9,13 +9,86 @@
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f8f9fa;color:#333;line-height:1.6}
 .container{max-width:1200px;margin:0 auto;padding:0 20px}
 
-/* Hero */
-.hero{text-align:center;padding:70px 20px 50px;background:linear-gradient(160deg,#0b0f1e 0%,#14213d 55%,#1b2a4a 100%);position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,rgba(0,212,170,.14),transparent 45%),radial-gradient(circle at 80% 70%,rgba(0,163,255,.16),transparent 45%)}
-.hero h1{font-size:2.7rem;font-weight:700;background:linear-gradient(135deg,#00d4aa,#00a3ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative}
-.hero .tagline{font-size:1.15rem;color:#aab4c8;margin-top:14px;position:relative}
-.hero .brands{display:flex;justify-content:center;gap:16px;margin-top:22px;flex-wrap:wrap;position:relative}
-.hero .brand-pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:#e8ecf4;font-size:.9rem;font-weight:600;padding:8px 22px;border-radius:999px;letter-spacing:.5px}
+/* Header (unified with index.html) */
+.header{
+  background:linear-gradient(135deg,#e3f2fd 0%,#bbdefb 40%,#90caf9 100%);
+  color:#1a237e;padding:40px 16px 24px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.header::before{
+  content:'';position:absolute;top:-80px;right:-80px;
+  width:260px;height:260px;border-radius:50%;
+  background:radial-gradient(circle,rgba(25,118,210,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.header .logo-area{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  margin-bottom:10px;
+}
+.header .logo-icon{
+  width:48px;height:48px;background:linear-gradient(135deg,#3b82f6,#2563eb);
+  border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;font-weight:800;color:#fff;flex-shrink:0;
+  box-shadow:0 4px 14px rgba(59,130,246,0.4);
+}
+.header h1{font-size:1.8rem;font-weight:800;letter-spacing:-0.5px;line-height:1.2;color:#1a237e}
+.header .sub{font-size:0.9rem;color:#283593;margin-top:6px;letter-spacing:0.3px}
+.header .warranty-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,#059669,#10b981);
+  color:#fff;padding:6px 16px;border-radius:20px;
+  font-size:0.78rem;font-weight:600;margin-top:14px;
+  box-shadow:0 2px 8px rgba(5,150,105,0.35);
+  letter-spacing:0.2px;
+}
+.header .warranty-badge .check{font-size:0.9rem}
+.orange-notice-badge{
+  display:inline-block;
+  background:linear-gradient(135deg,#ea580c,#f97316);
+  color:#fff;padding:5px 14px;border-radius:16px;
+  font-size:0.74rem;font-weight:600;margin-top:8px;
+  box-shadow:0 2px 8px rgba(234,88,12,0.35);
+  letter-spacing:0.2px;
+}
+.header .contact{
+  font-size:0.78rem;color:#283593;margin-top:14px;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:16px;
+}
+.header .contact span{white-space:nowrap}
+.currency-switch{
+  max-width:520px;margin:14px auto 0;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  flex-wrap:wrap;position:relative;z-index:1;
+}
+.currency-label{font-size:0.78rem;color:#283593;font-weight:600;margin-right:4px}
+.currency-btn{
+  padding:6px 14px;border-radius:8px;border:1px solid #334155;
+  background:#fff;color:#1a237e;font-size:0.8rem;font-weight:600;
+  cursor:pointer;transition:all .2s;
+}
+.currency-btn:hover{border-color:#3b82f6;color:#2563eb}
+.currency-btn.active{background:#3b82f6;border-color:#3b82f6;color:#fff;box-shadow:0 2px 8px rgba(59,130,246,0.35)}
+.search-wrap{
+  max-width:520px;margin:18px auto 0;
+  position:relative;z-index:1;
+}
+.search-wrap input{
+  width:100%;padding:10px 16px 10px 40px;
+  border:1px solid #334155;border-radius:8px;
+  background:#fff;color:#1a237e;font-size:0.9rem;
+  outline:none;transition:border .2s;
+}
+.search-wrap input:focus{border-color:#3b82f6}
+.search-wrap input::placeholder{color:#90a4ae}
+.search-wrap .search-icon{
+  position:absolute;left:14px;top:50%;transform:translateY(-50%);
+  color:#5c6bc0;font-size:1rem;
+}
+@media(max-width:768px){
+  .header h1{font-size:1.35rem}
+  .header{padding:28px 12px 18px}
+  .header .logo-icon{width:40px;height:40px;font-size:1.2rem}
+}
 
 /* Section title */
 .section-title{text-align:center;font-size:1.8rem;font-weight:600;margin:50px 0 28px;color:#1a1a2e}
@@ -190,19 +263,44 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   <a href="smartwatch-shop.html">Smart Watches</a>
 </nav>
 
-<!-- Hero -->
-<section class="hero">
-  <div class="container">
-    <h1>Used Laptops &amp; MacBooks</h1>
-    <p class="tagline">HP · Lenovo · Dell · Apple — Grade A Tested Units, Wholesale Prices, Worldwide Shipping</p>
-    <div class="brands">
-      <span class="brand-pill">HP ProBook / EliteBook</span>
-      <span class="brand-pill">Lenovo ThinkPad</span>
-      <span class="brand-pill">Dell Latitude</span>
-      <span class="brand-pill">Apple MacBook</span>
+<!-- Header (unified with index.html) -->
+<div class="header">
+  <div class="logo-area">
+    <div class="logo-icon">ES</div>
+    <div>
+      <h1>Elaine Supply Chain - Wholesale Used Laptop &amp; MacBook Price List</h1>
+      <div class="sub">Wholesale Laptop &amp; MacBook Price List &middot; Shenzhen</div>
     </div>
   </div>
-</section>
+  <div class="warranty-badge">
+    <span class="check">&#10003;</span> <span>30-Day Warranty Included (&nbsp;Non-user-caused damage&nbsp;)</span>
+  </div>
+  <div class="warranty-badge">
+    <span class="check">&#10003;</span> <span>All laptops are Fully Tested Preowned</span>
+  </div>
+  <div class="orange-notice-badge">
+    Random spec configuration! Pick a specific spec need additional cost!
+  </div>
+  <div class="contact">
+    <span>&#9993; WeChat: 17850136306</span>
+    <span>&#9742; WhatsApp: +1 626-539-2631</span>
+  </div>
+  <div class="currency-switch">
+    <span class="currency-label">Currency:</span>
+    <button class="currency-btn active" data-cur="CNY" onclick="setCurrency('CNY')">CNY &#165;</button>
+    <button class="currency-btn" data-cur="USD" onclick="setCurrency('USD')">USD $</button>
+    <button class="currency-btn" data-cur="EUR" onclick="setCurrency('EUR')">EUR &#8364;</button>
+    <button class="currency-btn" data-cur="GBP" onclick="setCurrency('GBP')">GBP &#163;</button>
+    <button class="currency-btn" data-cur="AUD" onclick="setCurrency('AUD')">AUD A$</button>
+    <button class="currency-btn" data-cur="NGN" onclick="setCurrency('NGN')">NGN &#8358;</button>
+    <button class="currency-btn" data-cur="CDF" onclick="setCurrency('CDF')">CDF FC</button>
+    <button class="currency-btn" data-cur="ZMW" onclick="setCurrency('ZMW')">ZMW ZK</button>
+  </div>
+  <div class="search-wrap">
+    <span class="search-icon">&#128269;</span>
+    <input type="text" id="searchBox" placeholder="Search model, CPU, RAM..." oninput="setSearch(this.value)">
+  </div>
+</div>
 
 <div class="container">
 
@@ -231,7 +329,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         <option value="MacBook Pro (Intel)">MacBook Pro (Intel)</option>
       </select>
     </div>
-    <input class="search-box" id="searchBox" type="text" placeholder="Search model, CPU, RAM..." oninput="setSearch(this.value)">
+
   </div>
 
   <!-- Products -->
@@ -531,8 +629,43 @@ var selectedGrade = {};
 
 function brandDisplay(b) { return b === 'LENOVO' ? 'Lenovo' : b === 'DELL' ? 'Dell' : b; }
 function titleOf(p) { return p.title || (brandDisplay(p.brand) + ' ' + p.model); }
+// ============ MULTI-CURRENCY (unified with index.html) ============
+var curCurrency = 'CNY';
+var CURRENCY_META = {
+  CNY: {sym:'\u00a5'},
+  USD: {sym:'$'},
+  EUR: {sym:'\u20ac'},
+  GBP: {sym:'\u00a3'},
+  AUD: {sym:'A$'},
+  NGN: {sym:'\u20a6'},
+  CDF: {sym:'FC'},
+  ZMW: {sym:'ZK'}
+};
+function cnyTo(cny, cur){
+  if(cur==='USD') return Math.round(cny/6.65 + 0.2);
+  if(cur==='EUR') return Math.round(cny/7.71 + 0.2);
+  if(cur==='GBP') return Math.round(cny/9.02 + 0.2);
+  if(cur==='AUD') return Math.round(cny/4.72 + 0.2);
+  if(cur==='NGN') return Math.round(cny*209);
+  if(cur==='CDF') return Math.round(cny*337.5);
+  if(cur==='ZMW') return Math.round(cny*2.81);
+  return cny;
+}
 function cny(v) { return '\u00a5' + v.toLocaleString('en-US'); }
-function usd(v) { return '$' + (Math.round(v / USD_RATE * 100) / 100).toLocaleString('en-US'); }
+function usd(v) {
+  var c = curCurrency === 'CNY' ? 'USD' : curCurrency;
+  var sym = CURRENCY_META[c].sym;
+  var n = (c === 'USD') ? (Math.round(v / USD_RATE * 100) / 100) : cnyTo(v, c);
+  return sym + n.toLocaleString('en-US');
+}
+function setCurrency(cur){
+  curCurrency = cur;
+  document.querySelectorAll('.currency-btn').forEach(function(b){
+    b.classList.toggle('active', b.getAttribute('data-cur') === cur);
+  });
+  render();
+  renderCart();
+}
 function specText(p) { return p.screen + '" \u00b7 ' + p.cpu + ' \u00b7 ' + p.ram + ' \u00b7 ' + p.ssd; }
 function gradeLabel(g) {
   if (g === 'A+') return 'A+ Grade';
