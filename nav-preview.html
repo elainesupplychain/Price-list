@@ -15,6 +15,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:28px;height:68px;flex-wrap:wrap}
 .nav-logo{color:#fff;font-size:1.15rem;font-weight:700;white-space:nowrap}
 .nav-logo span{background:linear-gradient(135deg,#00d4aa,#00a3ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+/* Level-1 category bar (moved into each view, sits right above the level-2 tab row) */
+.cat-bar{display:flex;justify-content:center;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 12px}
+.cat-bar .nav-tab{background:#0f172a;border-color:#0f172a;color:#e8edf5}
+.cat-bar .nav-tab:hover{border-color:#00d4aa;color:#fff}
+.cat-bar .nav-tab.active{background:linear-gradient(135deg,#00d4aa,#00a3ff);border-color:transparent;color:#fff;box-shadow:0 4px 14px rgba(0,212,170,.35)}
 .nav-tabs{display:flex;gap:8px;flex-wrap:wrap}
 .nav-tab{background:transparent;border:1px solid rgba(255,255,255,.18);color:#cfd8ea;font-size:.9rem;font-weight:600;padding:9px 22px;border-radius:999px;cursor:pointer;transition:all .25s;font-family:inherit}
 .nav-tab:hover{border-color:#00d4aa;color:#fff}
@@ -110,8 +115,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .card-top .card-top-model{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .card-top .card-top-storage{font-size:.72rem;font-weight:600;color:#1e3a5f;background:rgba(255,255,255,.55);border-radius:999px;padding:2px 10px;white-space:nowrap}
 .card-top + .card-body .card-model{justify-content:flex-end}
-/* Phones cart zone (grade pick + add to cart) */
-.cart-zone{border-top:1px dashed #e2e8f0;margin-top:10px;padding-top:10px}
+/* Phones cart zone (grade pick + add to cart) - top of card */
+.cart-zone{border-bottom:1px dashed #dbe3ef;margin:0 0 12px;padding:10px 12px 12px;background:#f6faff}
 .cart-grade-pick{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px}
 .grade-pick-btn{background:#f1f5f9;border:1px solid #dbe1ec;color:#334155;border-radius:8px;padding:4px 12px;font-size:.76rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
 .grade-pick-btn:hover{border-color:#00d4aa;color:#00d4aa}
@@ -182,6 +187,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .brand-tab{padding:9px 20px;font-size:0.92rem;font-weight:600;color:#334155;background:#fff;border:1px solid #e0e6ed;border-radius:999px;cursor:pointer;transition:all .2s;font-family:inherit;white-space:nowrap}
 .brand-tab:hover{color:#0f172a;border-color:#00d4aa;background:rgba(0,212,170,.06)}
 .brand-tab.active{background:linear-gradient(135deg,#00d4aa,#00a3ff);border-color:transparent;color:#fff;box-shadow:0 4px 14px rgba(0,212,170,.3)}
+/* Level-2 "Smart Watches" entry inside the Phones brand tab row (cross-category jump) */
+.phones-watches-tab{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#0b0f1e,#14213d);color:#cfd8ea;border:1px solid rgba(11,15,30,.2);border-radius:999px;padding:9px 20px;font-size:.92rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit;white-space:nowrap}
+.phones-watches-tab:hover{color:#fff;border-color:#00d4aa}
+.phones-watches-tab.active{background:linear-gradient(135deg,#00d4aa,#00a3ff);color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(0,212,170,.35)}
 /* Second-level dropdown (brand -> series / series -> model) */
 .brand-tab-wrapper .sub-dd{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);min-width:230px;max-width:min(340px,calc(100vw - 24px));max-height:min(60vh,380px);overflow-y:auto;background:#fff;border:1px solid #e0e6ed;border-radius:14px;box-shadow:0 14px 36px rgba(11,15,30,.22);padding:8px;display:none;z-index:1400;text-align:left}
 .brand-tab-wrapper .sub-dd.open{display:block}
@@ -507,57 +516,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <div class="nav">
   <div class="nav-inner">
     <div class="nav-logo">Elaine <span>Supply Chain</span></div>
-    <div class="nav-tabs">
-      <div class="nav-dd-wrap" data-cat="phones">
-        <button class="nav-tab active" data-cat="phones" onclick="toggleNavDD('phones')">Phones <span class="arrow">&#9662;</span></button>
-        <div class="nav-dd" data-cat="phones">
-          <button class="nav-dd-item active" data-cat="phones" data-value="iphone" onclick="selectNavOption('phones','iphone')">iPhone</button>
-          <button class="nav-dd-item" data-cat="phones" data-value="samsung" onclick="selectNavOption('phones','samsung')">Samsung</button>
-          <button class="nav-dd-item" data-cat="phones" data-value="google" onclick="selectNavOption('phones','google')">Google</button>
-          <button class="nav-dd-item" data-cat="phones" data-value="xiaomi" onclick="selectNavOption('phones','xiaomi')">Xiaomi</button>
-          <button class="nav-dd-item" data-cat="phones" data-value="redmi" onclick="selectNavOption('phones','redmi')">Redmi</button>
-          <button class="nav-dd-item" data-cat="phones" data-value="oppo" onclick="selectNavOption('phones','oppo')">OPPO</button>
-          <button class="nav-dd-item" data-cat="phones" data-value="ipad" onclick="selectNavOption('phones','ipad')">iPad</button>
-          <button class="nav-dd-item" data-cat="phones" data-value="vivo" onclick="selectNavOption('phones','vivo')">VIVO</button>
-          <button class="nav-dd-item" data-cat="phones" data-value="huawei" onclick="selectNavOption('phones','huawei')">Huawei</button>
-          <a class="nav-dd-item" href="https://elainesupplychain.com/padlock-shop.html" target="_blank" rel="noopener" onclick="closeAllNavDD()">PadLock</a>
-        </div>
-      </div>
-      <div class="nav-dd-wrap" data-cat="laptops">
-        <button class="nav-tab" data-cat="laptops" onclick="toggleNavDD('laptops')">Laptops <span class="arrow">&#9662;</span></button>
-        <div class="nav-dd" data-cat="laptops">
-          <button class="nav-dd-item active" data-cat="laptops" data-value="all" onclick="selectNavOption('laptops','all')">All Brands</button>
-          <button class="nav-dd-item" data-cat="laptops" data-value="HP" onclick="selectNavOption('laptops','HP')">HP</button>
-          <button class="nav-dd-item" data-cat="laptops" data-value="LENOVO" onclick="selectNavOption('laptops','LENOVO')">Lenovo</button>
-          <button class="nav-dd-item" data-cat="laptops" data-value="DELL" onclick="selectNavOption('laptops','DELL')">Dell</button>
-          <button class="nav-dd-item" data-cat="laptops" data-value="MacBook Air" onclick="selectNavOption('laptops','MacBook Air')">MacBook Air</button>
-          <button class="nav-dd-item" data-cat="laptops" data-value="MacBook Pro" onclick="selectNavOption('laptops','MacBook Pro')">MacBook Pro</button>
-          <button class="nav-dd-item" data-cat="laptops" data-value="MacBook Air (Intel)" onclick="selectNavOption('laptops','MacBook Air (Intel)')">MacBook Air (Intel)</button>
-          <button class="nav-dd-item" data-cat="laptops" data-value="MacBook Pro (Intel)" onclick="selectNavOption('laptops','MacBook Pro (Intel)')">MacBook Pro (Intel)</button>
-        </div>
-      </div>
-      <div class="nav-dd-wrap" data-cat="watches">
-        <button class="nav-tab" data-cat="watches" onclick="toggleNavDD('watches')">Smart Watches <span class="arrow">&#9662;</span></button>
-        <div class="nav-dd" data-cat="watches">
-          <button class="nav-dd-item active" data-cat="watches" data-value="Series 11" onclick="selectNavOption('watches','Series 11')">Series 11</button>
-          <button class="nav-dd-item" data-cat="watches" data-value="Series 10" onclick="selectNavOption('watches','Series 10')">Series 10</button>
-          <button class="nav-dd-item" data-cat="watches" data-value="Series 9" onclick="selectNavOption('watches','Series 9')">Series 9</button>
-          <button class="nav-dd-item" data-cat="watches" data-value="Series 8" onclick="selectNavOption('watches','Series 8')">Series 8</button>
-          <button class="nav-dd-item" data-cat="watches" data-value="Series 7" onclick="selectNavOption('watches','Series 7')">Series 7</button>
-          <button class="nav-dd-item" data-cat="watches" data-value="Series 6" onclick="selectNavOption('watches','Series 6')">Series 6</button>
-          <button class="nav-dd-item" data-cat="watches" data-value="SE 3" onclick="selectNavOption('watches','SE 3')">SE 3</button>
-          <button class="nav-dd-item" data-cat="watches" data-value="SE 2" onclick="selectNavOption('watches','SE 2')">SE 2</button>
-          <button class="nav-dd-item" data-cat="watches" data-value="SE 1" onclick="selectNavOption('watches','SE 1')">SE 1</button>
-          <button class="nav-dd-item" data-cat="watches" data-value="Ultra" onclick="selectNavOption('watches','Ultra')">Ultra</button>
-          <button class="nav-dd-item" data-cat="watches" data-value="Series 5" onclick="selectNavOption('watches','Series 5')">Series 5</button>
-          <button class="nav-dd-item" data-cat="watches" data-value="Series 4" onclick="selectNavOption('watches','Series 4')">Series 4</button>
-          <button class="nav-dd-item" data-cat="watches" data-value="Series 3" onclick="selectNavOption('watches','Series 3')">Series 3</button>
-          <button class="nav-dd-item" data-cat="watches" data-value="Series 2" onclick="selectNavOption('watches','Series 2')">Series 2</button>
-          <button class="nav-dd-item" data-cat="watches" data-value="Series 1" onclick="selectNavOption('watches','Series 1')">Series 1</button>
-          <button class="nav-dd-item" data-cat="watches" data-value="1st Gen" onclick="selectNavOption('watches','1st Gen')">1st Gen</button>
-        </div>
-      </div>
-    </div>
     <button class="nav-cart-btn" onclick="openCart()" title="View Cart">
       <svg viewBox="0 0 24 24"><path d="M6 7h12l1.5 12h-15L6 7z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>
       <span>Cart</span><span class="cart-badge" id="cartBadge">0</span>
@@ -568,6 +526,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <!-- ================= PHONES ================= -->
 <div class="view active" id="view-phones">
   <div class="container">
+    <div class="cat-bar">
+      <button type="button" class="nav-tab active" data-cat="phones" onclick="switchView('phones')">Phones</button>
+      <button type="button" class="nav-tab" data-cat="laptops" onclick="switchView('laptops')">Laptops</button>
+      <button type="button" class="nav-tab" data-cat="watches" onclick="switchView('watches')">Smart Watches</button>
+    </div>
     <div class="brand-tab-row">
       <div class="brand-tab-wrapper" data-brand="iphone"><button class="brand-tab" data-brand="iphone" onclick="switchBrand('iphone')">iPhone</button></div>
       <div class="brand-tab-wrapper" data-brand="samsung"><button class="brand-tab" data-brand="samsung" onclick="switchBrand('samsung')">Samsung</button></div>
@@ -579,6 +542,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
       <div class="brand-tab-wrapper" data-brand="vivo"><button class="brand-tab" data-brand="vivo" onclick="switchBrand('vivo')">VIVO</button></div>
       <div class="brand-tab-wrapper" data-brand="huawei"><button class="brand-tab" data-brand="huawei" onclick="switchBrand('huawei')">Huawei</button></div>
       <div class="brand-tab-wrapper" data-brand="padlock"><a class="brand-tab" href="https://elainesupplychain.com/padlock-shop.html" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none">PadLock</a></div>
+      <button type="button" class="phones-watches-tab" onclick="switchView('watches')" title="Switch to Smart Watches view">Smart Watches &#10149;</button>
     </div>
     <div class="phones-catalog">
 <div class="brand-content" data-brand="iphone">
@@ -7583,6 +7547,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </div>
 <div class="view" id="view-laptops">
   <div class="container">
+    <div class="cat-bar">
+      <button type="button" class="nav-tab" data-cat="phones" onclick="switchView('phones')">Phones</button>
+      <button type="button" class="nav-tab active" data-cat="laptops" onclick="switchView('laptops')">Laptops</button>
+      <button type="button" class="nav-tab" data-cat="watches" onclick="switchView('watches')">Smart Watches</button>
+    </div>
     <div class="filter-bar">
       <div class="brand-filter" id="brandFilter">
         <select class="brand-select" id="brandSelect" onchange="setBrand(this.value)" aria-label="Filter by brand">
@@ -7606,6 +7575,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <!-- ================= SMART WATCHES ================= -->
 <div class="view" id="view-watches">
   <div class="container">
+    <div class="cat-bar">
+      <button type="button" class="nav-tab" data-cat="phones" onclick="switchView('phones')">Phones</button>
+      <button type="button" class="nav-tab" data-cat="laptops" onclick="switchView('laptops')">Laptops</button>
+      <button type="button" class="nav-tab active" data-cat="watches" onclick="switchView('watches')">Smart Watches</button>
+    </div>
     <div class="brand-tab-row" id="watchBrandRow">
 <div class="brand-tab-wrapper" data-wbrand="Series 11"><button class="brand-tab active" data-wbrand="Series 11" onclick="switchWatchBrand('Series 11')">Series 11</button></div>
 <div class="brand-tab-wrapper" data-wbrand="Series 10"><button class="brand-tab" data-wbrand="Series 10" onclick="switchWatchBrand('Series 10')">Series 10</button></div>
@@ -7985,6 +7959,8 @@ function switchView(cat) {
   closeAllSubDD();
   if (cat === 'laptops') render();
   if (cat === 'watches') { activeWatchModel = null; renderWatches(); }
+  var wt = document.querySelector('#view-phones .phones-watches-tab');
+  if (wt) wt.classList.toggle('active', cat === 'watches');
   if (cat === 'phones') {
     activeSeries = null;
     var pt = document.querySelector('#view-phones .brand-tab.active');
@@ -8321,7 +8297,10 @@ function initPhoneCarts() {
       '</div>' +
       '<button type="button" class="add-btn phone-add-btn" onclick="phoneAddToCart(this)">Add to Cart</button>';
     var body = card.querySelector('.card-body');
-    if (body) body.appendChild(zone); else card.appendChild(zone);
+    var tp = card.querySelector('.card-top');
+    if (body && tp) card.insertBefore(zone, body);
+    else if (body) body.appendChild(zone);
+    else card.appendChild(zone);
     card.setAttribute('data-cart-ready', '1');
   });
 }
