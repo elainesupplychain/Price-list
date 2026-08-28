@@ -111,19 +111,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .toast.show{opacity:1;transform:translateX(-50%) translateY(4px)}
 
 /* ===== Light Blue Card Headers (Phones/Laptops/Smart Watches) ===== */
-.card-top{background:linear-gradient(135deg,#e3f2fd,#bbdefb,#90caf9);padding:12px 16px;font-size:.95rem;font-weight:700;color:#0d1b3e;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.card-top{background:linear-gradient(135deg,#e3f2fd,#bbdefb,#90caf9);padding:10px 14px;font-size:.95rem;font-weight:700;color:#0d1b3e;display:flex;flex-direction:column;gap:8px;align-items:stretch}
+.card-top .card-top-main{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .card-top .card-top-model{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.card-top .card-top-storage{font-size:.72rem;font-weight:600;color:#1e3a5f;background:rgba(255,255,255,.55);border-radius:999px;padding:2px 10px;white-space:nowrap}
-.card-top + .card-body .card-model{justify-content:flex-end}
-/* Phones cart zone (grade pick + add to cart) - top of card */
-.cart-zone{border-bottom:1px dashed #dbe3ef;margin:0 0 12px;padding:10px 12px 12px;background:#f6faff}
-.cart-grade-pick{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:8px}
-.grade-pick-btn{background:#f1f5f9;border:1px solid #dbe1ec;color:#334155;border-radius:8px;padding:4px 12px;font-size:.76rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit}
-.grade-pick-btn:hover{border-color:#00d4aa;color:#00d4aa}
-.grade-pick-btn.active{background:linear-gradient(135deg,#00d4aa,#00a3ff);border-color:transparent;color:#fff}
-.grade-pick-btn:disabled{opacity:.45;cursor:not-allowed}
-.cart-grade-price{margin-left:auto;font-size:.88rem;font-weight:700;color:#0d1b3e;white-space:nowrap}
-.phone-add-btn{width:100%}
+.card-top .card-top-actions{display:flex;justify-content:flex-end;align-items:center;gap:8px}
+.card-top .card-top-actions .photo-btn{margin-left:0}
 /* Cart item grade switch */
 .cart-item .ci-grade-row{display:flex;gap:5px;margin:6px 0 4px}
 .cart-item .ci-grade-wrap{display:flex;align-items:center;justify-content:flex-start}
@@ -188,9 +180,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .brand-tab:hover{color:#0f172a;border-color:#00d4aa;background:rgba(0,212,170,.06)}
 .brand-tab.active{background:linear-gradient(135deg,#00d4aa,#00a3ff);border-color:transparent;color:#fff;box-shadow:0 4px 14px rgba(0,212,170,.3)}
 /* Level-2 "Smart Watches" entry inside the Phones brand tab row (cross-category jump) */
-.phones-watches-tab{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#0b0f1e,#14213d);color:#cfd8ea;border:1px solid rgba(11,15,30,.2);border-radius:999px;padding:9px 20px;font-size:.92rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:inherit;white-space:nowrap}
-.phones-watches-tab:hover{color:#fff;border-color:#00d4aa}
-.phones-watches-tab.active{background:linear-gradient(135deg,#00d4aa,#00a3ff);color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(0,212,170,.35)}
+.phones-watches-tab{display:inline-flex;align-items:center;gap:6px;padding:9px 20px;font-size:.92rem;font-weight:600;color:#334155;background:#fff;border:1px solid #e0e6ed;border-radius:999px;cursor:pointer;transition:all .2s;font-family:inherit;white-space:nowrap}
+.phones-watches-tab:hover{color:#0f172a;border-color:#00d4aa;background:rgba(0,212,170,.06)}
+.phones-watches-tab.active{background:linear-gradient(135deg,#00d4aa,#00a3ff);border-color:transparent;color:#fff;box-shadow:0 4px 14px rgba(0,212,170,.3)}
 /* Second-level dropdown (brand -> series / series -> model) */
 .brand-tab-wrapper .sub-dd{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);min-width:230px;max-width:min(340px,calc(100vw - 24px));max-height:min(60vh,380px);overflow-y:auto;background:#fff;border:1px solid #e0e6ed;border-radius:14px;box-shadow:0 14px 36px rgba(11,15,30,.22);padding:8px;display:none;z-index:1400;text-align:left}
 .brand-tab-wrapper .sub-dd.open{display:block}
@@ -210,8 +202,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .card-body{padding:14px 16px}
 .card-model{font-size:0.95rem;font-weight:600;color:#0f172a;display:flex;align-items:center;gap:6px}
 .card-model .model-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.card-storage{font-size:0.78rem;color:#64748b;margin-bottom:10px}
-.price-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #f1f5f9;font-size:0.82rem}
+.price-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #f1f5f9;font-size:0.82rem;cursor:pointer;border-radius:6px;transition:background .15s,transform .1s}
+.price-row:hover{background:#f0f9ff}
+.price-row:active{transform:scale(.99)}
 .price-row:last-child{border-bottom:none}
 .price-grade{color:#475569;font-weight:500;min-width:70px}
 .price-value{font-weight:700;color:#0f172a;text-align:right}
@@ -7838,7 +7831,7 @@ function brandDisplay(b) { return b === 'LENOVO' ? 'Lenovo' : b === 'DELL' ? 'De
 function titleOf(p) { return p.title || (brandDisplay(p.brand) + ' ' + p.model); }
 function cny(v) { return '\u00a5' + v.toLocaleString('en-US'); }
 function usd(v) { return '$' + (Math.round(v / USD_RATE * 100) / 100).toLocaleString('en-US'); }
-function gradeLabel(g) { return g === 'A+' ? 'A+ Grade' : g === 'A' ? 'A Grade' : 'B Grade'; }
+function gradeLabel(g) { return ({'A+':'A+ Grade','A':'A Grade','B':'B Grade','C':'C Grade','WiFi':'WiFi Grade'})[g] || g; }
 function cartKey(p, g) { return p.brand + '|' + p.model + '|' + p.cpu + '|' + p.ram + '|' + p.ssd + '|' + g; }
 
 function filteredProducts() {
@@ -8209,7 +8202,7 @@ function renderCart() {
   var list = cartGet();
   var foot = document.getElementById('cartFooter');
   if (list.length === 0) {
-    box.innerHTML = '<div class="cart-empty">Your cart is empty. Pick a grade and click Add to Cart.</div>';
+    box.innerHTML = '<div class="cart-empty">Your cart is empty. Click a price row to add.</div>';
     if (foot) foot.style.display = 'none';
     return;
   }
@@ -8258,14 +8251,7 @@ function closeCart() {
   document.getElementById('cartOverlay').classList.remove('show');
   document.getElementById('cartDrawer').classList.remove('show');
 }
-function refreshCartZonePrices() {
-  document.querySelectorAll('.cart-grade-price').forEach(function(span) {
-    var v = span.getAttribute('data-cny');
-    if (v === null || v === undefined || v === '') { span.textContent = 'N/A'; return; }
-    span.textContent = fmtPrice(Number(v));
-  });
-}
-// ============ PHONES CART (injected grade pick + add to cart) ============
+// ============ PHONES CART (injected price-row add to cart) ============
 function initPhoneCarts() {
   document.querySelectorAll('#view-phones .card').forEach(function(card) {
     if (card.getAttribute('data-cart-ready')) return;
@@ -8275,66 +8261,66 @@ function initPhoneCarts() {
     var label = json.label || ((json.model || '') + ' ' + (json.storage || ''));
     var top = document.createElement('div');
     top.className = 'card-top';
-    top.innerHTML = '<span class="card-top-model"></span><span class="card-top-storage"></span>';
+    top.innerHTML =
+      '<div class="card-top-main"><span class="card-top-model"></span></div>' +
+      '<div class="card-top-actions">' +
+        '<button type="button" class="photo-btn card-photo-btn">View Photos</button>' +
+        '<button type="button" class="add-btn card-add-btn" onclick="phoneAddToCart(this)">Add to Cart</button>' +
+      '</div>';
     top.querySelector('.card-top-model').textContent = label;
-    top.querySelector('.card-top-storage').textContent = json.storage || '';
+    top.querySelector('.card-photo-btn').addEventListener('click', function(e){
+      e.stopPropagation();
+      showToast('Photos available in the full quotation');
+    });
     card.insertBefore(top, card.firstChild);
-    var nm = card.querySelector('.card-model .model-name');
-    if (nm) nm.textContent = '';
-    var ap = (typeof json.ap === 'number') ? json.ap : null;
-    var a = (typeof json.a === 'number') ? json.a : null;
-    var b = (typeof json.b === 'number') ? json.b : null;
-    var defG = ap !== null ? 'A+' : (a !== null ? 'A' : 'B');
-    var defV = defG === 'A+' ? ap : (defG === 'A' ? a : b);
-    var zone = document.createElement('div');
-    zone.className = 'cart-zone';
-    zone.innerHTML =
-      '<div class="cart-grade-pick">' +
-        '<button type="button" class="grade-pick-btn' + (defG === 'A+' ? ' active' : '') + '" data-g="A+"' + (ap === null ? ' disabled' : '') + ' onclick="phonePickGrade(this)">A+</button>' +
-        '<button type="button" class="grade-pick-btn' + (defG === 'A' ? ' active' : '') + '" data-g="A"' + (a === null ? ' disabled' : '') + ' onclick="phonePickGrade(this)">A</button>' +
-        '<button type="button" class="grade-pick-btn' + (defG === 'B' ? ' active' : '') + '" data-g="B"' + (b === null ? ' disabled' : '') + ' onclick="phonePickGrade(this)">B</button>' +
-        '<span class="cart-grade-price" data-cny="' + (defV === null ? '' : defV) + '">' + fmtPrice(defV) + '</span>' +
-      '</div>' +
-      '<button type="button" class="add-btn phone-add-btn" onclick="phoneAddToCart(this)">Add to Cart</button>';
-    var body = card.querySelector('.card-body');
-    var tp = card.querySelector('.card-top');
-    if (body && tp) card.insertBefore(zone, body);
-    else if (body) body.appendChild(zone);
-    else card.appendChild(zone);
+    var mpb = card.querySelector('.model-photo-btn');
+    if (mpb) mpb.parentNode.removeChild(mpb);
+    var cm = card.querySelector('.card-model');
+    if (cm) cm.parentNode.removeChild(cm);
+    var cs = card.querySelector('.card-storage');
+    if (cs) cs.parentNode.removeChild(cs);
+    var gMap = {'ap': 'A+', 'a': 'A', 'b': 'B', 'c': 'C', 'wifi': 'WiFi'};
+    card.querySelectorAll('.price-row').forEach(function(row) {
+      var pv = row.querySelector('.price-value');
+      if (!pv) return;
+      var cls = '';
+      ['ap', 'a', 'b', 'c', 'wifi'].forEach(function(c) { if (pv.classList.contains(c)) cls = c; });
+      if (!cls) return;
+      var g = gMap[cls];
+      row.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var v = json[cls];
+        if (typeof v !== 'number') { showToast('This grade is not available for ' + label); return; }
+        var pp = {};
+        ['ap', 'a', 'b', 'c', 'wifi'].forEach(function(c2) {
+          var v2 = json[c2];
+          if (typeof v2 === 'number') pp[gMap[c2]] = v2;
+        });
+        cartAdd({cat: 'Phone', label: label, grade: g, priceCNY: v, prices: pp});
+        showToast(label + ' &middot; ' + gradeLabel(g) + ' added to cart');
+      });
+    });
     card.setAttribute('data-cart-ready', '1');
   });
 }
-function phonePickGrade(btn) {
-  var zone = btn.closest('.cart-zone');
-  var card = zone.closest('.card');
-  var json;
-  try { json = JSON.parse(card.getAttribute('data-json')); } catch (e) { return; }
-  var g = btn.getAttribute('data-g');
-  zone.querySelectorAll('.grade-pick-btn').forEach(function(b) { b.classList.toggle('active', b === btn); });
-  var map = {'A+': 'ap', 'A': 'a', 'B': 'b'};
-  var v = json[map[g]];
-  var cnyVal = (typeof v === 'number') ? v : null;
-  var span = zone.querySelector('.cart-grade-price');
-  span.setAttribute('data-cny', cnyVal === null ? '' : cnyVal);
-  span.textContent = (cnyVal === null) ? 'N/A' : fmtPrice(cnyVal);
-}
 function phoneAddToCart(btn) {
-  var zone = btn.closest('.cart-zone');
-  var card = zone.closest('.card');
+  var card = btn.closest('.card');
   var json;
   try { json = JSON.parse(card.getAttribute('data-json')); } catch (e) { return; }
-  var gBtn = zone.querySelector('.grade-pick-btn.active');
-  var g = gBtn ? gBtn.getAttribute('data-g') : 'A+';
-  var map = {'A+': 'ap', 'A': 'a', 'B': 'b'};
-  var v = json[map[g]];
-  if (typeof v !== 'number') { showToast('This grade is not available for ' + (json.label || json.model)); return; }
   var label = json.label || (json.model + ' ' + (json.storage || ''));
+  var map = {'A+': 'ap', 'A': 'a', 'B': 'b', 'C': 'c', 'WiFi': 'wifi'};
+  var order = ['A+', 'A', 'B', 'C', 'WiFi'];
   var pp = {};
-  ['A+','A','B','C','WiFi'].forEach(function(gl) {
-    var f = {'A+':'ap', 'A':'a', 'B':'b', 'C':'c', 'WiFi':'wifi'}[gl];
-    var vv = json[f];
-    if (typeof vv === 'number') pp[gl] = vv;
+  var g = null, v = null;
+  order.forEach(function(gl) {
+    var vv = json[map[gl]];
+    if (typeof vv === 'number') {
+      pp[gl] = vv;
+      if (g === null) { g = gl; v = vv; }
+    }
   });
+  if (v === null) { showToast('This grade is not available for ' + label); return; }
   cartAdd({cat: 'Phone', label: label, grade: g, priceCNY: v, prices: pp});
   showToast(label + ' &middot; ' + gradeLabel(g) + ' added to cart');
   openCart();
@@ -8608,7 +8594,6 @@ function setCurrency(cur){
     });
   });
   applyLanguage(LANG_OF_CUR[cur] || 'en');
-  refreshCartZonePrices();
   renderCart();
 }
 function filterCards() {
