@@ -10836,7 +10836,7 @@ function renderCart() {
     var key = cartItemKey(x).replace(/'/g, "\\'");
     var prices = (x.prices && typeof x.prices === 'object') ? x.prices : {};
     var gradeRow = '<span class="ci-grade-row">';
-    ['A+','A','B'].forEach(function(g) {
+    ['A+','A','B','C','WiFi'].forEach(function(g) {
       var has = (typeof prices[g] === 'number');
       gradeRow += '<button type="button" class="cart-grade-btn' + (x.grade === g ? ' active' : '') + '"' + (has ? ' onclick="cartChangeGrade(\'' + key + '\',\'' + g + '\')"' : ' disabled') + '>' + g + '</button>';
     });
