@@ -8490,6 +8490,51 @@ function quickWatchAdd(title) {
 }
 
 // ============ SITE-WIDE FULL QUOTE ============
+function quoteCny(x) { return (x.priceCNY != null ? x.priceCNY : x.price); }
+function quoteUsd(x) { return (x.priceUSD != null ? x.priceUSD : cnyTo(quoteCny(x), 'USD')); }
+function quoteLabel(x) { return (x.label || x.title || x.model || ''); }
+function buildQuoteText() {
+  var all = cartGet().filter(function(x){ return x && x.qty > 0; });
+  if (!all.length) return '';
+  var order = ['Phone', 'Laptop', 'Watch'];
+  var groups = {};
+  all.forEach(function(x){ (groups[x.cat] = groups[x.cat] || []).push(x); });
+  var lines = ['REQUEST FULL QUOTE - Elaine Supply Chain', 'Contact: sales@elainesupplychain.com | WhatsApp +1 626-539-2631', '------------------------------------'];
+  var grandCNY = 0;
+  order.forEach(function(cat) {
+    var rows = groups[cat];
+    if (!rows) return;
+    lines.push(''); lines.push('[' + cat + ']');
+    var sub = 0;
+    rows.forEach(function(x) {
+      var cny = quoteCny(x); var lineTotal = cny * x.qty; sub += lineTotal;
+      lines.push('  ' + quoteLabel(x) + ' | ' + gradeLabel(x.grade) + ' | CNY ' + cny.toLocaleString('en-US') + ' x' + x.qty + ' = CNY ' + lineTotal.toLocaleString('en-US'));
+    });
+    lines.push('  ' + cat + ' subtotal: CNY ' + sub.toLocaleString('en-US'));
+    grandCNY += sub;
+  });
+  lines.push('------------------------------------');
+  lines.push('Grand Total: CNY ' + grandCNY.toLocaleString('en-US') + ' (approx. USD ' + cnyTo(grandCNY, 'USD').toLocaleString('en-US') + ')');
+  return lines.join('\n');
+}
+function copyQuote() {
+  var txt = buildQuoteText();
+  if (!txt) { showToast('Cart is empty'); return; }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(txt).then(function(){ showToast('Quote copied to clipboard'); }, function(){ fallbackCopy(txt); });
+  } else { fallbackCopy(txt); }
+}
+function fallbackCopy(txt) {
+  var ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); showToast('Quote copied to clipboard'); } catch(e) { showToast('Copy failed - select the text manually'); }
+  document.body.removeChild(ta);
+}
+function emailQuote() {
+  var txt = buildQuoteText();
+  if (!txt) { showToast('Cart is empty'); return; }
+  var href = 'mailto:' + MERCHANT_EMAIL + '?subject=' + encodeURIComponent('Quote Request - Elaine Supply Chain') + '&body=' + encodeURIComponent(txt);
+  window.location.href = href;
+}
 function openFullQuote() {
   var all = cartGet().filter(function(x){ return x && x.qty > 0; });
   if (all.length === 0) { showToast('Cart is empty &mdash; add items to request a full quote'); return; }
@@ -8507,10 +8552,10 @@ function openFullQuote() {
     var subCNY = 0, subUSD = 0;
     html += '<div class="quote-group"><h4>' + cat + '</h4><table class="quote-table"><thead><tr><th>Model</th><th>Grade</th><th>Unit Price</th><th>Qty</th><th>Subtotal</th></tr></thead><tbody>';
     rows.forEach(function(x) {
-      var sub = x.priceCNY * x.qty;
+      var cny = quoteCny(x); var sub = cny * x.qty;
       subCNY += sub;
-      subUSD += (x.priceUSD || cnyTo(x.priceCNY, 'USD')) * x.qty;
-      html += '<tr><td>' + x.label + '</td><td>' + gradeLabel(x.grade) + '</td><td>' + fmtPrice(x.priceCNY) + '</td><td>' + x.qty + '</td><td>' + fmtPrice(sub) + '</td></tr>';
+      subUSD += quoteUsd(x) * x.qty;
+      html += '<tr><td>' + quoteLabel(x) + '</td><td>' + gradeLabel(x.grade) + '</td><td>' + fmtPrice(cny) + '</td><td>' + x.qty + '</td><td>' + fmtPrice(sub) + '</td></tr>';
     });
     grandCNY += subCNY; grandUSD += subUSD;
     html += '</tbody></table><div class="quote-subtotal">' + cat + ' subtotal: ' + fmtPrice(subCNY) + (curCurrency === 'CNY' ? ' <span style="color:#64748b">&asymp; $' + fmtNum(Math.round(subUSD)) + ' USD</span>' : '') + '</div></div>';
@@ -8530,6 +8575,8 @@ function buildQuoteModal() {
       '<button type="button" class="quote-close" title="Close">&times;</button></div>' +
       '<div class="quote-body"></div>' +
       '<div class="quote-foot">' +
+        '<button type="button" class="quote-btn" onclick="copyQuote()">Copy Quote</button>' +
+        '<button type="button" class="quote-btn" onclick="emailQuote()">Send by Email</button>' +
         '<button type="button" class="quote-btn" onclick="closeFullQuote()">Back to Shopping</button>' +
       '</div>' +
     '</div>';
@@ -8582,6 +8629,7 @@ if (catParam === 'phones' && brandParam) switchBrand(brandParam);
 updateNavDDActive();
 
 /* ============ MULTI-CURRENCY + I18N (from product-quotation) ============ */
+var MERCHANT_EMAIL = 'sales@elainesupplychain.com';
 function cnyTo(cny, cur){
   if(cur==='USD') return Math.round(cny/6.65 + 0.2);
   if(cur==='EUR') return Math.round(cny/7.71 + 0.2);

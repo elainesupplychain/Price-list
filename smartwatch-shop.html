@@ -275,6 +275,30 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .nav-tab.active{background:linear-gradient(135deg,#00d4aa,#00a3ff);border-color:transparent;color:#fff;box-shadow:0 4px 16px rgba(0,212,170,.35)}
 @media(max-width:600px){.nav-tab{font-size:.8rem;padding:7px 14px}}
 
+
+/* ===== Full Quote Request (site-wide, unified) ===== */
+.quote-open-btn{display:block;width:100%;margin:0 0 10px;background:linear-gradient(135deg,#00d4aa,#00a3ff);color:#fff;border:none;border-radius:8px;padding:9px 12px;font-size:.82rem;font-weight:700;cursor:pointer;font-family:inherit}
+.quote-open-btn:hover{filter:brightness(1.06)}
+.quote-overlay{position:fixed;inset:0;background:rgba(15,23,42,.6);z-index:10030;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s;display:flex;align-items:center;justify-content:center;padding:20px}
+.quote-overlay.show{opacity:1;visibility:visible}
+.quote-modal{background:#fff;border-radius:16px;width:100%;max-width:860px;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.quote-head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid #e8ebf2;background:linear-gradient(135deg,#e3f2fd,#bbdefb,#90caf9)}
+.quote-title{font-size:1rem;font-weight:700;color:#0d1b3e;padding-right:10px}
+.quote-close{background:none;border:none;font-size:1.4rem;line-height:1;color:#0d1b3e;cursor:pointer}
+.quote-body{overflow-y:auto;padding:16px 18px}
+.quote-meta{font-size:.78rem;color:#475569;margin-bottom:12px}
+.quote-group{margin-bottom:18px}
+.quote-group h4{font-size:.85rem;font-weight:700;color:#0d1b3e;margin:0 0 6px;padding:6px 10px;background:#f1f5f9;border-radius:8px}
+.quote-table{width:100%;border-collapse:collapse;font-size:.8rem}
+.quote-table th{text-align:left;padding:6px 8px;color:#64748b;font-weight:600;border-bottom:1px solid #e2e8f0;background:#f8fafc}
+.quote-table td{padding:6px 8px;border-bottom:1px solid #f1f5f9;color:#334155}
+.quote-table tr:last-child td{border-bottom:none}
+.quote-subtotal{text-align:right;font-size:.8rem;font-weight:700;color:#0d1b3e;padding:8px 0 2px}
+.quote-grand{padding:12px 0 4px;border-top:2px solid #00d4aa;margin-top:6px;display:flex;justify-content:space-between;align-items:center;font-size:.95rem;font-weight:800;color:#0d1b3e}
+.quote-foot{display:flex;justify-content:center;gap:10px;padding:14px 18px;border-top:1px solid #e8ebf2;background:#f8fafc}
+.quote-btn{background:linear-gradient(135deg,#00d4aa,#00a3ff);color:#fff;border:none;border-radius:8px;padding:9px 22px;font-size:.85rem;font-weight:700;cursor:pointer;font-family:inherit}
+.quote-btn:hover{filter:brightness(1.06)}
+
 </style>
 </head>
 <body>
@@ -394,6 +418,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   <div class="cart-footer" id="cartFooter" style="display:none">
     <div class="cart-total"><span>Total</span><span><span id="cartTotalCny">¥0</span> <span class="usd" id="cartTotalUsd">/ $0</span></span></div>
     <div class="cart-note">Prices in CNY (¥) / USD ($) estimate. Final quote confirmed by email.</div>
+    <button class="quote-open-btn" onclick="openFullQuote()">Request Full Quote (Whole Site)</button>
     <button class="submit-btn" onclick="openCheckout()">Submit Order List →</button>
   </div>
 </div>
@@ -848,16 +873,24 @@ function closeCart() {
 
 // ============ CHECKOUT ============
 function openCheckout() {
-  var mine = cart.filter(function(i) { return (i.cat || CART_CAT) === CART_CAT; });
-  if (mine.length === 0) return;
+  var all = cart.filter(function(i) { return i && i.qty > 0; });
+  if (all.length === 0) return;
+  var order = ['Phone', 'Laptop', 'Watch'];
+  var groups = {};
+  all.forEach(function(i) { (groups[i.cat] = groups[i.cat] || []).push(i); });
   var html = '';
-  var total = 0;
-  mine.forEach(function(i) {
-    var sub = i.price * i.qty;
-    total += sub;
-    html += '<div class="order-summary-item"><span><span class="q">' + i.qty + '\u00d7</span> ' + i.title + ' (' + gradeLabel(i.grade) + ')</span><span>' + cny(sub) + '</span></div>';
+  var total = 0, totalUnits = 0;
+  order.forEach(function(cat) {
+    var rows = groups[cat];
+    if (!rows) return;
+    rows.forEach(function(i) {
+      var c = (i.priceCNY != null ? i.priceCNY : i.price);
+      var sub = c * i.qty;
+      total += sub; totalUnits += i.qty;
+      html += '<div class="order-summary-item"><span><span class="q">' + i.qty + '\u00d7</span> ' + (i.label || i.title) + ' (' + gradeLabel(i.grade) + ')</span><span>' + cny(sub) + '</span></div>';
+    });
   });
-  html += '<div class="order-summary-total"><span>Total (' + mine.reduce(function(s, i) { return s + i.qty; }, 0) + ' units)</span><span>' + cny(total) + ' / ' + usd(total) + '</span></div>';
+  html += '<div class="order-summary-total"><span>Total (' + totalUnits + ' units)</span><span>' + cny(total) + ' / ' + usd(total) + '</span></div>';
   document.getElementById('checkoutSummary').innerHTML = html;
   document.getElementById('checkoutOverlay').classList.add('open');
 }
@@ -887,7 +920,10 @@ function submitOrder(e) {
 
 function buildListText(name, company, email, country, address, notes) {
   var lines = [];
-  var mine = cart.filter(function(i) { return (i.cat || CART_CAT) === CART_CAT; });
+  var all = cart.filter(function(i) { return i && i.qty > 0; });
+  var order = ['Phone', 'Laptop', 'Watch'];
+  var groups = {};
+  all.forEach(function(i) { (groups[i.cat] = groups[i.cat] || []).push(i); });
   var d = new Date();
   var dateStr = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
   lines.push('==========================================');
@@ -901,15 +937,21 @@ function buildListText(name, company, email, country, address, notes) {
   if (address) lines.push('Address: ' + address);
   if (notes) lines.push('Notes: ' + notes);
   lines.push('------------------------------------------');
-  lines.push('ITEMS (' + mine.reduce(function(s, i) { return s + i.qty; }, 0) + ' units):');
-  var total = 0;
-  mine.forEach(function(i, n) {
-    var sub = i.price * i.qty;
-    total += sub;
-    lines.push((n + 1) + '. ' + i.title + ' | ' + i.cpu + ' | ' + i.ram + ' | ' + i.ssd + ' | ' + gradeLabel(i.grade) + ' | ' + cny(i.price) + ' (' + usd(i.price) + ') x' + i.qty + ' = ' + cny(sub));
+  var totalUnits = 0, total = 0;
+  order.forEach(function(cat) {
+    var rows = groups[cat];
+    if (!rows) return;
+    lines.push('');
+    lines.push('[' + cat + ']');
+    rows.forEach(function(i) {
+      var c = (i.priceCNY != null ? i.priceCNY : i.price);
+      var sub = c * i.qty;
+      total += sub; totalUnits += i.qty;
+      lines.push('- ' + (i.label || i.title) + (i.cpu ? ' | ' + i.cpu : '') + (i.ram ? ' | ' + i.ram : '') + (i.ssd ? ' | ' + i.ssd : '') + ' | ' + gradeLabel(i.grade) + ' | ' + cny(c) + ' (' + usd(c) + ') x' + i.qty + ' = ' + cny(sub));
+    });
   });
   lines.push('------------------------------------------');
-  lines.push('TOTAL: ' + cny(total) + ' / ' + usd(total));
+  lines.push('TOTAL (' + totalUnits + ' units): ' + cny(total) + ' / ' + usd(total));
   lines.push('(Final quote and shipping cost to be confirmed by email.)');
   return lines.join('\n');
 }
@@ -952,6 +994,105 @@ function showToast(msg) {
 // ============ INIT ============
 render();
 updateCartUI();
+
+// ============ FULL QUOTE (site-wide, unified) ============
+function quoteCny(x) { return (x.priceCNY != null ? x.priceCNY : x.price); }
+function quoteUsd(x) { return (x.priceUSD != null ? x.priceUSD : cnyTo(quoteCny(x), 'USD')); }
+function quoteLabel(x) { return (x.label || x.title || x.model || ''); }
+function quoteSpec(x) { var p = [x.cpu, x.ram, x.ssd].filter(function(v){ return v; }).join(' \u00b7 '); return p ? ' \u00b7 ' + p : ''; }
+function buildQuoteText() {
+  var all = cart.filter(function(x){ return x && x.qty > 0; });
+  if (!all.length) return '';
+  var order = ['Phone', 'Laptop', 'Watch'];
+  var groups = {};
+  all.forEach(function(x){ (groups[x.cat] = groups[x.cat] || []).push(x); });
+  var lines = ['REQUEST FULL QUOTE - Elaine Supply Chain', 'Contact: sales@elainesupplychain.com | WhatsApp +1 626-539-2631', '------------------------------------'];
+  var grandCNY = 0;
+  order.forEach(function(cat) {
+    var rows = groups[cat];
+    if (!rows) return;
+    lines.push(''); lines.push('[' + cat + ']');
+    var sub = 0;
+    rows.forEach(function(x) {
+      var c = quoteCny(x); var lineTotal = c * x.qty; sub += lineTotal;
+      lines.push('  ' + quoteLabel(x) + quoteSpec(x) + ' | ' + gradeLabel(x.grade) + ' | CNY ' + c.toLocaleString('en-US') + ' x' + x.qty + ' = CNY ' + lineTotal.toLocaleString('en-US'));
+    });
+    lines.push('  ' + cat + ' subtotal: CNY ' + sub.toLocaleString('en-US'));
+    grandCNY += sub;
+  });
+  lines.push('------------------------------------');
+  lines.push('Grand Total: CNY ' + grandCNY.toLocaleString('en-US') + ' (approx. USD ' + cnyTo(grandCNY, 'USD').toLocaleString('en-US') + ')');
+  return lines.join('\n');
+}
+function fallbackCopy(txt) {
+  var ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); showToast('Quote copied to clipboard'); } catch(e) { showToast('Copy failed - select the text manually'); }
+  document.body.removeChild(ta);
+}
+function copyQuote() {
+  var txt = buildQuoteText();
+  if (!txt) { showToast('Cart is empty'); return; }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(txt).then(function(){ showToast('Quote copied to clipboard'); }, function(){ fallbackCopy(txt); });
+  } else { fallbackCopy(txt); }
+}
+function emailQuote() {
+  var txt = buildQuoteText();
+  if (!txt) { showToast('Cart is empty'); return; }
+  var href = 'mailto:' + MERCHANT_EMAIL + '?subject=' + encodeURIComponent('Quote Request - Elaine Supply Chain') + '&body=' + encodeURIComponent(txt);
+  window.location.href = href;
+}
+function buildQuoteModal() {
+  var ov = document.createElement('div');
+  ov.className = 'quote-overlay'; ov.id = 'quoteOverlay';
+  ov.onclick = function(e) { if (e.target === ov) closeFullQuote(); };
+  ov.innerHTML =
+    '<div class="quote-modal">' +
+      '<div class="quote-head"><span class="quote-title">Full Quote Request (Whole Site)</span><button type="button" class="quote-close" onclick="closeFullQuote()">\u00d7</button></div>' +
+      '<div class="quote-body"></div>' +
+      '<div class="quote-foot">' +
+        '<button type="button" class="quote-btn" onclick="copyQuote()">Copy Quote</button>' +
+        '<button type="button" class="quote-btn" onclick="emailQuote()">Send by Email</button>' +
+        '<button type="button" class="quote-btn" onclick="closeFullQuote()">Back to Shopping</button>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(ov);
+  return ov;
+}
+function closeFullQuote() {
+  var el = document.getElementById('quoteOverlay');
+  if (el) { el.classList.remove('show'); document.body.style.overflow = ''; }
+}
+function openFullQuote() {
+  var all = cart.filter(function(x){ return x && x.qty > 0; });
+  if (all.length === 0) { showToast('Cart is empty - add items to request a full quote'); return; }
+  var el = document.getElementById('quoteOverlay');
+  if (!el) el = buildQuoteModal();
+  var body = el.querySelector('.quote-body');
+  var groups = {};
+  var order = ['Phone', 'Laptop', 'Watch'];
+  all.forEach(function(x){ (groups[x.cat] = groups[x.cat] || []).push(x); });
+  var grandCNY = 0, grandUSD = 0;
+  var html = '<div class="quote-meta">Currency: <b>' + curCurrency + '</b> &middot; ' + all.length + ' line item(s) across the whole site</div>';
+  order.forEach(function(cat) {
+    var rows = groups[cat];
+    if (!rows) return;
+    var subCNY = 0, subUSD = 0;
+    html += '<div class="quote-group"><h4>' + cat + '</h4><table class="quote-table"><thead><tr><th>Model</th><th>Grade</th><th>Unit Price</th><th>Qty</th><th>Subtotal</th></tr></thead><tbody>';
+    rows.forEach(function(x) {
+      var c = quoteCny(x); var sub = c * x.qty;
+      subCNY += sub; subUSD += quoteUsd(x) * x.qty;
+      html += '<tr><td>' + quoteLabel(x) + quoteSpec(x) + '</td><td>' + gradeLabel(x.grade) + '</td><td>' + cny(c) + ' / ' + usd(c) + '</td><td>' + x.qty + '</td><td>' + cny(sub) + ' / ' + usd(sub) + '</td></tr>';
+    });
+    grandCNY += subCNY; grandUSD += subUSD;
+    html += '</tbody></table><div class="quote-subtotal">' + cat + ' subtotal: ' + cny(subCNY) + ' / ' + usd(subCNY) + (curCurrency === 'CNY' ? ' <span style="color:#64748b">&asymp; $' + Math.round(subUSD).toLocaleString('en-US') + ' USD</span>' : '') + '</div></div>';
+  });
+  html += '<div class="quote-grand"><span>Grand Total</span><span>' + cny(grandCNY) + ' / ' + usd(grandCNY) + '</span></div>';
+  body.innerHTML = html;
+  el.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
 </script>
 </body>
 </html>
