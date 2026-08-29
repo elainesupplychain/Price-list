@@ -153,6 +153,28 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .cart-clear{background:#fff;border:1px solid #f1c4c4;color:#c0392b;border-radius:8px;padding:6px 12px;font-size:.78rem;font-weight:600;cursor:pointer}
 .cart-clear:hover{background:#fdf3f3}
 .cart-note{font-size:.7rem;color:#94a3b8;margin-top:8px}
+/* ===== Full Quote Request (site-wide) ===== */
+.quote-open-btn{display:block;width:100%;margin:0 0 10px;background:linear-gradient(135deg,#00d4aa,#00a3ff);color:#fff;border:none;border-radius:8px;padding:9px 12px;font-size:.82rem;font-weight:700;cursor:pointer;font-family:inherit}
+.quote-open-btn:hover{filter:brightness(1.06)}
+.quote-overlay{position:fixed;inset:0;background:rgba(15,23,42,.6);z-index:10030;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s;display:flex;align-items:center;justify-content:center;padding:20px}
+.quote-overlay.show{opacity:1;visibility:visible}
+.quote-modal{background:#fff;border-radius:16px;width:100%;max-width:860px;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.quote-head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid #e8ebf2;background:linear-gradient(135deg,#e3f2fd,#bbdefb,#90caf9)}
+.quote-title{font-size:1rem;font-weight:700;color:#0d1b3e;padding-right:10px}
+.quote-close{background:none;border:none;font-size:1.4rem;line-height:1;color:#0d1b3e;cursor:pointer}
+.quote-body{overflow-y:auto;padding:16px 18px}
+.quote-meta{font-size:.78rem;color:#475569;margin-bottom:12px}
+.quote-group{margin-bottom:18px}
+.quote-group h4{font-size:.85rem;font-weight:700;color:#0d1b3e;margin:0 0 6px;padding:6px 10px;background:#f1f5f9;border-radius:8px}
+.quote-table{width:100%;border-collapse:collapse;font-size:.8rem}
+.quote-table th{text-align:left;padding:6px 8px;color:#64748b;font-weight:600;border-bottom:1px solid #e2e8f0;background:#f8fafc}
+.quote-table td{padding:6px 8px;border-bottom:1px solid #f1f5f9;color:#334155}
+.quote-table tr:last-child td{border-bottom:none}
+.quote-subtotal{text-align:right;font-size:.8rem;font-weight:700;color:#0d1b3e;padding:8px 0 2px}
+.quote-grand{padding:12px 0 4px;border-top:2px solid #00d4aa;margin-top:6px;display:flex;justify-content:space-between;align-items:center;font-size:.95rem;font-weight:800;color:#0d1b3e}
+.quote-foot{display:flex;justify-content:center;gap:10px;padding:14px 18px;border-top:1px solid #e8ebf2;background:#f8fafc}
+.quote-btn{background:linear-gradient(135deg,#00d4aa,#00a3ff);color:#fff;border:none;border-radius:8px;padding:9px 22px;font-size:.85rem;font-weight:700;cursor:pointer;font-family:inherit}
+.quote-btn:hover{filter:brightness(1.06)}
 /* ===== Phone Photo Album + Lightbox ===== */
 .phone-album-overlay{position:fixed;inset:0;background:rgba(15,23,42,.6);z-index:10010;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s;display:flex;align-items:center;justify-content:center;padding:20px}
 .phone-album-overlay.show{opacity:1;visibility:visible}
@@ -7643,6 +7665,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-footer" id="cartFooter">
     <div class="cart-total" id="cartTotal"></div>
+    <button class="quote-open-btn" onclick="openFullQuote()">Request Full Quote</button>
     <button class="cart-clear" onclick="cartClear()">Clear Cart</button>
     <div class="cart-note">Grade and unit price are recorded for each item to build your order summary.</div>
   </div>
@@ -8222,14 +8245,19 @@ function updateCartBadge() {
 function renderCart() {
   var box = document.getElementById('cartItems');
   if (!box) return;
-  var list = cartGet();
+  var all = cartGet().filter(function(x) { return x && x.qty > 0; });
+  var list = all.filter(function(x) { return x.cat === 'Phone'; });
   var foot = document.getElementById('cartFooter');
-  if (list.length === 0) {
+  if (all.length === 0) {
     box.innerHTML = '<div class="cart-empty">Your cart is empty. Click Add to Cart to add items.</div>';
     if (foot) foot.style.display = 'none';
     return;
   }
   if (foot) foot.style.display = '';
+  if (list.length === 0) {
+    box.innerHTML = '<div class="cart-empty">No phones in your cart yet. Site-wide quote covers ' + all.length + ' item(s) from other categories.</div>';
+    return;
+  }
   var totalCNY = 0, totalUSD = 0;
   var html = '';
   list.forEach(function(x) {
@@ -8288,7 +8316,7 @@ function initPhoneCarts() {
       '<div class="card-top-main"><span class="card-top-model"></span></div>' +
       '<div class="card-top-actions">' +
         '<button type="button" class="photo-btn card-photo-btn">View Photos</button>' +
-        '<button type="button" class="add-btn card-add-btn" onclick="phoneAddToCart(this)">Add to Cart</button>' +
+        '<button type="button" class="add-btn card-add-btn" onclick="phoneAddToCart(this, event)">Add to Cart</button>' +
       '</div>';
     top.querySelector('.card-top-model').textContent = label;
     top.querySelector('.card-photo-btn').addEventListener('click', function(e){
@@ -8324,7 +8352,8 @@ function initPhoneCarts() {
     card.setAttribute('data-cart-ready', '1');
   });
 }
-function phoneAddToCart(btn) {
+function phoneAddToCart(btn, e) {
+  if (e) e.stopPropagation();
   var card = btn.closest('.card');
   var json;
   try { json = JSON.parse(card.getAttribute('data-json')); } catch (e) { return; }
@@ -8460,6 +8489,61 @@ function quickWatchAdd(title) {
   openCart();
 }
 
+// ============ SITE-WIDE FULL QUOTE ============
+function openFullQuote() {
+  var all = cartGet().filter(function(x){ return x && x.qty > 0; });
+  if (all.length === 0) { showToast('Cart is empty &mdash; add items to request a full quote'); return; }
+  var el = document.getElementById('quoteOverlay');
+  if (!el) el = buildQuoteModal();
+  var body = el.querySelector('.quote-body');
+  var groups = {};
+  var order = ['Phone', 'Laptop', 'Watch'];
+  all.forEach(function(x){ (groups[x.cat] = groups[x.cat] || []).push(x); });
+  var grandCNY = 0, grandUSD = 0;
+  var html = '<div class="quote-meta">Currency: <b>' + curCurrency + '</b> &middot; ' + all.length + ' line item(s) across the whole site</div>';
+  order.forEach(function(cat) {
+    var rows = groups[cat];
+    if (!rows) return;
+    var subCNY = 0, subUSD = 0;
+    html += '<div class="quote-group"><h4>' + cat + '</h4><table class="quote-table"><thead><tr><th>Model</th><th>Grade</th><th>Unit Price</th><th>Qty</th><th>Subtotal</th></tr></thead><tbody>';
+    rows.forEach(function(x) {
+      var sub = x.priceCNY * x.qty;
+      subCNY += sub;
+      subUSD += (x.priceUSD || cnyTo(x.priceCNY, 'USD')) * x.qty;
+      html += '<tr><td>' + x.label + '</td><td>' + gradeLabel(x.grade) + '</td><td>' + fmtPrice(x.priceCNY) + '</td><td>' + x.qty + '</td><td>' + fmtPrice(sub) + '</td></tr>';
+    });
+    grandCNY += subCNY; grandUSD += subUSD;
+    html += '</tbody></table><div class="quote-subtotal">' + cat + ' subtotal: ' + fmtPrice(subCNY) + (curCurrency === 'CNY' ? ' <span style="color:#64748b">&asymp; $' + fmtNum(Math.round(subUSD)) + ' USD</span>' : '') + '</div></div>';
+  });
+  html += '<div class="quote-grand"><span>Grand Total</span><span>' + fmtPrice(grandCNY) + '</span></div>';
+  body.innerHTML = html;
+  el.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function buildQuoteModal() {
+  var ov = document.createElement('div');
+  ov.className = 'quote-overlay';
+  ov.id = 'quoteOverlay';
+  ov.innerHTML =
+    '<div class="quote-modal">' +
+      '<div class="quote-head"><span class="quote-title">Request Full Quote &mdash; Whole Site</span>' +
+      '<button type="button" class="quote-close" title="Close">&times;</button></div>' +
+      '<div class="quote-body"></div>' +
+      '<div class="quote-foot">' +
+        '<button type="button" class="quote-btn" onclick="closeFullQuote()">Back to Shopping</button>' +
+      '</div>' +
+    '</div>';
+  ov.addEventListener('click', function(e){ if (e.target === ov) closeFullQuote(); });
+  ov.querySelector('.quote-close').addEventListener('click', closeFullQuote);
+  document.body.appendChild(ov);
+  return ov;
+}
+function closeFullQuote() {
+  var el = document.getElementById('quoteOverlay');
+  if (el) el.classList.remove('show');
+  document.body.style.overflow = '';
+}
+
 // ============ TOAST ============
 function showToast(msg) {
   var toast = document.getElementById('toast');
@@ -8486,6 +8570,7 @@ var CURRENCY_META = {
 // ============ INIT ============
 initPhoneCarts();
 initSubDDs();
+updateCartBadge();
 render();
 var initialCat = 'phones';
 var params = new URLSearchParams(window.location.search);

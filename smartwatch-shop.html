@@ -551,6 +551,10 @@ var USD_RATE = 6.65; // CNY -> USD estimate
 var MERCHANT_EMAIL = 'sales@elainesupplychain.com'; // TODO: replace with your receiving email
 var activeBrand = 'all';
 var searchTerm = '';
+// Shared cart: unified localStorage key across all pages
+var CART_KEY = 'eslc_cart_v1';
+var CART_LEGACY_KEY = 'esc_cart_watch';
+var CART_CAT = 'Watch';
 var cart = loadCart();
 var selectedGrade = {};
 
@@ -602,10 +606,22 @@ function gradeLabel(g) {
 
 // ============ CART PERSISTENCE (shared across pages via localStorage) ============
 function loadCart() {
-  try { return JSON.parse(localStorage.getItem('esc_cart_watch') || '[]'); } catch (e) { return []; }
+  var unified = null;
+  try { unified = JSON.parse(localStorage.getItem(CART_KEY) || 'null'); } catch (e) { unified = null; }
+  var hasUnified = Array.isArray(unified) && unified.length > 0;
+  if (!hasUnified) {
+    var legacy = [];
+    try { legacy = JSON.parse(localStorage.getItem(CART_LEGACY_KEY) || '[]'); } catch (e) { legacy = []; }
+    if (Array.isArray(legacy) && legacy.length > 0) {
+      legacy.forEach(function(i) { if (i && !i.cat) i.cat = CART_CAT; });
+      try { localStorage.setItem(CART_KEY, JSON.stringify(legacy)); } catch (e) {}
+      return legacy;
+    }
+  }
+  return Array.isArray(unified) ? unified : [];
 }
 function saveCart() {
-  localStorage.setItem('esc_cart_watch', JSON.stringify(cart));
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
   updateCartUI();
 }
 function cartKey(p, grade) { return p.brand + '|' + p.model + '|' + p.size + '|' + p.material + '|' + p.internet + '|' + grade; }
@@ -712,7 +728,7 @@ function quickAdd(key) {
     var g = key.split('|')[5] || 'A+';
     if (p.grades[g] == null) { showToast('This grade is not available'); return; }
     var ex = cart.find(function(i) { return i.key === key; });
-    if (ex) { ex.qty += 1; } else { cart.push({ key: key, brand: p.brand, title: titleOf(p), cpu: p.cpu, ram: p.ram, ssd: p.ssd, grade: g, price: p.grades[g], qty: 1 }); }
+    if (ex) { ex.qty += 1; } else { cart.push({ key: key, cat: CART_CAT, brand: p.brand, title: titleOf(p), cpu: p.cpu, ram: p.ram, ssd: p.ssd, grade: g, price: p.grades[g], qty: 1 }); }
     showToast('Added to order list');
   }
   saveCart();
@@ -726,7 +742,7 @@ function addToCart(key) {
     var p = findProductByKey(key);
     if (!p) return;
     var g = key.split('|')[5] || 'A+';
-    cart.push({ key: key, brand: p.brand, title: titleOf(p), cpu: p.cpu, ram: p.ram, ssd: p.ssd, grade: g, price: p.grades[g], qty: 1 });
+    cart.push({ key: key, cat: CART_CAT, brand: p.brand, title: titleOf(p), cpu: p.cpu, ram: p.ram, ssd: p.ssd, grade: g, price: p.grades[g], qty: 1 });
     showToast('Added to order list');
   }
   saveCart();
@@ -782,7 +798,8 @@ function updateCartUI() {
 function renderCart() {
   var body = document.getElementById('cartBody');
   var footer = document.getElementById('cartFooter');
-  if (cart.length === 0) {
+  var mine = cart.filter(function(i) { return (i.cat || CART_CAT) === CART_CAT; });
+  if (mine.length === 0) {
     body.innerHTML = '<div class="cart-empty"><span class="big">🛒</span>Your order list is empty.<br>Click "Add to Cart" on any watch to start.</div>';
     footer.style.display = 'none';
     document.getElementById('cartTotalCny').textContent = cny(0);
@@ -792,7 +809,7 @@ function renderCart() {
   footer.style.display = 'block';
   var html = '';
   var total = 0;
-  cart.forEach(function(i) {
+  mine.forEach(function(i) {
     var sub = i.price * i.qty;
     total += sub;
     var p0 = findProductByKey(i.key);
@@ -831,15 +848,16 @@ function closeCart() {
 
 // ============ CHECKOUT ============
 function openCheckout() {
-  if (cart.length === 0) return;
+  var mine = cart.filter(function(i) { return (i.cat || CART_CAT) === CART_CAT; });
+  if (mine.length === 0) return;
   var html = '';
   var total = 0;
-  cart.forEach(function(i) {
+  mine.forEach(function(i) {
     var sub = i.price * i.qty;
     total += sub;
     html += '<div class="order-summary-item"><span><span class="q">' + i.qty + '\u00d7</span> ' + i.title + ' (' + gradeLabel(i.grade) + ')</span><span>' + cny(sub) + '</span></div>';
   });
-  html += '<div class="order-summary-total"><span>Total (' + cart.reduce(function(s, i) { return s + i.qty; }, 0) + ' units)</span><span>' + cny(total) + ' / ' + usd(total) + '</span></div>';
+  html += '<div class="order-summary-total"><span>Total (' + mine.reduce(function(s, i) { return s + i.qty; }, 0) + ' units)</span><span>' + cny(total) + ' / ' + usd(total) + '</span></div>';
   document.getElementById('checkoutSummary').innerHTML = html;
   document.getElementById('checkoutOverlay').classList.add('open');
 }
@@ -869,6 +887,7 @@ function submitOrder(e) {
 
 function buildListText(name, company, email, country, address, notes) {
   var lines = [];
+  var mine = cart.filter(function(i) { return (i.cat || CART_CAT) === CART_CAT; });
   var d = new Date();
   var dateStr = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
   lines.push('==========================================');
@@ -882,9 +901,9 @@ function buildListText(name, company, email, country, address, notes) {
   if (address) lines.push('Address: ' + address);
   if (notes) lines.push('Notes: ' + notes);
   lines.push('------------------------------------------');
-  lines.push('ITEMS (' + cart.reduce(function(s, i) { return s + i.qty; }, 0) + ' units):');
+  lines.push('ITEMS (' + mine.reduce(function(s, i) { return s + i.qty; }, 0) + ' units):');
   var total = 0;
-  cart.forEach(function(i, n) {
+  mine.forEach(function(i, n) {
     var sub = i.price * i.qty;
     total += sub;
     lines.push((n + 1) + '. ' + i.title + ' | ' + i.cpu + ' | ' + i.ram + ' | ' + i.ssd + ' | ' + gradeLabel(i.grade) + ' | ' + cny(i.price) + ' (' + usd(i.price) + ') x' + i.qty + ' = ' + cny(sub));
